@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USC Audio Visual Center Asset Management and Reservation System</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <div class="overall-container">
+
+    <div class="form-container">
+
+       <form action="action_page.php">
+        <fieldset>
+        <legend>AVC Form A-01</legend>
+        PURPOSE (Please Check)<br><br>
+        <input type="checkbox" name="purpose" value=""> Classroom Instruction-Related Activities<br>
+        <input type="checkbox" name="purpose" value=""> College/BED Base Activites<br><br>
+        
+        ACTIVITY (Please Check)<br><br>
+        <table id="activity">
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Conference</td>
+            <td><input type="checkbox" name="activity" value=""> Video Showing</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Seminar</td>
+            <td><input type="checkbox" name="activity" value=""> Forum</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Others<input type="text" name="activity" value=""></td>
+        </tr>
+
+        </table>
+
+
+        VENUE: Audio Visual Center<br><br>
+
+        Choose Campus: <br><select name="Campus">
+            <option value="">Main Campus</option>
+            <option value="">South Campus</option>
+            <option value="">Talamban Campus</option>
+            <option value="">North Campus</option>
+        </select>
+
+        Choose Hall/Room: <br><select name="HallRoom-MC">
+            <option value="">Fr. Theodore Buttenbruch Hall</option>
+            <option value="">Fr. Albert Gansewinkel Hall</option>
+        </select>
+
+        Choose Hall/Room: <br><select name="HallRoom-SC">
+            <option value="">Fr. Joseph Jaschik Hall</option>
+            <option value="">Fr. Anthony Buchick Hall</option>
+            <option value="">TEC Viewing Room</option>
+        </select>
+
+        Choose Hall/Room: <br><select name="HallRoom-TC">
+            <option value="">Fr. Harold Rigney Hall</option>
+            <option value="">Fr. Philip Van Engelen Viewing Room</option>
+            <option value="">Fr. Rober Hoepener Hall</option>
+        </select>
+
+         Choose Hall/Room: <br><select name="HallRoom-NC">
+            <option value="">Fr. Edward Norton Hall</option>
+        </select><br>
+
+
+        Date of Activity:
+        <input type="date" name="" value="yyyy/mm/dd">
+        <br>
+
+        Time:
+        <input type="time" name="usr_time">
+
+        Speaker/s:
+        <input type="text" name="speaker" value="">
+
+        Topic:
+        <input type="text" name="speaker" value="">
+
+        Department/Office/Student Org:
+        <input type="text" name="" value="">
+        <br>
+
+        EQUIPMENTS NEEDED (Please Check)<br><br>
+        <table id="equipments">
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Computer</td>
+            <td><input type="checkbox" name="activity" value=""> LCD Projector</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Television</td>
+            <td><input type="checkbox" name="activity" value=""> Overhead Projector</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> DVD/CD Player</td>
+            <td><input type="checkbox" name="activity" value=""> VHS Player</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Audio Cassete Recorder</td>
+            <td><input type="checkbox" name="activity" value=""> Others</td>
+        </tr>
+
+        </table>
+
+        SOFTWARE NEEDED (Please Check)<br><br>
+        <table id="equipments">
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> DVD Disc</td>
+            <td><input type="checkbox" name="activity" value=""> VCD</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> VHS Tape</td>
+            <td><input type="checkbox" name="activity" value=""> Audio Cassette Tape</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Transparency</td>
+            <td><input type="checkbox" name="activity" value=""> Poster/Chart Picture</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" name="activity" value=""> Others</td>
+            <td><input type="checkbox" name="activity" value=""> For Materials provided by Applicant</td>
+        </tr>
+
+        </table>
+        <input type="submit" value="Submit"></fieldset>
+      </form> 
+    </div>
+    </div>
+  
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
+s
