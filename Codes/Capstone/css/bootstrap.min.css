@@ -92,7 +92,7 @@ display: block;
 	color: #36be36;
 }
 
-.btn-submit{
+.btn{
     background-color: rgba (0, 102, 0, 0.4);
     display: block;
     width: 100px;
@@ -116,4 +116,58 @@ display: block;
 	padding-top: 10px;
 }
 
+.userhome-content{
+	padding: 40px;
+	margin: 10px auto;
+}
 
+.carousel{
+	margin-top: 68px;
+}
+
+#usertabs{
+	border: 1px solid #dddddd;
+    border-radius: 4px 4px 4px 4px; 
+    height: 500px;
+ }
+
+#usertab-content{
+	padding-top: 5px;
+}
+
+.guidelines-container{
+	margin-top: 100px;
+
+}
+
+#guidelines-sidebar{
+	margin-top: 40px;
+	width: 230px;
+}
+
+#guidelines-sidebar li{
+	border-bottom: 1px solid #eee;
+}
+
+#guidelines-sidebar a{
+	color: #000000;
+	font-weight: bold;
+}
+
+.page-header{
+	border-bottom: 1px solid #eee;
+    margin: 40px 0 20px;
+    padding-bottom: 9px;
+}
+
+.quote{
+	font-weight:bold;
+}
+
+
+.guidelines-content{
+	border: 1px solid #eee;
+	padding-right: 20px;
+	padding-left: 20px;
+
+}
