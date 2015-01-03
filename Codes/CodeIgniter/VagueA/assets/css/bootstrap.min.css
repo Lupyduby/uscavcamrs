@@ -9,8 +9,28 @@
 	background-color: #006600;
 	width: 100%;
 	line-height: 100px;
+	border: none;
+
 }
 
+.menu-right{
+	float: right;
+	padding: 5px;
+
+}
+
+.navbar-nav > li > a{
+	color: #ffffff;
+	pading-top: 10px;
+	padding-bottom: 10px;
+	line-height: 23px;
+	display: block;
+}
+
+.dropdown:hover .dropdown-menu 
+{
+display: block;
+}
 
 #over
 {
@@ -20,11 +40,25 @@
 	position: relative;
 }
 
+#Bsubmit
+{
+	position: absolute;
+	top: 73%;
+    right: 55%;
+}
+
 #Bregister
 {
-	position: fixed;
-	top: 56%;
-    right: 10%;
+	position: absolute;
+	top: 73%;
+    right: 20%;
+}
+
+#forgotPass
+{
+	position: absolute;
+	top:90%;
+    right: 30%;	
 }
 
 #footer
@@ -33,20 +67,6 @@
 	Width: 100%;
 	bottom: 0;
 
-}
-
-#forgotPass
-{
-	position: fixed;
-	top:64%;
-    right: 13%;	
-}
-
-#Bsubmit
-{
-	position: fixed;
-	top: 56%;
-    right: 21%;
 }
 
 .body-container{
@@ -63,6 +83,10 @@
 	background: rgba(0, 0, 0, 0.4);	
 }
 
+#sys-desc p{
+	padding: 10px;	
+}
+
 .body-content h1{
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	padding-bottom: 10px;
@@ -77,12 +101,13 @@
 
 .form-body{
 	padding: 30px;
+	padding-bottom:85px;
 	background: rgba(0, 0, 0, 0.4);	
 }
 
 .form-control {
     background-color: rgba(0, 0, 0, 0.4);
-    border: 1px medium #36be36;
+    border: 1px medium;
     border-radius: 0;
     box-shadow: none;
     color: #36be36;
@@ -93,12 +118,18 @@
     transition: all 0.2s ease-in-out 0s;
 }
 
-.btn-submit{
+.login-form a{
+	color: #36be36;
+}
+
+.btn{
     background-color: rgba (0, 102, 0, 0.4);
     display: block;
     width: 100px;
     padding: 11px;
     font-weight: bold;
+    float: left;
+    margin-right: 5px;
 }
 
 .carousel-inner img{
@@ -115,4 +146,58 @@
 	padding-top: 10px;
 }
 
+.userhome-content{
+	padding: 40px;
+	margin: 10px auto;
+}
 
+.carousel{
+	margin-top: 68px;
+}
+
+#usertabs{
+	border: 1px solid #dddddd;
+    border-radius: 4px 4px 4px 4px; 
+    height: 500px;
+ }
+
+#usertab-content{
+	padding-top: 5px;
+}
+
+.guidelines-container{
+	margin-top: 100px;
+
+}
+
+#guidelines-sidebar{
+	margin-top: 40px;
+	width: 230px;
+}
+
+#guidelines-sidebar li{
+	border-bottom: 1px solid #eee;
+}
+
+#guidelines-sidebar a{
+	color: #000000;
+	font-weight: bold;
+}
+
+.page-header{
+	border-bottom: 1px solid #eee;
+    margin: 40px 0 20px;
+    padding-bottom: 9px;
+}
+
+.quote{
+	font-weight:bold;
+}
+
+
+.guidelines-content{
+	border: 1px solid #eee;
+	padding-right: 20px;
+	padding-left: 20px;
+
+}

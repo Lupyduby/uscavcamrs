@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class StaffWS extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,31 +21,14 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('homepage');
-	}
-
-
-	public function login(){
-		$this->load->library('form_validation');
-
+		if(!$this->session->userdata('username'))
 		{
-			$data['username'] = $this->input->post('username');
-			$data['pass'] = $this->input->post('pass');
-
-			$this->load->model("model_db");
-			$data['results'] = $this->model_db->validateUser($data['username'], $data['pass']);
-
-			if($data['results']!=null)
-			$this->load->view('success', $data);
-
-			else
-			{
-				log_message('error', 'Invalid username or password!');
-				$this->index();
-			}
-			
+			$this->load->view('homepage');
+			$this->load->view('footer/footer');
 		}
 
+		else
+			$this->load->view('homepage');
 	}
 
 	public function register(){
@@ -53,7 +36,6 @@ class Main extends CI_Controller {
 	}
 
 	public function addUser(){
-
 
 		
 		$this->load->library('form_validation');
@@ -106,15 +88,4 @@ class Main extends CI_Controller {
 		}
 	
 	}
-
-	public function getDB(){
- 
-
-
-	}
-
-
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
