@@ -30,4 +30,22 @@ class EndorseApprove extends CI_Controller {
 		else
 			$this->load->view('homepage');
 	}
+
+	public function formConfirmation(){
+
+		if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+		{
+			$this->load->view('Header/approverHeader');
+			$this->load->view('FormConfirmation-approver');
+			
+		}
+
+		else
+		{
+			$this->load->view('Header/endorserHeader');
+			$this->load->view('FormConfirmation-endorser');
+		}
+
+		$this->load->view('Footer/footer');
+	}
 }

@@ -32,59 +32,92 @@ class StaffWS extends CI_Controller {
 	}
 
 	public function register(){
-		$this->load->view('register');
+		if($this->session->userdata('type'))
+		{
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('register');
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	public function addUser(){
 
+		if($this->session->userdata('type'))
+		{
 		
-		$this->load->library('form_validation');
+			$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('firstname', 'First name', 'required');
-		$this->form_validation->set_rules('lastname', 'Last name', 'required');
-		
+			$this->form_validation->set_rules('firstname', 'First name', 'required');
+			$this->form_validation->set_rules('lastname', 'Last name', 'required');
+			
 
 
-		if (!$this->form_validation->run())
-		{	
+			if (!$this->form_validation->run())
+			{	
 
-			$this->load->view('register');
+				$this->load->view('register');
+			}
+			else
+			{	
+				$data['fname'] = $this->input->post('firstname');
+				$data['lname'] = $this->input->post('lastname');
+				$data1=array(
+					'Person_Email' => $this->input->post('email'),
+					'Person_Password' => $this->input->post('pass'),
+					'Person_Fname' => $this->input->post('firstname'),
+					'Person_Lname' => $this->input->post('lastname'),
+					'Person_Username' => $this->input->post('username'),	
+
+				);
+				$this->load->model("model_db");
+
+				$data['results'] = $this->model_db->addPerson($data1);
+
+				if($data['results']==1)
+				{
+					$data['id'] = $this->model_db->getPersonId();
+					$data2=array(
+						"Person_ID" => $data['id'][0]->Person_ID,
+						"Campus_ID" => $this->input->post('campus'),
+						"College_ID" => $this->input->post('college'),
+						"user_office_name" => $this->input->post('officeName'),
+						"user_type" => $this->input->post('usertype')
+					);
+
+					$data['results2'] = $this->model_db->addUser($data2);
+					$data['join'] = $this->model_db->joinData();
+
+
+					$this->load->view('success', $data);	
+				}
+				//$this->load->view("view_DBValues", $data);
+			
+			
+			}
+
 		}
+
 		else
-		{	
-			$data['fname'] = $this->input->post('firstname');
-			$data['lname'] = $this->input->post('lastname');
-			$data1=array(
-				'Person_Email' => $this->input->post('email'),
-				'Person_Password' => $this->input->post('pass'),
-				'Person_Fname' => $this->input->post('firstname'),
-				'Person_Lname' => $this->input->post('lastname'),
-				'Person_Username' => $this->input->post('username'),	
-
-			);
-		$this->load->model("model_db");
-
-		$data['results'] = $this->model_db->addPerson($data1);
-
-		if($data['results']==1){
-			$data['id'] = $this->model_db->getPersonId();
-			$data2=array(
-				"Person_ID" => $data['id'][0]->Person_ID,
-				"Campus_ID" => $this->input->post('campus'),
-				"College_ID" => $this->input->post('college'),
-				"user_office_name" => $this->input->post('officeName'),
-				"user_type" => $this->input->post('usertype')
-			);
-
-			$data['results2'] = $this->model_db->addUser($data2);
-			$data['join'] = $this->model_db->joinData();
-
-
-			$this->load->view('success', $data);	
-		}
-		//$this->load->view("view_DBValues", $data);
-		
-		
+		{
+			$this->index();
 		}
 	
 	}

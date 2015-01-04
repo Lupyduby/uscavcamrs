@@ -27,23 +27,37 @@ class User extends CI_Controller {
 	}
 
 	public function guideline(){
-		if($this->session->userdata('user_id'))
+		if($this->session->userdata('type'))
 		{
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
-				$this->load->view('Header/endorserHeader');	
+				$this->load->view('Header/endorserHeader');
+					
 			}
 
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 			{
-				$this->load->view('Header/vpaaHeader');
+				$this->load->view('Header/approverHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+				
 			}
 
 			else
 			{	
-				$this->load->view('Header/userHeader');	
-				
+				$this->load->view('Header/userHeader');
 			}
+			
 			$this->load->view('Guidelines-guidelines');
 			$this->load->view('Footer/footer');
 		}
@@ -55,54 +69,40 @@ class User extends CI_Controller {
 
 	}
 	
-	public function policy(){
-		if($this->session->userdata('user_id'))
-		{
-			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
-			{
-				$this->load->view('Header/endorserHeader');	
-			}
-
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
-			{
-				$this->load->view('Header/vpaaHeader');
-			}
-
-			else
-			{	
-				$this->load->view('Header/userHeader');	
-				
-			}
-			$this->load->view('Guidelines-policy');
-			$this->load->view('Footer/footer');
-		}
-
-		else
-		{
-			$this->index();
-		}
-
-
-	}
+	
 
 	public function reservation(){
-		if($this->session->userdata('user_id'))
+		if($this->session->userdata('type'))
 		{
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
-				$this->load->view('Header/endorserHeader');	
+				$this->load->view('Header/endorserHeader');
+					
 			}
 
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 			{
-				$this->load->view('Header/vpaaHeader');
+				$this->load->view('Header/approverHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+				
 			}
 
 			else
 			{	
-				$this->load->view('Header/userHeader');	
-				
+				$this->load->view('Header/userHeader');
 			}
+
 			$this->load->view('Reservation');
 			$this->load->view('Footer/footer');
 		}
@@ -114,23 +114,37 @@ class User extends CI_Controller {
 	}
 
 	public function myAccount(){
-		if($this->session->userdata('user_id'))
+		if($this->session->userdata('type`'))
 		{
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
-				$this->load->view('Header/endorserHeader');	
+				$this->load->view('Header/endorserHeader');
+					
 			}
 
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 			{
-				$this->load->view('Header/vpaaHeader');
+				$this->load->view('Header/approverHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+				
 			}
 
 			else
 			{	
-				$this->load->view('Header/userHeader');	
-				
+				$this->load->view('Header/userHeader');
 			}
+
 			$this->load->view('MyAccount');
 			$this->load->view('Footer/footer');
 		}
@@ -142,7 +156,7 @@ class User extends CI_Controller {
 	}
 
 	public function ChangePass(){
-		if($this->session->userdata('user_id'))
+		if($this->session->userdata('type'))
 		{
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{

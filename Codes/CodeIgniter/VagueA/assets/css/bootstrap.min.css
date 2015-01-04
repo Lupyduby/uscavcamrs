@@ -40,6 +40,20 @@ display: block;
 	position: relative;
 }
 
+.textarea
+{
+	height:100%;
+	width:100%;
+}
+
+#FCE
+{
+	position: absolute;
+	top: 10%;
+	width:100%;
+
+}
+
 #Bsubmit
 {
 	position: absolute;
@@ -67,6 +81,11 @@ display: block;
 	Width: 100%;
 	bottom: 0;
 
+}
+
+table
+{
+	text-align:center;
 }
 
 .body-container{
