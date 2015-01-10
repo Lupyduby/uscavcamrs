@@ -31,7 +31,7 @@
                       Manage<b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#AddUser">Add User</a></li>
+                            <li><a tabindex="-1" href="#AddUser">Client</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#Equipment">Equipment</a></li>
                             <li class="divider"></li>

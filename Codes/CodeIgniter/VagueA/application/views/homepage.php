@@ -1,4 +1,12 @@
-
+<style type="text/css">
+  
+  .form-control:focus {
+border-color: green;
+outline: 0;
+/* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6); */
+/* box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6); */
+}
+</style>
       
       <div class="body-container"> <!-- Start of Body -->
       	<div class="body-content">
@@ -28,13 +36,14 @@
 										<input id="banner-email" class="form-control" type="password" placeholder="Password" required="" name="password">
 									</div>
 									
-								<button class="btn btn-default btn-submit" type="submit" id="Bsubmit">Sign In</button>
-								
+								<button class="btn btn-default btn-submit" type="submit">Sign In</button>
+								<a href="<?php echo base_url(); ?>main/userRegister"><i >Forgot Your Password?</i></a>
+                <a href="<?php echo base_url(); ?>main/userRegister"><i  >Want to register?</i></a>
+                
 								
 								</form>
-                <a href="<?php echo base_url(); ?>main/userRegister"><button class="btn btn-default btn-submit" id="Bregister">Register</button>
-                <a href="#ForgotPassword"><i  id="forgotPass">Forgot Your Password?</i></a>
-							</div>
+                 
+              </div>
 
       					</div>	
       				</div>

@@ -31,7 +31,7 @@
                       Manage<b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#AddUser">Add User</a></li>
+                            <li><a tabindex="-1" href="#AddUser">Client</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#Equipment">Equipment</a></li>
                             <li class="divider"></li>
@@ -49,8 +49,6 @@
         Account <b class="caret"></b>
     </a>
         <ul class="dropdown-menu">
-            <li><a tabindex="-1" href="#MyAccount">My Account</a></li>
-            <li class="divider"></li>
             <li><a tabindex="-1" href="#ChangePassword">Change Password</a></li>
             <li class="divider"></li>
             <li><a tabindex="-1" href="<?php echo base_url(); ?>main/logOut">Logout</a></li>
