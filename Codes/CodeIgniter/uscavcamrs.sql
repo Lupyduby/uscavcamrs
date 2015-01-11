@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2015 at 02:25 PM
+-- Generation Time: Jan 11, 2015 at 04:44 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -50,7 +50,17 @@ CREATE TABLE IF NOT EXISTS `asset` (
   `Asset_Quantity` int(11) NOT NULL,
   PRIMARY KEY (`Asset_ID`),
   UNIQUE KEY `Asset_ID` (`Asset_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `asset`
+--
+
+INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Brand`, `Asset_Serial`, `Asset_Remarks`, `Asset_Quantity`) VALUES
+(1, 4, 0, 'Microphone', 'Shure', '', 'Functioning', 3),
+(2, 4, 0, 'DVD', 'Pioneer', 'asdasdas3132154', 'Functioning', 3),
+(3, 4, 0, 'Broom', '', '', 'Functioning', 2),
+(4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2);
 
 -- --------------------------------------------------------
 
@@ -63,7 +73,17 @@ CREATE TABLE IF NOT EXISTS `campus` (
   `Campus_name` text NOT NULL,
   `Campus_address` text NOT NULL,
   PRIMARY KEY (`Campus_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `campus`
+--
+
+INSERT INTO `campus` (`Campus_ID`, `Campus_name`, `Campus_address`) VALUES
+(1, 'Downtown', 'Colon'),
+(2, 'North', 'Asilo'),
+(3, 'South', 'Private'),
+(4, 'Talamban', 'Talamban');
 
 -- --------------------------------------------------------
 
@@ -95,13 +115,14 @@ CREATE TABLE IF NOT EXISTS `person` (
   `Person_Email` varchar(50) DEFAULT NULL,
   `Person_type` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Person_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `person`
 --
 
 INSERT INTO `person` (`Person_ID`, `Person_Username`, `Person_Password`, `Person_Fname`, `Person_Lname`, `Person_Email`, `Person_type`) VALUES
+(0, NULL, NULL, 'None', '', NULL, NULL),
 (1, 'cobi', '21128', 'Cobi', 'Lupyduby', 'char@gmail.com', 'Faculty'),
 (2, 'VPA', '1234', 'Fr. VPA', 'Approver', 'approvevpaa@gmail.com', 'VPA'),
 (3, 'VPAA', '1234', 'Fr. VPAA', 'Approver', 'approvevpaa@gmail.com', 'VPAA'),
@@ -139,19 +160,25 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 --
 
 CREATE TABLE IF NOT EXISTS `softwares` (
-  `Software_ID` int(11) NOT NULL DEFAULT '0',
+  `Software_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_ID` int(11) DEFAULT NULL,
   `Campus_ID` int(11) DEFAULT NULL,
+  `Software_CallNumber` varchar(10) NOT NULL,
   `Software_title` varchar(64) DEFAULT NULL,
   `Software_runningTime` varchar(50) DEFAULT NULL,
   `Software_Code` varchar(16) DEFAULT NULL,
-  `Software_Year` year(4) DEFAULT NULL,
   `Software_Quantity` int(11) DEFAULT NULL,
-  `Software_Subject` varchar(16) NOT NULL,
-  `Software_Remarks` varchar(64) NOT NULL,
   `Software_Status` varchar(50) DEFAULT 'Available',
   PRIMARY KEY (`Software_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `softwares`
+--
+
+INSERT INTO `softwares` (`Software_ID`, `Person_ID`, `Campus_ID`, `Software_CallNumber`, `Software_title`, `Software_runningTime`, `Software_Code`, `Software_Quantity`, `Software_Status`) VALUES
+(1, 0, 3, 'CDm101r', 'Divergent', '1:35:36', NULL, 1, 'Available'),
+(2, 0, 3, 'CDm102r', 'Insurgent', '1:35:36', NULL, 1, 'Available');
 
 -- --------------------------------------------------------
 

@@ -33,13 +33,13 @@
                         <ul class="dropdown-menu">
                             <li><a tabindex="-1" href="#AddUser">Client</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#Equipment">Equipment</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/equipment">Equipment</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#Hall">Hall</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#Statistics">Statistics</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#Software">Software</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/software">Software</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="#WS">Working Student</a></li>
                         </ul>

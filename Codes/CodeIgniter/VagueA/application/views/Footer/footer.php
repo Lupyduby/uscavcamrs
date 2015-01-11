@@ -1,3 +1,4 @@
+	
 	<div class="footer-container" id="footer"> <!-- Footer -->
 		<div align="center">
 		Copyright 2014. All Rights Reserved.<br>
@@ -5,6 +6,7 @@
 		P. del Rosario Street, Cebu City, Philippines 6000<br>
 		</div>
 	</div> <!-- End of Footer -->
+
 
 
      

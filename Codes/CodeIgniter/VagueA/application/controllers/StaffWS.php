@@ -121,4 +121,100 @@ class StaffWS extends CI_Controller {
 		}
 	
 	}
+
+	public function equipment(){
+		if($this->session->userdata('type'))
+		{	
+
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->queryEquip();
+			$result['num']=count($result['result']);
+			
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('equipment', $result);
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
+	public function software(){
+		if($this->session->userdata('type'))
+		{
+
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->querySoft();
+			$result['num']=count($result['result']);
+
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('software', $result);
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
+
+	public function client(){
+		if($this->session->userdata('type'))
+		{
+
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->queryClient();
+			$result['num']=count($result['result']);
+
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('software', $result);
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
+
 }

@@ -60,6 +60,43 @@ class Model_db extends CI_Model{
 		$query = $this->db->query("Select * from person where Person_Username=".$this->db->escape($username)." AND Person_Password=".$this->db->escape($pass));	
 		return $query->row();
 	}
+
+	public function queryEquip(){
+
+		$this->db->select('asset.Asset_Name, 
+							asset.Asset_Brand, 
+							asset.Asset_Serial, 
+							asset.Asset_Remarks, 
+							asset.Asset_Quantity,
+							campus.Campus_Name');
+		$this->db->from('asset');
+		$this->db->join('campus', 'asset.Campus_ID = campus.Campus_ID');
+
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+	public function querySoft(){
+
+		$this->db->select('person.Person_FName,
+						   person.Person_LName,
+						   campus.Campus_Name,
+						   softwares.Software_title,
+						   softwares.Software_runningTime,
+						   softwares.Software_Code,
+						   softwares.Software_Quantity,
+						   softwares.Software_Status,
+						   softwares.Software_CallNumber
+						    ');
+		$this->db->from('softwares');
+		$this->db->join('campus', 'softwares.Campus_ID = campus.Campus_ID');
+		$this->db->join('person', 'softwares.Person_ID = person.Person_ID');
+	
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
 	
 }//end of class
 
