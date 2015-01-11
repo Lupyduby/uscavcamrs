@@ -171,3 +171,78 @@ display: block;
 	padding-left: 20px;
 
 }
+
+.equipments-container{
+	margin-top: 80px;
+
+}
+
+.equipments-content{
+	border: 1px solid #eee;
+    border-radius: 4px 4px 4px 4px; 
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 400px !important;
+	overflow-y: scroll;
+}
+
+.tbodycontainer{
+	margin: 0px;
+}
+
+.table-scrollable{
+	overflow-y: scroll;
+	height: 300px;	
+}
+
+.btn-sm, .btn-group-sm > .btn {
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 5px 5px;
+ }
+
+ .pagination{
+	margin-right: 0px;
+ }
+
+ .action-header{
+	padding-bottom: 5px;
+ }
+
+.input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+
+.input-group-addon, .input-group-btn, .input-group .form-control-search {
+    display: table-cell;
+}
+
+input-group .form-control-search {
+	position: relative;
+	float: left;
+}
+
+
+.form-control-search{
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    box-shadow: none;
+    height: 44px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 0px;
+    outline: medium none;
+    padding: 13px 15px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
