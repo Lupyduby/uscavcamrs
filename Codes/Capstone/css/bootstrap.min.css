@@ -186,7 +186,7 @@ display: block;
 	margin-right: auto;
 	margin-left: auto;
 	height: 400px !important;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .tbodycontainer{
@@ -279,4 +279,9 @@ input-group .form-control-search {
 
 .breadcrumb > .active {
     color: #36be36;
+}
+
+.statistics-container{
+	margin-top: 80px;
+
 }
