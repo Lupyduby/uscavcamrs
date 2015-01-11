@@ -128,7 +128,7 @@ display: block;
 #usertabs{
 	border: 1px solid #dddddd;
     border-radius: 4px 4px 4px 4px; 
-    height: 500px;
+    height: 500px !important;
  }
 
 #usertab-content{
@@ -284,4 +284,9 @@ input-group .form-control-search {
 .statistics-container{
 	margin-top: 80px;
 
+}
+
+.tab-pane{
+	height: 450px !important;
+	overflow-y: scroll;
 }
