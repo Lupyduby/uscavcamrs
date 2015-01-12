@@ -28,13 +28,20 @@
               <tr>
                 <th><h4>Surname</h4></th>
                 <th><h4>Forename</h4></th>
-                <th><h4>Type</h4></th>
-                <th><h4>College/Office/SO</h4></th>
+                <th><h4>Username</h4></th>
+                <th><h4>Campus</h4></th>
+                <th><h4>Hall</h4></th>
+                <th><h4>Monday</h4></th>
+                <th><h4>Tuesday</h4></th>
+                <th><h4>Wednesay</h4></th>
+                <th><h4>Thursday</h4></th>
+                <th><h4>Friday</h4></th>
+                <th><h4>Saturday</h4></th>
                 <th><h4>Update/Delete</h4></th>
               </tr>
             </thead>
             <tbody class="table-contents">
-              <?php $i=0; 
+              <?php $i=0; ; 
                 while($i<$num)
                 {
                   
@@ -42,26 +49,15 @@
                 <tr>
                     <td><?php echo $result[$i]->Person_LName; ?></td>
                     <td><?php echo $result[$i]->Person_FName; ?></td>
-                    <td><?php echo $result[$i]->Person_type; ?></td>
-                    <?php if($result[$i]->Person_type=="SO") 
-                          {   ?>
-                    
-                            <td><?php echo $result[$i]->SO_Name; ?></td>
-                        <?php
-                          }
-
-                          else if ($result[$i]->Person_type=="Office")
+                    <td><?php echo $result[$i]->Person_Username; ?></td>
+                    <td><?php echo $result[$i]->Campus_Name; ?></td>
+                    <td><?php echo $result[$i]->Hall_Name; ?></td>
+                    <?php $schedCount=0;
+                          while($schedCount<6)
                           {
-                        ?>
-                            <td><?php echo $result[$i]->User_Office_Name; ?></td>
-                        <?php
-                          }
-
-                          else 
-                          {
-                        ?>
-                            <td><?php echo $result[$i]->User_college; ?></td>
-                        <?php } ?>
+                    ?>
+                              <td><?php echo $dutySched[$schedCount]->DutySched_TimeIn." - ". $dutySched[$schedCount]->DutySched_TimeOut; ?></td>
+                    <?php $schedCount++; } ?>
                     <td>
                         <button class="btn btn-default btn-sm" type="button">
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
@@ -69,9 +65,9 @@
                         <button class="btn btn-default btn-sm" type="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
-                    </td> 
+                    </td>
                 </tr>
-              <?php $i++; } ?>
+              <?php $i++; $schedCount=$schedCount+6; } ?>
              
             </tbody>
   

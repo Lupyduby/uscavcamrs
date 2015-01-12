@@ -98,6 +98,87 @@ class Model_db extends CI_Model{
 		return $query->result();
 	}
 	
+
+
+	public function queryClient(){
+
+		$this->db->select('person.Person_FName,
+						   person.Person_LName,
+						   person.Person_Username,
+						   person.Person_type,
+						   user.User_college,
+						   user.User_Office_Name,
+						   studentorg.SO_Name				   
+						    ');
+		$this->db->from('person');
+		$this->db->where('Person_type !=', "Staff");
+		$this->db->where('Person_type !=', "WS");
+		$this->db->join('studentorg', 'person.Person_ID = studentorg.Person_ID','left');
+		$this->db->join('user', 'person.Person_ID = user.Person_ID', 'left');
+				
+
+		$this->db->order_by('Person_LName', 'asc');	
+		$query = $this->db->get();
+
+
+
+
+		
+	
+		
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+
+	public function queryHall(){
+
+		$this->db->select('hall.Hall_Name,
+						   hall.Hall_Capacity,
+						   hall.Hall_Desc,
+						   campus.Campus_Name					   
+						    ');
+		$this->db->from('hall');
+		$this->db->join('campus', 'hall.Campus_ID = campus.Campus_ID');
+			
+	
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+
+
+	public function queryWSInfo(){
+
+		$this->db->select('person.Person_FName,
+						   person.Person_LName,
+						   person.Person_Username,	
+						   campus.Campus_Name,
+						   hall.Hall_Name,
+
+						    ');
+		$this->db->from('workingstudent');
+		$this->db->join('campus', 'workingstudent.Campus_ID = campus.Campus_ID');
+		$this->db->join('person', 'workingstudent.Person_ID = person.Person_ID');
+		$this->db->join('hall', 'workingstudent.Hall_ID = hall.Hall_ID');
+				
+	
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+	public function queryWSDutySched(){
+		$this->db->select('*');
+		$this->db->from('dutysched');
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+
+
 }//end of class
 
 

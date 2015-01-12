@@ -185,6 +185,8 @@ class StaffWS extends CI_Controller {
 	}
 
 
+	
+
 	public function client(){
 		if($this->session->userdata('type'))
 		{
@@ -206,7 +208,7 @@ class StaffWS extends CI_Controller {
 			}
 
 			
-			$this->load->view('software', $result);
+			$this->load->view('client', $result);
 			$this->load->view('Footer/footer');
 		}
 
@@ -215,6 +217,111 @@ class StaffWS extends CI_Controller {
 			$this->index();
 		}
 	}
+
+
+	public function hall(){
+		if($this->session->userdata('type'))
+		{
+
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->queryHall();
+			$result['num']=count($result['result']);
+
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('hall', $result);
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
+
+	public function workingStudent(){
+		if($this->session->userdata('type'))
+		{
+
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->queryWSInfo();
+			$result['num']=count($result['result']);
+			$result['dutySched'] = $this->model_db->queryWSDutySched();
+			$result['num2']=count($result['dutySched']);
+
+			echo "Sched count: ".$result['num2'];
+
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('workingStudent', $result);
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
+
+	public function statistics(){
+		if($this->session->userdata('type'))
+		{
+/*
+			$this->load->model("model_db");
+			$result['result'] = $this->model_db->queryWSInfo();
+			$result['num']=count($result['result']);
+			$result['dutySched'] = $this->model_db->queryWSDutySched();
+			$result['num2']=count($result['dutySched']);
+
+			echo "Sched count: ".$result['num2'];
+*/
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('statistics');
+			$this->load->view('Footer/footer');
+		}
+
+		else
+		{
+			$this->index();
+		}
+	}
+
 
 
 }

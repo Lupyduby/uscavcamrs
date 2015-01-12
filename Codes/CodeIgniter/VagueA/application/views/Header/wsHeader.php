@@ -31,13 +31,13 @@
                       Manage<b class="caret"></b>
                     </a>
                         <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#AddUser">Client</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/client">Client</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#Equipment">Equipment</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/equipment">Equipment</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#Statistics">Statistics</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/statistics">Statistics</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="#Software">Software</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/software">Software</a></li>
                         </ul>
                 </li>
                 <li class="dropdown">

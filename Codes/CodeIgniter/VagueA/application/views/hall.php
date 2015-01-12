@@ -26,11 +26,12 @@
           <table class="table table-hover">
             <thead class="theader-contents">
               <tr>
-                <th><h4>Surname</h4></th>
-                <th><h4>Forename</h4></th>
-                <th><h4>Type</h4></th>
-                <th><h4>College/Office/SO</h4></th>
+                <th><h4>Campus</h4></th>
+                <th><h4>Name</h4></th>
+                <th><h4>Capacity</h4></th>
+                <th><h4>Description</h4></th>
                 <th><h4>Update/Delete</h4></th>
+                
               </tr>
             </thead>
             <tbody class="table-contents">
@@ -40,28 +41,11 @@
                   
               ?>
                 <tr>
-                    <td><?php echo $result[$i]->Person_LName; ?></td>
-                    <td><?php echo $result[$i]->Person_FName; ?></td>
-                    <td><?php echo $result[$i]->Person_type; ?></td>
-                    <?php if($result[$i]->Person_type=="SO") 
-                          {   ?>
-                    
-                            <td><?php echo $result[$i]->SO_Name; ?></td>
-                        <?php
-                          }
-
-                          else if ($result[$i]->Person_type=="Office")
-                          {
-                        ?>
-                            <td><?php echo $result[$i]->User_Office_Name; ?></td>
-                        <?php
-                          }
-
-                          else 
-                          {
-                        ?>
-                            <td><?php echo $result[$i]->User_college; ?></td>
-                        <?php } ?>
+                    <td><?php echo $result[$i]->Campus_Name; ?></td>
+                    <td><?php echo $result[$i]->Hall_Name; ?></td>
+                    <td><?php echo $result[$i]->Hall_Capacity; ?></td>
+                    <td><?php echo $result[$i]->Hall_Desc; ?></td>
+                   
                     <td>
                         <button class="btn btn-default btn-sm" type="button">
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
@@ -69,7 +53,7 @@
                         <button class="btn btn-default btn-sm" type="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
-                    </td> 
+                    </td>
                 </tr>
               <?php $i++; } ?>
              
