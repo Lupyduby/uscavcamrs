@@ -173,7 +173,7 @@ class User extends CI_Controller {
 				$this->load->view('Header/userHeader');	
 				
 			}
-			$this->load->view('ChangePass');
+			$this->load->view('changePass');
 			$this->load->view('Footer/footer');
 		}
 
@@ -182,5 +182,7 @@ class User extends CI_Controller {
 			$this->index();
 		}
 	}
+
+
 
 }

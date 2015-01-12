@@ -1,4 +1,4 @@
-
+<div id="contentMargin">
 <div class="container guidelines-container">
 <div class="row">
 <div class="col-md-3">
@@ -56,7 +56,6 @@
     </div>
     </div>
     </div> <!-- End of Container -->
-</div>
 </div>
 
 <script src='<?php echo base_url(); ?>assets/js/jquery.min.js'></script>

@@ -35,7 +35,7 @@
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/equipment">Equipment</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/hall">Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/hall">AV Hall</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/statistics">Statistics</a></li>
                             <li class="divider"></li>
@@ -49,7 +49,7 @@
         Account <b class="caret"></b>
     </a>
         <ul class="dropdown-menu">
-            <li><a tabindex="-1" href="#ChangePassword">Change Password</a></li>
+            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ChangePass">Change Password</a></li>
             <li class="divider"></li>
             <li><a tabindex="-1" href="<?php echo base_url(); ?>main/logOut">Logout</a></li>
         </ul>

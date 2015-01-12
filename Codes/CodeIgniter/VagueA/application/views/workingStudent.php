@@ -3,7 +3,7 @@
 <div class="row">
     
     <div class="col-lg-12" role="main">
-      <h2 id="equip-manage" class="page-header">Equipment Management</h2>
+      <h2 id="equip-manage" class="page-header">Working Scholar Management</h2>
       <div class="row action-header">
         <div class="col-md-6 col-md-offset-6"><button class="btn btn-default" type="button">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
