@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2015 at 02:55 PM
+-- Generation Time: Jan 13, 2015 at 05:09 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -41,23 +41,30 @@ CREATE TABLE IF NOT EXISTS `activity` (
 CREATE TABLE IF NOT EXISTS `asset` (
 `Asset_ID` int(11) NOT NULL,
   `Campus_ID` int(11) NOT NULL,
-  `Hall_ID` int(11) DEFAULT NULL,
+  `Hall_ID` int(11) DEFAULT '0',
   `Asset_Name` varchar(64) NOT NULL,
   `Asset_Brand` varchar(64) NOT NULL,
   `Asset_Serial` varchar(16) NOT NULL,
   `Asset_Remarks` varchar(64) NOT NULL,
   `Asset_Quantity` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `asset`
 --
 
 INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Brand`, `Asset_Serial`, `Asset_Remarks`, `Asset_Quantity`) VALUES
-(1, 4, 0, 'Microphone', 'Shure', '', 'Functioning', 3),
+(1, 1, 0, 'aulo', 'Shaark', '123', 'Functioning', 10),
 (2, 4, 0, 'DVD', 'Pioneer', 'asdasdas3132154', 'Functioning', 3),
 (3, 4, 0, 'Broom', '', '', 'Functioning', 2),
-(4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2);
+(4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2),
+(5, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10),
+(6, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10),
+(7, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
+(8, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
+(9, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
+(10, 1, 0, 'aaahh', 'FDA', 'SDLKF', 'JKFH', 2),
+(11, 1, 0, 'aaaa', 'None', 'SDLKF', 'JKFH', 2);
 
 -- --------------------------------------------------------
 
@@ -383,7 +390,7 @@ MODIFY `Activity_ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `campus`
 --
