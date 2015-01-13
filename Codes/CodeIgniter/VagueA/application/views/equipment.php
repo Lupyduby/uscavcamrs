@@ -19,8 +19,12 @@
                     </div>
                     <div class="modal-body">
                     <!--form sa modal -->
-                    <form class="form-horizontal">
-        <!--form sa dropdown --><div class="form-group">
+                    
+
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('StaffWS/addEquipment'); ?>
+                        
+                    <div class="form-group">
                     <label class="control-label col-md-4">Campus</label>
                       <div class="col-md-6">
                       <div class="btn-group bootstrap-select">
@@ -90,7 +94,7 @@
                 <th><h4>Delete</h4></th>
               </tr>
             </thead>
-            <tbody class="table-contents">
+            
               <?php $i=0; 
                 while($i<$num)
                 {
@@ -106,8 +110,7 @@
                               <td><?php echo $result[$i]->Asset_Remarks; ?></td>
                               <td><?php echo $result[$i]->Asset_Quantity; ?></td>
                               <td> 
-                                 
-                                   
+                                 <form method="post" action="<?php echo base_url(); ?>StaffWS/updateEquipment">
                                   <a href="#editmodal" role="button" class="btn btn-custom" data-toggle="modal">
                                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                   
@@ -121,11 +124,7 @@
                                           </div>
                                           <div class="modal-body">
                                           <!--form sa modal -->
-                                          
-                                          
-                                          <?php echo validation_errors(); ?>
-                                          <?php echo form_open('StaffWS/updateEquipment'); ?>
-                                            <div class="form-group">
+                                           <div class="form-group">
                                             <label class="control-label col-md-4">Campus</label>
                                             <select name="campus" class="form-control2">
                                                 <option value="1">Downtown Campus</option>
@@ -161,19 +160,22 @@
                                             <div class="form-group">
                                              <button class="btn btn-default btn-submit" type="submit">Update</button>
                                             </div>
-                                         <?php echo form_close(); ?><!-- End of form sa modal -->
+                                         
                                             
                                            </div><!-- End of Modal body -->
                                           </div><!-- End of Modal content -->
                                           </div><!-- End of Modal dialog -->
                                         </div><!-- End of editModal -->
-                                        
+                                         </form><!-- End of form sa modal -->
                                         </td>
                         
                                 <td>         
-                                  <button class="btn btn-default btn-sm" type="button">
-                                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                  </button>
+                                   <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteEquipment">
+                                  <input type="hidden" name="id" value="<?php echo $result[$i]->Asset_ID; ?>" />
+                                      <button class="btn btn-default btn-sm" type="submit">
+                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                      </button>
+                                  </form>
                                    
                               </td>
                           </tr>
@@ -182,7 +184,7 @@
                   <?php $i++; } ?> 
               
                              
-            </tbody>
+            
   
           </table>
           </div>

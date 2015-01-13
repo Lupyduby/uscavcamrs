@@ -72,7 +72,7 @@ class Model_db extends CI_Model{
 							campus.Campus_Name');
 		$this->db->from('asset');
 		$this->db->join('campus', 'asset.Campus_ID = campus.Campus_ID');
-
+		$this->db->order_by('Asset_Name', 'asc');	
 		$query = $this->db->get();
 		echo $query->num_rows();
 		return $query->result();
@@ -120,12 +120,6 @@ class Model_db extends CI_Model{
 
 		$this->db->order_by('Person_LName', 'asc');	
 		$query = $this->db->get();
-
-
-
-
-		
-	
 		
 		echo $query->num_rows();
 		return $query->result();
@@ -183,8 +177,23 @@ class Model_db extends CI_Model{
 		$this->db->update('asset', $data); 
 	}
 
+	public function deleteEquip($id){
+		//$this->db->where('Asset_ID', $id);
+		$result = $this->db->delete('asset', array('Asset_ID'=> $id));
+		return $result;
+	}
+
+	public function addEquip($data){
+		$result = $this->db->insert("asset", $data);
+		return $result;
+	}
 
 
+	public function updatePassword($data, $id){
+		$this->db->where('Asset_id', $id);
+		$result = $this->db->update('person', $data);
+		return $result;
+	}
 
 
 }//end of class

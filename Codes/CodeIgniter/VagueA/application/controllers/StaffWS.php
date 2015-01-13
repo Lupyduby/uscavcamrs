@@ -347,9 +347,27 @@ class StaffWS extends CI_Controller {
 	}
 
 	public function deleteEquipment(){
-
+		$id = $this->input->post('id');
+		echo $id;
+		$this->load->model("model_db");
+		$res = $this->model_db->deleteEquip($id);
+		$this->equipment();
 	}
 
+	public function addEquipment(){
+		$data = array(
+                   'Campus_ID'  => $this->input->post('campus'),
+                   'Asset_Name'     =>$this->input->post('name'),
+                   'Asset_Brand' => $this->input->post('brand'),
+                   'Asset_Serial' => $this->input->post('serial'),
+                   'Asset_Remarks' => $this->input->post('remarks'),
+                   'Asset_Quantity' => $this->input->post('qty')
+                   );
+		$this->load->model("model_db");
+		$result = $this->model_db->addEquip($data);
+		//echo "<br><br><br><br><br><br>".$result;
+		$this->equipment();
+	}
 
 
 }
