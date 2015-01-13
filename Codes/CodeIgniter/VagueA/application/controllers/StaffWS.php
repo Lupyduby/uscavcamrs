@@ -320,6 +320,34 @@ class StaffWS extends CI_Controller {
 		{
 			$this->index();
 		}
+
+
+	}
+
+
+	public function updateEquipment(){
+
+			$id = $this->input->post('id');
+
+			$data = array(
+                   'Campus_ID'  => $this->input->post('campus'),
+                   'Asset_Name'     =>$this->input->post('name'),
+                   'Asset_Brand' => $this->input->post('brand'),
+                   'Asset_Serial' => $this->input->post('serial'),
+                   'Asset_Remarks' => $this->input->post('remarks'),
+                   'Asset_Quantity' => $this->input->post('qty')
+                   );
+
+			$this->load->model("model_db");
+			$this->model_db->updateEquip($data, $id);
+			
+			
+
+		$this->equipment();
+	}
+
+	public function deleteEquipment(){
+
 	}
 
 

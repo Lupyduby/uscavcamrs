@@ -7,8 +7,8 @@
       <h2 id="equip-manage" class="page-header">Equipment Management</h2>
       <div class="row action-header">
         <div class="col-md-6 col-md-offset-6">
-      <a href="#addmodal" role="button" class="btn btn-custom" data-toggle="modal">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+      <a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></center></a>
       <!-- addModal -->
                   <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -24,74 +24,40 @@
                     <label class="control-label col-md-4">Campus</label>
                       <div class="col-md-6">
                       <div class="btn-group bootstrap-select">
-                        <button data-toggle="dropdown" class="btn-default selectpicker" type="button">
-                        <span class="filter-option pull-left">Select your Campus</span>
-                        <span class="caret"></span>
-                        </button>
-                        <div class="dropdown-menu open">
-                        <ul role="menu" class="dropdown-menu inner selectpicker">
-                          <li rel="0">
-                          <a href="#">
-                          <span class="text">Talamban</span>
-                          </a>
-                          </li>
-                          <li rel="1" class="selected">
-                          <a href="#">
-                          <span class="text">Downtown</span>
-                          </a>
-                          </li>
-                          <li rel="2">
-                          <a href="#">
-                           <span class="text">North</span>
-                          </a>
-                          </li>
-                          <li rel="3">
-                          <a href="#">
-                            <span class="text">South</span>
-                          </a>
-                          </li>
-                        </ul>
-                        </div>
+                        
+                        <select name="campus" class="form-control2">
+                                                <option value="1">Downtown Campus</option>
+                                                <option value="2">North Campus</option>
+                                                <option value="3">South Campus</option>
+                                                <option value="4">Talamban Campus</option>
+                                            </select>
                       </div>
                       </div>
             <!--end dropdown --></div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-4">Name</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Brand</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Serial #</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Remarks</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Quantity</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-6">
-                          <button type="submit" value="Submit" class=" btn-custom pull-right">Add</button>
-                        </div>
-                      </div>
+                         <label class="control-label col-md-4">Name</label>
+                                              <input id="banner-name" class="form-control2" type="text"  required="" name="name">
+                                           </div>
+
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Brand</label>
+                                              <input id="banner-email" class="form-control2" type="text" required="" name="brand">
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Serial #</label>
+                                              <input id="banner-name" class="form-control2" type="text"  required="" name="serial">
+                                           </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Remarks</label>
+                                              <input id="banner-email" class="form-control2" type="text"  required="" name="remarks">
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Quantity</label>
+                                              <input id="banner-email" class="form-control2" type="number" min="1" required="" name="qty">
+                                            </div>
+                                             <button class="btn btn-default btn-submit" type="submit" id="btnAdd">ADD</button>
+                                            
                     </form><!-- End of form sa modal -->
                     </div><!-- End of Modal body -->
                     </div><!-- End of Modal content -->
@@ -120,16 +86,18 @@
                 <th><h4>Serial</h4></th>
                 <th><h4>Remarks</h4></th>
                 <th><h4>Quantity</h4></th>
-                <th><h4>Update/Delete</h4></th>
-
+                <th><h4>Update</h4></th>
+                <th><h4>Delete</h4></th>
               </tr>
             </thead>
             <tbody class="table-contents">
               <?php $i=0; 
                 while($i<$num)
                 {
-                  
+                   
               ?>
+                      
+
                           <tr>
                               <td><?php echo $result[$i]->Campus_Name; ?></td>
                               <td><?php echo $result[$i]->Asset_Name; ?></td>
@@ -139,113 +107,88 @@
                               <td><?php echo $result[$i]->Asset_Quantity; ?></td>
                               <td> 
                                  
-                                    
+                                   
                                   <a href="#editmodal" role="button" class="btn btn-custom" data-toggle="modal">
                                   <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
                                   
-                    <!-- editModal -->
-                  <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Update Equipments</h4>
-                    </div>
-                    <div class="modal-body">
-                    <!--form sa modal -->
-                    <form class="form-horizontal">
-                      <div class="form-group">
-                    <label class="control-label col-md-4">Campus</label>
-                      <div class="col-md-6">
-                      <div class="btn-group bootstrap-select">
-                        <button data-toggle="dropdown" class="btn-default selectpicker" type="button">
-                        <span class="filter-option pull-left">Select your Campus</span>
-                        <span class="caret"></span>
-                        </button>
-                        <div class="dropdown-menu open">
-                        <ul role="menu" class="dropdown-menu inner selectpicker">
-                          <li rel="0">
-                          <a href="#">
-                          <span class="text">Talamban</span>
-                          </a>
-                          </li>
-                          <li rel="1" class="selected">
-                          <a href="#">
-                          <span class="text">Downtown</span>
-                          </a>
-                          </li>
-                          <li rel="2">
-                          <a href="#">
-                           <span class="text">North</span>
-                          </a>
-                          </li>
-                          <li rel="3">
-                          <a href="#">
-                            <span class="text">South</span>
-                          </a>
-                          </li>
-                        </ul>
-                        </div>
-                      </div>
-                      </div>
-            <!--end dropdown --></div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Name</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Brand</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Serial #</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Remarks</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-4">Quantity</label>
-                        <div class="col-md-6">
-                          <input type="text" class="form-control"/>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-6">
-                          <button type="submit" value="Submit" class=" btn-custom pull-right">Update</button>
-                        </div>
-                      </div>
-                    </form><!-- End of form sa modal -->
-                    </div><!-- End of Modal body -->
-                    </div><!-- End of Modal content -->
-                    </div><!-- End of Modal dialog -->
-                  </div><!-- End of editModal --> 
-                  
+                                          <!-- editModal -->
+                                        <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Update Equipments</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                          <!--form sa modal -->
+                                          
+                                          
+                                          <?php echo validation_errors(); ?>
+                                          <?php echo form_open('StaffWS/updateEquipment'); ?>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Campus</label>
+                                            <select name="campus" class="form-control2">
+                                                <option value="1">Downtown Campus</option>
+                                                <option value="2">North Campus</option>
+                                                <option value="3">South Campus</option>
+                                                <option value="4">Talamban Campus</option>
+                                            </select>
+                                            <input type="hidden"  value="<?php echo $result[$i]->Asset_ID; ?>" name="id">
+                                            
+                                  <!--end dropdown --></div>
+
+                                          <div class="form-group">
+                                              <label class="control-label col-md-4">Name</label>
+                                              <input id="banner-name" class="form-control2" type="text"  value="<?php echo $result[$i]->Asset_Name; ?>" required="" name="name">
+                                           </div>
+
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Brand</label>
+                                              <input id="banner-email" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Brand; ?>" required="" name="brand">
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Serial #</label>
+                                              <input id="banner-name" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Serial; ?>" required="" name="serial">
+                                           </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Remarks</label>
+                                              <input id="banner-email" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Remarks; ?>" required="" name="remarks">
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="control-label col-md-4">Quantity</label>
+                                              <input id="banner-email" class="form-control2" type="number" min="1" value="<?php echo $result[$i]->Asset_Quantity; ?>" required="" name="qty">
+                                            </div>
+                                            <div class="form-group">
+                                             <button class="btn btn-default btn-submit" type="submit">Update</button>
+                                            </div>
+                                         <?php echo form_close(); ?><!-- End of form sa modal -->
+                                            
+                                           </div><!-- End of Modal body -->
+                                          </div><!-- End of Modal content -->
+                                          </div><!-- End of Modal dialog -->
+                                        </div><!-- End of editModal -->
+                                        
+                                        </td>
+                        
+                                <td>         
                                   <button class="btn btn-default btn-sm" type="button">
                                   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                   </button>
                                    
                               </td>
                           </tr>
-              <?php $i++; } ?>
+              
+
+                  <?php $i++; } ?> 
               
                              
             </tbody>
   
           </table>
-          
+          </div>
         </div>
 
-      </div>
+   </div>
      
     </div>
     </div>

@@ -160,6 +160,11 @@ class Main extends CI_Controller {
 		$this->load->view('Footer/footer');
 	}
 
+	public function forgotPassword(){
+		$this->load->view('Header/homepageHeader');
+		$this->load->view('forgotPassword');
+		$this->load->view('Footer/footer');
+	}
 
 	public function logOut(){
 		$this->session->sess_destroy();

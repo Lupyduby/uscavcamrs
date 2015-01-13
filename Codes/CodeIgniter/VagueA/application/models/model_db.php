@@ -64,6 +64,7 @@ class Model_db extends CI_Model{
 	public function queryEquip(){
 
 		$this->db->select('asset.Asset_Name, 
+							asset.Asset_ID,
 							asset.Asset_Brand, 
 							asset.Asset_Serial, 
 							asset.Asset_Remarks, 
@@ -176,6 +177,13 @@ class Model_db extends CI_Model{
 		echo $query->num_rows();
 		return $query->result();
 	}
+
+	public function updateEquip($data, $id){
+		$this->db->where('Asset_id', $id);
+		$this->db->update('asset', $data); 
+	}
+
+
 
 
 
