@@ -14,8 +14,8 @@ outline: 0;
             <div class="row">
               <div class="col-md-7 col-sm-7" id="sys-desc">
                 <h1>Audio Visual Center Reservation System</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet voluptatibus saepe dolore atque repellat magnam distinctio, illo praesentium, quae voluptate sunt corporis, harum in alias, eveniet iste dolores facere. Quae.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet voluptatibus saepe dolore atque repellat magnam distinctio, illo praesentium, quae voluptate sunt corporis, harum in alias, eveniet iste dolores facere. Quae.</p>
+                <p>The University of San Carlos - Library System is adapting the latest technology so that we can offer the most efficient and effective way to serve our clients. The Library System operates on the concept of participative and values-based management reflective of the University’s Mission and Vision, guided by its Slogan: Customer First and Always. </p>
+                <p>The USC - Library System is proud to present to you the Audio Visual Center Reservation system in which our clients can book our Audio Visual Halls through online.  </p>
 
               </div>
 
