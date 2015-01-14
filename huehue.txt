@@ -1,0 +1,13 @@
+if i were you guys, create a separate repo for your documents and code
+
+the point is that when you have a repository pure codes ra tanan
+- NO MORE UNNECESSARY CONFLICTS TO UNNECESSARY FILES 
+- you can directly save it to your xampp htdocs
+- so if nag code and at the same time nag test ka sa xampp ,then you are just 1 click away when committing your changes
+- no more copy paste, just make sure you make you have your own branch, so that the master file will be safe
+- another thing is you could actually check out the branches anytime without affecting the master, for example naay 2 ka branch namely jesseth_branch and jacob_branch
+then c jesseth nag work sa index while c jacob nag work sa register page,
+if naay problem c jesseth sa index page , jacob then can actually see the progress of jesseth without affecting jacob_branch just by selecting the branch in the git then it automatically checks out the jesseth_branch and loads in your computer.
+-M2M HAHA
+
+SUGGESTION RANI KAMO GHPON MAG BOOT
