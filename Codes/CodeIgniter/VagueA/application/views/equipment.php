@@ -2,6 +2,10 @@
 <div id="contentMargin">
 <div class="container equipments-container">
 <div class="row">
+  <ol class="breadcrumb">
+        <li><a href="#">Manage</a></li>
+        <li class="active">Equipment Management</li>
+      </ol>
     
     <div class="col-lg-12" role="main">
       <h2 id="equip-manage" class="page-header">Equipment Management</h2>
@@ -60,7 +64,7 @@
                                             <label class="control-label col-md-4">Quantity</label>
                                               <input id="banner-email" class="form-control2" type="number" min="1" required="" name="qty">
                                             </div>
-                                             <button class="btn btn-default btn-submit" type="submit" id="btnAdd">ADD</button>
+                                             <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Save</button>
                                             
                     </form><!-- End of form sa modal -->
                     </div><!-- End of Modal body -->

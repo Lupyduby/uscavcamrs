@@ -46,7 +46,7 @@
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-        Account <b class="caret"></b>
+        <?php echo "Hi ".$this->session->userdata('fname'); ?> <b class="caret"></b>
     </a>
         <ul class="dropdown-menu">
             <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ChangePass">Change Password</a></li>

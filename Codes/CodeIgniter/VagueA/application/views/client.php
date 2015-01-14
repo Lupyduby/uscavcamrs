@@ -1,6 +1,10 @@
 <div id="contentMargin">
 <div class="container equipments-container">
 <div class="row">
+  <ol class="breadcrumb">
+        <li><a href="#">Manage</a></li>
+        <li class="active">Client Management</li>
+      </ol>
     
     <div class="col-lg-12" role="main">
       <h2 id="equip-manage" class="page-header">Client Management</h2>
@@ -88,14 +92,15 @@
                     <td><?php echo $result[$i]->Person_LName; ?></td>
                     <td><?php echo $result[$i]->Person_FName; ?></td>
                     <td><?php echo $result[$i]->Person_type; ?></td>
-                    <?php if($result[$i]->Person_type=="SO") 
+                    <?php 
+                    if($result[$i]->Person_type=="SO") 
                           {   ?>
                     
                             <td><?php echo $result[$i]->SO_Name; ?></td>
                         <?php
                           }
 
-                          else if ($result[$i]->Person_type=="Office")
+                          else if ($result[$i]->Person_type=="OSA" || $result[$i]->Person_type=="Dean" ||$result[$i]->Person_type=="Office" || $result[$i]->Person_type=="VPA" || $result[$i]->Person_type=="VPAA" )
                           {
                         ?>
                             <td><?php echo $result[$i]->User_Office_Name; ?></td>

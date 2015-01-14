@@ -1,6 +1,10 @@
 <div id="contentMargin">
 <div class="container equipments-container">
 <div class="row">
+  <ol class="breadcrumb">
+        <li><a href="#">Manage</a></li>
+        <li class="active">Software Management</li>
+      </ol>
     
     <div class="col-lg-12" role="main">
       <h2 id="equip-manage" class="page-header">Software Management</h2>

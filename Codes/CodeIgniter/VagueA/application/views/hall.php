@@ -1,6 +1,10 @@
 <div id="contentMargin">
 <div class="container equipments-container">
 <div class="row">
+  <ol class="breadcrumb">
+        <li><a href="#">Manage</a></li>
+        <li class="active">Hall Management</li>
+      </ol>
     
     <div class="col-lg-12" role="main">
       <h2 id="equip-manage" class="page-header">AV Hall Management</h2>
@@ -40,7 +44,12 @@
                     </div><!-- End of Modal content -->
                     </div><!-- End of Modal dialog -->
                   </div><!-- End of addModal --> 
-            
+            <div class="input-group">
+              <input class="form-control-search" type="text" placeholder="Search for...">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              </span>
+              </div>
         
         </div>
       </div>
@@ -50,7 +59,7 @@
       </div>
       
       
-      
+      <div class="tab-pane">
       <div class="equipments-content">
         <div class="table-responsive">
           <table class="table table-hover">
@@ -128,7 +137,7 @@
         </div>
 
       </div>
-     
+     </div>
     </div>
     </div>
     </div> <!-- End of Container -->

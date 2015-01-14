@@ -1,6 +1,10 @@
 <div id="contentMargin">
 <div class="container equipments-container">
 <div class="row">
+  <ol class="breadcrumb">
+        <li><a href="#">Manage</a></li>
+        <li class="active">Working Student Management</li>
+      </ol>
     
     <div class="col-lg-12" role="main">
       <h2 id="equip-manage" class="page-header">Working Scholar Management</h2>
@@ -96,9 +100,8 @@
           <table class="table table-hover">
             <thead class="theader-contents">
               <tr>
-                <th><h4>Surname</h4></th>
-                <th><h4>Forename</h4></th>
-                <th><h4>Username</h4></th>
+                <th><h4>Last name</h4></th>
+                <th><h4>First name</h4></th>
                 <th><h4>Campus</h4></th>
                 <th><h4>Hall</h4></th>
                 <th><h4>Monday</h4></th>
@@ -120,7 +123,6 @@
                 <tr>
                     <td><?php echo $result[$i]->Person_LName; ?></td>
                     <td><?php echo $result[$i]->Person_FName; ?></td>
-                    <td><?php echo $result[$i]->Person_Username; ?></td>
                     <td><?php echo $result[$i]->Campus_Name; ?></td>
                     <td><?php echo $result[$i]->Hall_Name; ?></td>
                     <?php $schedCount=0;

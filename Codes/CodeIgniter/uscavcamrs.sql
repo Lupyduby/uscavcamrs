@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2015 at 05:09 PM
+-- Generation Time: Jan 14, 2015 at 10:21 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,24 +47,18 @@ CREATE TABLE IF NOT EXISTS `asset` (
   `Asset_Serial` varchar(16) NOT NULL,
   `Asset_Remarks` varchar(64) NOT NULL,
   `Asset_Quantity` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `asset`
 --
 
 INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Brand`, `Asset_Serial`, `Asset_Remarks`, `Asset_Quantity`) VALUES
-(1, 1, 0, 'aulo', 'Shaark', '123', 'Functioning', 10),
+(1, 1, 0, 'pAULO', 'Shaark', '123', 'Functioning', 10),
 (2, 4, 0, 'DVD', 'Pioneer', 'asdasdas3132154', 'Functioning', 3),
-(3, 4, 0, 'Broom', '', '', 'Functioning', 2),
 (4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2),
 (5, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10),
-(6, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10),
-(7, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
-(8, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
-(9, 1, 0, 'waa', 'asldkj', 'alskdj', 'adsalfkn', 1),
-(10, 1, 0, 'aaahh', 'FDA', 'SDLKF', 'JKFH', 2),
-(11, 1, 0, 'aaaa', 'None', 'SDLKF', 'JKFH', 2);
+(6, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10);
 
 -- --------------------------------------------------------
 
@@ -160,13 +154,13 @@ CREATE TABLE IF NOT EXISTS `person` (
 INSERT INTO `person` (`Person_ID`, `Person_Username`, `Person_Password`, `Person_Fname`, `Person_Lname`, `Person_Email`, `Person_type`) VALUES
 (0, NULL, NULL, 'None', '', NULL, NULL),
 (1, 'cobi', '21128', 'Cobi', 'Lupyduby', 'char@gmail.com', 'Faculty'),
-(2, 'VPA', '1234', 'Fr. VPA', 'Approver', 'approvevpaa@gmail.com', 'VPA'),
-(3, 'VPAA', '1234', 'Fr. VPAA', 'Approver', 'approvevpaa@gmail.com', 'VPAA'),
-(4, 'Dean', '1234', 'Mr. Dean', 'Endorser', 'endorseDean@gmail.com', 'Dean'),
-(5, 'OSA', '1234', 'Mr. OSA', 'Endorser', 'endorseosa@gmail.com', 'OSA'),
-(6, 'staff', '1234', 'Staff', 'Staff', 'staff@gmail.com', 'Staff'),
-(7, 'ws', '1234', 'WS', 'WS', 'ws@gmail.com', 'WS'),
-(9, 'so', '1234', 'SO', 'SO', 'so@gmail.com', 'SO');
+(2, 'VPA', '1234', 'Bush', 'Bucia', 'approvevpaa@gmail.com', 'VPA'),
+(3, 'VPAA', '1234', 'Anthony', 'Salas', 'approvevpaa@gmail.com', 'VPAA'),
+(4, 'Dean', '1234', 'Delia', 'Belleza', 'endorseDean@gmail.com', 'Dean'),
+(5, 'OSA', '1234', 'Mary Ann', 'Lumacang', 'endorseosa@gmail.com', 'OSA'),
+(6, 'staff', '1234', 'Francis', 'Arnibal', 'staff@gmail.com', 'Staff'),
+(7, 'ws', '1234', 'Salvador', 'Mercader', 'ws@gmail.com', 'WS'),
+(9, 'so', '1234', 'Jay', 'Casanas', 'so@gmail.com', 'SO');
 
 -- --------------------------------------------------------
 
@@ -276,10 +270,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`User_ID`, `Person_ID`, `Campus_ID`, `User_college`, `User_Office_Name`) VALUES
 (1, 1, 1, 'CAS', NULL),
-(2, 2, 4, 'N/A', NULL),
-(3, 3, 4, 'N/A', NULL),
-(4, 4, 4, 'CAS', NULL),
-(5, 5, 4, 'CAS', NULL);
+(2, 2, 4, 'N/A', 'Office of VP - Administration'),
+(3, 3, 4, 'N/A', 'Office of VP - Academic Affairs'),
+(4, 4, 4, 'CAS', 'CAS Dean''s Office'),
+(5, 5, 4, 'CAS', 'Office of Student Affairs');
 
 -- --------------------------------------------------------
 
@@ -390,7 +384,7 @@ MODIFY `Activity_ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `campus`
 --
