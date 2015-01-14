@@ -31,8 +31,8 @@
                                            </div>
 
                                             <div class="form-group">
-                                            <label class="control-label col-md-4">Campus</label>
-                                            <select name="campus" class="form-control2">
+                                            <label class="control-label col-md-4">Type</label>
+                                            <select name="type" class="form-control2">
                                                 <option value="1">VPA</option>
                                                 <option value="2">VPAA</option>
                                                 <option value="3">OSA</option>
@@ -131,8 +131,8 @@
                                            </div>
 
                                             <div class="form-group">
-                                            <label class="control-label col-md-4">Campus</label>
-                                            <select name="campus" class="form-control2">
+                                            <label class="control-label col-md-4">Type</label>
+                                            <select name="Type" class="form-control2">
                                                 <option value="1">VPA</option>
                                                 <option value="2">VPAA</option>
                                                 <option value="3">OSA</option>
