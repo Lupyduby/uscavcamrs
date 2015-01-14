@@ -109,7 +109,7 @@
                                  
                                    
                                   <a href="#editmodal" role="button" class="btn btn-custom" data-toggle="modal">
-                                  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                   
                                           <!-- editModal -->
                                         <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
