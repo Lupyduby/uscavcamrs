@@ -21,6 +21,9 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+
+		
+		
 		$this->load->view('Header/homepageHeader');
 		$this->load->view('homepage');
 		$this->load->view('footer/footer');
@@ -92,7 +95,7 @@ class Main extends CI_Controller {
 					$info2=array(
 					   'user_id' => $data['results2']->User_ID,
 	                   'campus' => $data['results2']->Campus_ID,
-	                   'college' => $data['results2']->College_ID,
+	                   'college' => $data['results2']->user_college,
 	                   'office' => $data['results2']->User_Office_Name
                    );
                	}

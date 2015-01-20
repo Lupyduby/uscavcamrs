@@ -344,8 +344,10 @@ input-group .form-control-search {
     width: 50px;
     padding: 11px;
     font-weight: bold;
-    float: left;
     margin-right: 5px;
+    position: absolute;
+    right: 45%;
+}
 }
 
 .theader-contents th, .table-contents td{

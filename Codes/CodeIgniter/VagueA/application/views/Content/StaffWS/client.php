@@ -41,7 +41,7 @@
                                                 <option value="2">VPAA</option>
                                                 <option value="3">OSA</option>
                                                 <option value="4">Dean</option>
-												<option value="5">Faculty</option>
+                        <option value="5">Faculty</option>
                                             </select>
                                             </div>
                                             <div class="form-group">
@@ -57,12 +57,7 @@
                                           </div><!-- End of Modal content -->
                                           </div><!-- End of Modal dialog -->
                                         </div><!-- End of editModal -->
-            <div class="input-group">
-              <input class="form-control-search" type="text" placeholder="Search for...">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-              </span>
-              </div>
+           
         
         </div>
       </div>
@@ -71,7 +66,7 @@
       
       <div class="equipments-content">
         <div class="table-responsive">
-          <table class="table table-hover">
+          <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
                 <th><h4>Surname</h4></th>
@@ -113,7 +108,7 @@
                             <td><?php echo $result[$i]->User_college; ?></td>
                         <?php } ?>
                     <td>
-						<a href="#editmodal" role="button" class="btn btn-custom" data-toggle="modal">
+            <a href="#editmodal" role="button" class="btn btn-custom" data-toggle="modal">
                         <span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a>
                        <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
@@ -142,7 +137,7 @@
                                                 <option value="2">VPAA</option>
                                                 <option value="3">OSA</option>
                                                 <option value="4">Dean</option>
-												<option value="5">Faculty</option>
+                        <option value="5">Faculty</option>
                                             </select>
                                             </div>
                                             <div class="form-group">
