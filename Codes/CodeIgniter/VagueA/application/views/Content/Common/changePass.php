@@ -15,23 +15,25 @@
             <div style="left:10%; top:15%;">
             
               <form method="POST" action="<?php echo base_url(); ?>user/updatePass">
-                <?php echo validation_errors(); ?>
-              <table>
+                <?php echo validation_errors(); 
+                	echo $this->session->set_flashdata('successPass');
+                ?>
 
+              <table>
                 <tr height="50">
                     <td><label for="oldpass">Old Password:</label></td>
-                    <td><input minlength="8" required="" type="password" class="form-control-general" id="oldpass" size="8"></td>
+                    <td><input minlength="8" required="" type="password" class="form-control-general" name="oldpass" size="8"></td>
                 </tr>
 
 
                 <tr  height="50">
                    <td><label for="newpass">New Password:</label></td>
-                    <td><input minlength="8" required="" type="password" class="form-control-general" id="newpass" size="8"></td>
+                    <td><input minlength="8" required="" type="password" class="form-control-general" name="newpass" size="8"></td>
                 </tr>
 
                 <tr  height="50">
-                   <td><label for="confirmpass">Confirm Password:</label></td>
-                    <td><input required="" type="password" class="form-control-general" id="confirmpass"></td>
+                   <td><label for="confirmpass">Password Confirmation:</label></td>
+                    <td><input required="" type="password" class="form-control-general" name="confirmpass"></td>
                 </tr>
 
                 <tr  height="50">

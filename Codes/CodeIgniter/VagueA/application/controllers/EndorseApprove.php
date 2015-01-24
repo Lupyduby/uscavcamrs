@@ -23,12 +23,12 @@ class EndorseApprove extends CI_Controller {
 	{
 		if(!$this->session->userdata('username'))
 		{
-			$this->load->view('homepage');
+			$this->load->view('content/homepage/homepage');
 			$this->load->view('footer/footer');
 		}
 
 		else
-			$this->load->view('homepage');
+			$this->load->view('content/homepage/homepage');
 	}
 
 	public function formConfirmation(){
@@ -36,14 +36,14 @@ class EndorseApprove extends CI_Controller {
 		if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 		{
 			$this->load->view('Header/approverHeader');
-			$this->load->view('FormConfirmation-approver');
+			$this->load->view('content/approver/FormConfirmation-approver');
 			
 		}
 
 		else
 		{
 			$this->load->view('Header/endorserHeader');
-			$this->load->view('FormConfirmation-endorser');
+			$this->load->view('content/endorser/FormConfirmation-endorser');
 		}
 
 		$this->load->view('Footer/footer');

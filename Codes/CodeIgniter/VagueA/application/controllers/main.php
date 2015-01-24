@@ -22,10 +22,8 @@ class Main extends CI_Controller {
 	public function index()
 	{
 
-		
-		
 		$this->load->view('Header/homepageHeader');
-		$this->load->view('homepage');
+		$this->load->view('content/homepage/homepage');
 		$this->load->view('footer/footer');
 	}
 
@@ -35,30 +33,26 @@ class Main extends CI_Controller {
 
 			$this->load->library('form_validation');
 
-		
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean|callback_validate_user');
+
 			$data['username'] = $this->input->post('username');
 			$data['pass'] = $this->input->post('password');
 
-			$this->load->model("model_db");
-			$data['results'] = $this->model_db->validateUser($data['username'], $data['pass']);
+			
 
-			print_r($data['results']);
+			
 
-			if($data['results']!=null)
+			if($this->form_validation->run())
 			{
 				
-				$data['results2'] = $this->model_db->joinData($data['results']->Person_Username, $data['results']->Person_Password, $data['results']->Person_type);
+				$data['results2'] = $this->model_db->joinData($this->session->userdata('username'), $this->session->userdata('password'), $this->session->userdata('type'));
 
 				print_r($data['results2']);
 
 				$info = array(
-                   'person_id'  => $data['results2']->Person_ID,
-                   'username'     => $data['results2']->Person_Username,
-                   'password' => $data['results2']->Person_Password,
                    'fname' => $data['results2']->Person_Fname,
                    'lname' => $data['results2']->Person_Lname,
-                   'email' => $data['results2']->Person_Email,
-                   'type' => $data['results2']->Person_type,
+                   'email' => $data['results2']->Person_Email
                );
 
 				$this->session->set_userdata($info);
@@ -88,6 +82,8 @@ class Main extends CI_Controller {
 	                   'campus' => $data['results2']->Campus_ID,
 	                   'hall' => $data['results2']->Hall_ID
                    );
+				
+
 				}
 
 				else
@@ -102,15 +98,45 @@ class Main extends CI_Controller {
 
                	$this->session->set_userdata($info2);
 				
-				$this->home();
+				redirect('main/home');
+
+				
 			}
 
 			else
 			{
-				log_message('error', 'Invalid username or password!');
-				$this->index();
+				$this->load->view('Header/homepageHeader');
+				$this->load->view('content/homepage/homepage');
+				$this->load->view('footer/footer');
 			}
 			
+		
+	}
+
+
+	public function validate_user()
+	{
+		$this->load->model("model_db");
+		$data['result'] = $this->model_db->validateUser(); 
+		
+		
+			if($data['result']!=null)
+			{
+				$info = array(
+                   'person_id'  => $data['result']->Person_ID,
+                   'username'     => $data['result']->Person_Username,
+                   'password' => $data['result']->Person_Password,
+                   'type' => $data['result']->Person_type
+                  );
+				$this->session->set_userdata($info);
+				return true;
+			}
+			else
+			{
+				$this->form_validation->set_message('validate_user', 'Incorrect username/passowrd.');
+			return false;
+			}
+
 		
 	}
 
@@ -146,32 +172,32 @@ class Main extends CI_Controller {
 				$this->load->view('Header/userHeader');
 			}
 
-			$this->load->view('usershomepage');
+			$this->load->view('content/common/usershomepage');
 			$this->load->view('Footer/footer');
 
 		}
 
 		else
 		{
-			$this->index();
+			redirect('main/index');
 		}
 	}
 
 	public function userRegister(){
 		$this->load->view('Header/homepageHeader');
-		$this->load->view('registration-user');
+		$this->load->view('content/homepage/registration-user');
 		$this->load->view('Footer/footer');
 	}
 
 	public function forgotPassword(){
 		$this->load->view('Header/homepageHeader');
-		$this->load->view('forgotPassword');
+		$this->load->view('content/homepage/forgotPassword');
 		$this->load->view('Footer/footer');
 	}
 
 	public function logOut(){
 		$this->session->sess_destroy();
-		$this->index();
+		redirect('main/index');
 	}
 
 

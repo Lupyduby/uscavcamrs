@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2015 at 04:47 PM
+-- Generation Time: Jan 24, 2015 at 01:51 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `asset` (
   `Asset_Serial` varchar(16) NOT NULL,
   `Asset_Remarks` varchar(64) NOT NULL,
   `Asset_Quantity` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `asset`
@@ -57,8 +57,8 @@ INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Br
 (1, 1, 0, 'pAULO', 'Shaark', '123', 'Functioning', 10),
 (2, 4, 0, 'DVD', 'Pioneer', 'asdasdas3132154', 'Functioning', 3),
 (4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2),
-(5, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10),
-(6, 1, 0, 'Onii', 'AVaya', 'askdj', 'Functioning', 10);
+(7, 1, 0, 'John', '0', '0', '0', 0),
+(8, 4, 0, 'Broom', 'N/a', 'N/A', 'Functioning', 1);
 
 -- --------------------------------------------------------
 
@@ -121,15 +121,16 @@ CREATE TABLE IF NOT EXISTS `hall` (
   `Hall_Capacity` int(11) DEFAULT NULL,
   `Hall_Desc` text NOT NULL,
   `Hall_Remarks` varchar(50) NOT NULL DEFAULT 'Functioning'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `hall`
 --
 
 INSERT INTO `hall` (`Hall_ID`, `Campus_ID`, `Hall_Name`, `Hall_Capacity`, `Hall_Desc`, `Hall_Remarks`) VALUES
-(1, 4, 'Fr. Harold Rigney', 192, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Functioning'),
-(2, 4, 'Fr. Robert Heoppener', 120, 'Located at the Talamban Campus', 'Functioning');
+(1, 4, 'Fr. Harold Rigney', 192, 'Biggest hall!!', 'Functioning'),
+(2, 4, 'Fr. Robert Heoppener', 120, 'Located at the Talamban Campus', 'Functioning'),
+(3, 4, 'CAS', 100, 'Located in the CAS Building', 'Functioning');
 
 -- --------------------------------------------------------
 
@@ -145,22 +146,22 @@ CREATE TABLE IF NOT EXISTS `person` (
   `Person_Lname` varchar(50) DEFAULT NULL,
   `Person_Email` varchar(50) DEFAULT NULL,
   `Person_type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `person`
 --
 
 INSERT INTO `person` (`Person_ID`, `Person_Username`, `Person_Password`, `Person_Fname`, `Person_Lname`, `Person_Email`, `Person_type`) VALUES
-(0, NULL, NULL, 'None', '', NULL, NULL),
-(1, 'cobi', '21128', 'Cobi', 'Lupyduby', 'char@gmail.com', 'Faculty'),
-(2, 'VPA', '1234', 'Bush', 'Bucia', 'approvevpaa@gmail.com', 'VPA'),
-(3, 'VPAA', '1234', 'Anthony', 'Salas', 'approvevpaa@gmail.com', 'VPAA'),
-(4, 'Dean', '1234', 'Delia', 'Belleza', 'endorseDean@gmail.com', 'Dean'),
-(5, 'OSA', '1234', 'Mary Ann', 'Lumacang', 'endorseosa@gmail.com', 'OSA'),
-(6, 'staff', '1234', 'Francis', 'Arnibal', 'staff@gmail.com', 'Staff'),
-(7, 'ws', '1234', 'Salvador', 'Mercader', 'ws@gmail.com', 'WS'),
-(9, 'so', '1234', 'Jay', 'Casanas', 'so@gmail.com', 'SO');
+(2, '1234VPA', '25d55ad283aa400af464c76d713c07ad', 'Bush', 'Bucia', 'approvevpaa@gmail.com', 'VPA'),
+(3, '1234VPAA', '25d55ad283aa400af464c76d713c07ad', 'Anthony', 'Salas', 'approvevpaa@gmail.com', 'VPAA'),
+(5, '1234OSA', '25d55ad283aa400af464c76d713c07ad', 'Mary Ann', 'Lumacang', 'endorseosa@gmail.com', 'OSA'),
+(6, '1234staff', '25d55ad283aa400af464c76d713c07ad', 'Francis', 'Arnibal', 'staff@gmail.com', 'Staff'),
+(7, '1234ws', '25d55ad283aa400af464c76d713c07ad', 'Salvador', 'Mercader', 'ws@gmail.com', 'WS'),
+(10, 'N/A', 'sdlfhofywe9rysovvhnsdifgeoufshvsiufg', 'N/A', NULL, NULL, NULL),
+(23, '11103083', '689bd6ce7f197812f4c6ba65c21392ae', 'Jacob', 'Borromeo', 'lupyduby@gmail.com', 'Faculty'),
+(24, '12103083', '9ff92f2491bda2a14322affa5b25e106', 'Jay', 'Casanas', 'so@gmail.com', 'SO'),
+(28, '1234Dean', 'ae05182fe5a07ce0ff80fac19c054f8f', 'Delia', 'Belleza', 'dean@gmail.com', 'Dean');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 
 CREATE TABLE IF NOT EXISTS `softwares` (
 `Software_ID` int(11) NOT NULL,
-  `Person_ID` int(11) DEFAULT NULL,
+  `Person_Username` varchar(11) DEFAULT NULL,
   `Campus_ID` int(11) DEFAULT NULL,
   `Software_CallNumber` varchar(10) NOT NULL,
   `Software_title` varchar(64) DEFAULT NULL,
@@ -200,15 +201,18 @@ CREATE TABLE IF NOT EXISTS `softwares` (
   `Software_Code` varchar(16) DEFAULT NULL,
   `Software_Quantity` int(11) DEFAULT NULL,
   `Software_Status` varchar(50) DEFAULT 'Available'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `softwares`
 --
 
-INSERT INTO `softwares` (`Software_ID`, `Person_ID`, `Campus_ID`, `Software_CallNumber`, `Software_title`, `Software_runningTime`, `Software_Code`, `Software_Quantity`, `Software_Status`) VALUES
-(1, 0, 3, 'CDm101r', 'Divergent', '1:35:36', NULL, 1, 'Available'),
-(2, 0, 3, 'CDm102r', 'Insurgent', '1:35:36', NULL, 1, 'Available');
+INSERT INTO `softwares` (`Software_ID`, `Person_Username`, `Campus_ID`, `Software_CallNumber`, `Software_title`, `Software_runningTime`, `Software_Code`, `Software_Quantity`, `Software_Status`) VALUES
+(2, 'N/A', 3, 'CDm102r', 'Insurgent', '1:35:36', 'absc', 2, 'Available'),
+(14, 'N/A', 4, 'CD1', 'Vigin', '1:30', 'N/A', 1, 'Available'),
+(15, 'N/A', 3, 'CDm104r', 'Nothing', '1:00', 'N/A', 1, 'Available'),
+(16, 'N/A', 4, 'CDm305r', 'Viriginity', '1:39', 'N/A', 1, 'Available'),
+(17, 'N/A', 4, 'CD405r', 'Nothing', '3:30', 'N/A', 1, 'Available');
 
 -- --------------------------------------------------------
 
@@ -228,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
 --
 
 INSERT INTO `staff` (`Staff_ID`, `Person_ID`, `Campus_ID`, `Staff_Position`) VALUES
-(1, 6, 4, NULL);
+(1, 6, 4, 'Technician');
 
 -- --------------------------------------------------------
 
@@ -241,14 +245,14 @@ CREATE TABLE IF NOT EXISTS `studentorg` (
   `Person_ID` int(11) DEFAULT NULL,
   `SO_Type` varchar(50) DEFAULT NULL,
   `SO_Name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentorg`
 --
 
 INSERT INTO `studentorg` (`SO_ID`, `Person_ID`, `SO_Type`, `SO_Name`) VALUES
-(1, 9, 'Co-curricular', 'Datalogics');
+(5, 24, 'Co-Curricular', 'Datalogics');
 
 -- --------------------------------------------------------
 
@@ -262,18 +266,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Campus_ID` int(11) DEFAULT NULL,
   `User_college` varchar(64) DEFAULT NULL,
   `User_Office_Name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`User_ID`, `Person_ID`, `Campus_ID`, `User_college`, `User_Office_Name`) VALUES
-(1, 1, 1, 'CAS', NULL),
 (2, 2, 4, 'N/A', 'Office of VP - Administration'),
 (3, 3, 4, 'N/A', 'Office of VP - Academic Affairs'),
-(4, 4, 4, 'CAS', 'CAS Dean''s Office'),
-(5, 5, 4, 'CAS', 'Office of Student Affairs');
+(5, 5, 4, 'CAS', 'Office of Student Affairs'),
+(13, 23, 4, 'CAS', 'Department of Computer Science'),
+(17, 28, 4, 'CAS', 'Office of the CAS Dean');
 
 -- --------------------------------------------------------
 
@@ -384,7 +388,7 @@ MODIFY `Activity_ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `asset`
 --
 ALTER TABLE `asset`
-MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `campus`
 --
@@ -399,17 +403,17 @@ MODIFY `DutySched_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 -- AUTO_INCREMENT for table `hall`
 --
 ALTER TABLE `hall`
-MODIFY `Hall_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `Hall_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-MODIFY `Person_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `Person_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `softwares`
 --
 ALTER TABLE `softwares`
-MODIFY `Software_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `Software_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `staff`
 --
@@ -419,12 +423,12 @@ MODIFY `Staff_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `studentorg`
 --
 ALTER TABLE `studentorg`
-MODIFY `SO_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `SO_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `workingstudent`
 --

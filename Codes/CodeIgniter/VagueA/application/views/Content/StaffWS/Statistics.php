@@ -23,7 +23,7 @@
       <div class="tab-content">
         <div class="tab-pane active" id="department">
             <div class="table-responsive">
-          <table class="table table-hover">
+          <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
                 <th><h4>Department</h4></th>
@@ -77,35 +77,7 @@
       
       
       
-      <nav>
-      <ul class="pagination">
-        <li>
-          <a aria-label="Previous" href="#">
-            <span aria-hidden="true">«</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">1</a>
-        </li>
-       <li>
-          <a href="#">2</a>
-        </li>
-       <li>
-          <a href="#">3</a>
-        </li>
-        <li>
-          <a href="#">4</a>
-        </li>
-        <li>
-          <a href="#">5</a>
-        </li>
-        <li>
-          <a aria-label="Next" href="#">
-            <span aria-hidden="true">»</span>
-          </a>
-        </li>
-      </ul>
-      </nav>
+    
     </div>
     </div>
     </div> <!-- End of Container -->

@@ -22,7 +22,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('Header/homepageHeader');
-		$this->load->view('homepage');
+		$this->load->view('content/homepage/homepage');
 		$this->load->view('footer/footer');
 	}
 
@@ -58,7 +58,7 @@ class User extends CI_Controller {
 				$this->load->view('Header/userHeader');
 			}
 			
-			$this->load->view('Guidelines-guidelines');
+			$this->load->view('content/common/Guidelines-guidelines');
 			$this->load->view('Footer/footer');
 		}
 
@@ -103,7 +103,7 @@ class User extends CI_Controller {
 				$this->load->view('Header/userHeader');
 			}
 
-			$this->load->view('Reservation');
+			$this->load->view('content/common/Reservation');
 			$this->load->view('Footer/footer');
 		}
 
@@ -113,9 +113,13 @@ class User extends CI_Controller {
 		}
 	}
 
-	public function myAccount(){
+	
+
+	public function ChangePass(){
 		if($this->session->userdata('type'))
 		{
+
+		
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
 				$this->load->view('Header/endorserHeader');
@@ -144,38 +148,7 @@ class User extends CI_Controller {
 			{	
 				$this->load->view('Header/userHeader');
 			}
-
-			$this->load->view('MyAccount');
-			$this->load->view('Footer/footer');
-		}
-
-		else
-		{
-			$this->index();
-		}
-	}
-
-	public function ChangePass(){
-		if($this->session->userdata('type'))
-		{
-
-		
-			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
-			{
-				$this->load->view('Header/endorserHeader');	
-			}
-
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
-			{
-				$this->load->view('Header/vpaaHeader');
-			}
-
-			else
-			{	
-				$this->load->view('Header/userHeader');	
-				
-			}
-			$this->load->view('changePass');
+			$this->load->view('content/common/changePass');
 			$this->load->view('Footer/footer');
 		}
 
@@ -189,42 +162,80 @@ class User extends CI_Controller {
 		
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('newpass', 'Password', 'required|matches[passconf]');
+
+		$this->form_validation->set_rules('oldpass', 'Username', 'required|md5|callback_validate_oldpass');
+		$this->form_validation->set_rules('newpass', 'Password', 'required|matches[confirmpass]');
 		$this->form_validation->set_rules('confirmpass', 'Password Confirmation', 'required');
 
-		if($this->form_validation->run() == FALSE)
+		
+
+		if($this->form_validation->run())
 		{
-			$this->form_validation->set_message('Password', 'Your custom message here');
+			 $id = $this->session->userdata('person_id');
+			 echo $this->session->userdata('person_id');
+			$data = array('Person_Password'  => md5($this->input->post('newpass')));
+			$this->load->model("model_db");
+			$this->session->set_userdata('password', md5($this->input->post('newpass')));
+			$this->model_db->updatePassword($data, $id);
+			 echo "<br><br><br><br>". md5($this->input->post('newpass'));
+			
+			redirect('user/changePass');
+			
+	
 		}
 		else
 		{
-			$id = $this->session->userdata('ID');
-			$data = array('person_password'  => $this->input->post('newpass'));
-			$this->load->model("model_db");
-			$results = $this->model_db->updatePassword($data, $id);
-			echo "<br><br><br><br>".$results;
-
-		}
-		
-
 			
-			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+ 				
+ 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
-				$this->load->view('Header/endorserHeader');	
+				$this->load->view('Header/endorserHeader');
+					
 			}
 
-			else if($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 			{
-				$this->load->view('Header/vpaaHeader');
+				$this->load->view('Header/approverHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+				
 			}
 
 			else
 			{	
-				$this->load->view('Header/userHeader');	
-				
+				$this->load->view('Header/userHeader');
 			}
-			$this->load->view('changePass');
+
+			$this->load->view('content/common/changePass');
 			$this->load->view('Footer/footer');
+		}
+		
+
+		
+	}
+
+	public function validate_oldpass()
+	{
+
+		$this->load->model('model_db');
+		
+		if($result=$this->model_db->checkPass()){
+			$this->form_validation->set_message('validate_oldpass', 'Password successfully changed!');
+			return true;
+		}else{
+			$this->form_validation->set_message('validate_oldpass', 'Incorrect old password.');
+			return false;
+		}
 		
 	}
 

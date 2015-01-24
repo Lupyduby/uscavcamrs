@@ -11,7 +11,7 @@
       <div class="row action-header">
         <div class="col-md-6 col-md-offset-6">
 		<a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></center></a>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD AVHALL</span></center></a>
       <!-- addModal -->
                   <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -22,35 +22,34 @@
                     </div>
                     <div class="modal-body">
                     <!--form sa modal -->
-                    <form class="form-horizontal">
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('StaffWS/addHall'); ?>
 									<!--backend nga ang hall ra sa campus maikit -->
+                  
+
+
 											<div class="form-group">
 												<label class="control-label col-md-4">Name</label>
-                                                <input id="banner-name" class="form-control2" type="text"  required="" name="name">
-                                           </div>
+                        <input id="banner-name" class="form-control2" type="text"  required="" name="name">
+                      </div>
 
-                                            <div class="form-group">
-                                            <label class="control-label col-md-4">Capacity</label>
-                                              <input id="banner-email" class="form-control2" type="text" required="" name="capacity">
-                                            </div>
-                                            <div class="form-group">
-                                            <label class="control-label col-md-4">Description</label>
-                                              <input id="banner-name" class="form-control2" type="text"  required="" name="description">
-                                           </div>
-                                            <button class="btn btn-default btn-submit" type="submit" id="btnAdd">ADD</button>
+                      <div class="form-group">
+                          <label class="control-label col-md-4">Capacity</label>
+                          <input id="banner-email" class="form-control2" type="text" required="" name="capacity">
+                      </div>
+                         
+                      <div class="form-group">
+                          <label class="control-label col-md-4">Description</label>
+                          <textarea name="desc"></textarea>
+                      </div>
+                          <button class="btn btn-default btn-submit" type="submit" id="btnAdd">ADD</button>
                                             
                     </form><!-- End of form sa modal -->
                     </div><!-- End of Modal body -->
                     </div><!-- End of Modal content -->
                     </div><!-- End of Modal dialog -->
                   </div><!-- End of addModal --> 
-            <div class="input-group">
-              <input class="form-control-search" type="text" placeholder="Search for...">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-              </span>
-              </div>
-        
+
         </div>
       </div>
 
@@ -62,7 +61,7 @@
       <div class="tab-pane">
       <div class="equipments-content">
         <div class="table-responsive">
-          <table class="table table-hover">
+          <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
                 <th><h4>Campus</h4></th>
@@ -87,10 +86,10 @@
                     <td><?php echo $result[$i]->Hall_Desc; ?></td>
                    
                     <td>
-                       <a href="#editmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
+                       <a href="<?php echo "#editmodal".$i; ?>" role="button"  data-toggle="modal"><center>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></center></a>
       <!-- addModal -->
-                  <div id="editmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div id="<?php echo "editmodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -99,20 +98,22 @@
                     </div>
                     <div class="modal-body">
                     <!--form sa modal -->
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>StaffWS/updateHall">
 									<!--backend nga ang hall ra sa campus maikit -->
+                  <input type="hidden" name="id" value="<?php echo $result[$i]->Hall_ID; ?>" />
+                                      
 											<div class="form-group">
 												<label class="control-label col-md-4">Name</label>
-                                                <input id="banner-name" class="form-control2" type="text"  required="" name="name">
+                                                <input id="banner-name" class="form-control2" type="text" value="<?php echo $result[$i]->Hall_Name; ?>" required="" name="name">
                                            </div>
 
                                             <div class="form-group">
                                             <label class="control-label col-md-4">Capacity</label>
-                                              <input id="banner-email" class="form-control2" type="text" required="" name="capacity">
+                                              <input id="banner-email" class="form-control2" type="text" required="" value="<?php echo $result[$i]->Hall_Capacity; ?>" name="capacity">
                                             </div>
                                             <div class="form-group">
                                             <label class="control-label col-md-4">Description</label>
-                                              <input id="banner-name" class="form-control2" type="text"  required="" name="description">
+                                              <textarea id="banner-name" class="form-control2" type="text"  required=""  name="description"><?php echo $result[$i]->Hall_Desc; ?></textarea>
                                            </div>
                                             <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>
                                             
@@ -123,9 +124,12 @@
                   </div><!-- End of addModal --> 
 					</td>
 					<td>
-                        <button class="btn btn-default btn-sm" type="button">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
+                        <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteHall">
+                                  <input type="hidden" name="id" value="<?php echo $result[$i]->Hall_ID; ?>" />
+                                      <button class="btn btn-default btn-sm" type="submit">
+                                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                      </button>
+                        </form>
                     </td>
                 </tr>
               <?php $i++; } ?>

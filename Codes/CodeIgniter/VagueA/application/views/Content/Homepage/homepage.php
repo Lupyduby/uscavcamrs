@@ -26,10 +26,11 @@ outline: 0;
 
               <div class="form-body">
                 
-                <?php echo validation_errors(); ?>
+                
                 <?php echo form_open('main/login'); ?>
+                <?php echo validation_errors(); ?>
                 <div class="form-group">
-                    <input id="banner-name" class="form-control" type="text" placeholder="Username" required="" name="username">
+                    <input id="banner-name" class="form-control" type="text" placeholder="ID Number" required="" name="username">
                   </div>
                   <div class="form-group">
                     <input id="banner-email" class="form-control" type="password" placeholder="Password" required="" name="password">
