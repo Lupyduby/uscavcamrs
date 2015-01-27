@@ -191,6 +191,20 @@ class Model_db extends CI_Model{
 		return $query;
 	}
 
+	public function queryCollegeReport(){
+		$this->db->select('*');
+		$this->db->from('college_report');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function queryActivity(){
+		$this->db->select('*');
+		$this->db->from('activity');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function checkPass()
 	{
 	$this->db->where('Person_Username', $this->session->userdata('username'));

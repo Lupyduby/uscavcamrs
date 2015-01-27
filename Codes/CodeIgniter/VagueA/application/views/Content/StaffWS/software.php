@@ -66,7 +66,6 @@
           <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
-                <th><h4>Campus</h4></th>
                 <th><h4>Call Number</h4></th>
                 <th><h4>Title</h4></th>
                 <th><h4>Runtime</h4></th>
@@ -85,7 +84,6 @@
                   
               ?>
                 <tr>
-                    <td><?php echo $result[$i]->Campus_Name; ?></td>
                     <td><?php echo $result[$i]->Software_CallNumber; ?></td>
                     <td><?php echo $result[$i]->Software_title; ?></td>
                     <td><?php echo $result[$i]->Software_runningTime; ?></td>
@@ -158,13 +156,27 @@
                     </div><!-- End of Modal dialog -->
                   </div><!-- End of addModal --> 
 					</td>
-					<td>         
-             <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteSoft">
-            <input type="hidden" name="id" value="<?php echo $result[$i]->Software_ID; ?>" />
-                <button class="btn btn-default btn-sm" type="submit">
-                   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </button>
-            </form>
+					<td>     
+            <a href="<?php echo "#deletemodal".$i; ?>" role="button" class="btn btn-custom" data-toggle="modal">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+
+                <div id="<?php echo "deletemodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" id="deleteModalSize">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteSoft">
+                          Are you sure you want to delete?
+                          <input type="hidden" name="id" value="<?php echo $result[$i]->Software_ID; ?>" >
+                          <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
+                          <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
+                      </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+             
             </td>
                 </tr>
               <?php $i++; } ?>

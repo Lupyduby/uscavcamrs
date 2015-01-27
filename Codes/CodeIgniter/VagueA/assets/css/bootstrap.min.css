@@ -54,6 +54,25 @@ display: block;
 	width: 100%;
 }
 
+#deleteModalSize{
+	width:300px;
+}
+
+#deleteModalYes{
+	width:45%;
+}
+
+#deleteModalNo{
+	width:45%;
+	right:0;
+	height:30px;
+}
+
+.close{
+	style:none;
+	fade:none;
+}
+
 #contentMargin{
 	margin-bottom: 90px;
 }

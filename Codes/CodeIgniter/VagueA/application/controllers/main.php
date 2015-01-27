@@ -98,6 +98,7 @@ class Main extends CI_Controller {
 
                	$this->session->set_userdata($info2);
 				
+				
 				redirect('main/home');
 
 				

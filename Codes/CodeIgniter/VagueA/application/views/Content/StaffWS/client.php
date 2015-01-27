@@ -113,6 +113,7 @@
               <tr>
                 <th><h4>Surname</h4></th>
                 <th><h4>Forename</h4></th>
+                <th><h4>ID Number</h4></th>
                 <th><h4>Type</h4></th>
                 <th><h4>College/Office/SO</h4></th>
                 <th><h4>Update</h4></th>
@@ -128,6 +129,7 @@
                 <tr>
                     <td><?php echo $result[$i]->Person_LName; ?></td>
                     <td><?php echo $result[$i]->Person_FName; ?></td>
+                    <td><?php echo $result[$i]->Person_Username; ?></td>
                     <td><?php echo $result[$i]->Person_type; ?></td>
                     <?php 
                     if($result[$i]->Person_type=="SO") 
@@ -223,16 +225,15 @@
 
 
                              <div id="<?php echo "deletemodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            	<div class="modal-dialog">
+                            	<div class="modal-dialog" id="deleteModalSize">
 		                            <div class="modal-content">
 			                            <div class="modal-header">
-			                              
-			                            	 <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
+			                              <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
 			                            	 	Are you sure you want to delete?
 							                        <input type="hidden" name="id" value="<?php echo $result[$i]->Person_ID; ?>" >
 							                        <input type="hidden" name="type" value="<?php echo $result[$i]->Person_type; ?>" >
-							                        <button class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
-							                        <button type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
+							                        <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
+							                        <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
 			                        	 	</form>
 			                            </div>
 			                        </div>

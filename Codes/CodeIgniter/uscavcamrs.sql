@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2015 at 01:51 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Jan 23, 2015 at 11:28 AM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +27,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
-`Activity_ID` int(11) NOT NULL,
+  `Activity_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Activity_Name` varchar(100) DEFAULT NULL,
-  `Activity_count` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Activity_count` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Activity_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`Activity_ID`, `Activity_Name`, `Activity_count`) VALUES
+(1, 'Conference', 0),
+(2, 'Video Showing', 0),
+(3, 'Seminar', 0),
+(4, 'Forum', 0);
 
 -- --------------------------------------------------------
 
@@ -39,15 +50,17 @@ CREATE TABLE IF NOT EXISTS `activity` (
 --
 
 CREATE TABLE IF NOT EXISTS `asset` (
-`Asset_ID` int(11) NOT NULL,
+  `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Campus_ID` int(11) NOT NULL,
   `Hall_ID` int(11) DEFAULT '0',
   `Asset_Name` varchar(64) NOT NULL,
   `Asset_Brand` varchar(64) NOT NULL,
   `Asset_Serial` varchar(16) NOT NULL,
   `Asset_Remarks` varchar(64) NOT NULL,
-  `Asset_Quantity` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `Asset_Quantity` int(11) NOT NULL,
+  PRIMARY KEY (`Asset_ID`),
+  UNIQUE KEY `Asset_ID` (`Asset_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `asset`
@@ -58,7 +71,7 @@ INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Br
 (2, 4, 0, 'DVD', 'Pioneer', 'asdasdas3132154', 'Functioning', 3),
 (4, 4, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2),
 (7, 1, 0, 'John', '0', '0', '0', 0),
-(8, 4, 0, 'Broom', 'N/a', 'N/A', 'Functioning', 1);
+(9, 4, 0, 'Broom', 'N/A', 'N/A', 'Functioning', 1);
 
 -- --------------------------------------------------------
 
@@ -67,10 +80,11 @@ INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Br
 --
 
 CREATE TABLE IF NOT EXISTS `campus` (
-`Campus_ID` int(11) NOT NULL,
+  `Campus_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Campus_name` text NOT NULL,
-  `Campus_address` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `Campus_address` text NOT NULL,
+  PRIMARY KEY (`Campus_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `campus`
@@ -85,16 +99,46 @@ INSERT INTO `campus` (`Campus_ID`, `Campus_name`, `Campus_address`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `college_report`
+--
+
+CREATE TABLE IF NOT EXISTS `college_report` (
+  `collegeReport_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Month` text,
+  `CAFA` int(11) DEFAULT '0',
+  `CAS` int(11) DEFAULT '0',
+  `COE` int(11) DEFAULT '0',
+  `COED` int(11) DEFAULT '0',
+  `SBE` int(11) DEFAULT '0',
+  `SHCP` int(11) DEFAULT '0',
+  `SLG` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`collegeReport_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `college_report`
+--
+
+INSERT INTO `college_report` (`collegeReport_ID`, `Month`, `CAFA`, `CAS`, `COE`, `COED`, `SBE`, `SHCP`, `SLG`) VALUES
+(1, 'October 2014', 1, 2, 3, 4, 5, 6, 7),
+(2, 'November 2014', 7, 6, 5, 4, 3, 2, 1),
+(5, 'December 2014', 11, 12, 13, 14, 15, 16, 17),
+(6, 'January 2015', 17, 16, 15, 14, 13, 12, 11);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dutysched`
 --
 
 CREATE TABLE IF NOT EXISTS `dutysched` (
-`DutySched_ID` int(11) NOT NULL,
+  `DutySched_ID` int(11) NOT NULL AUTO_INCREMENT,
   `WorkingStudent_ID` int(11) NOT NULL,
   `DutySched_Day` varchar(20) NOT NULL,
   `DutySched_TimeIn` time NOT NULL DEFAULT '00:00:00',
-  `DutySched_TimeOut` time NOT NULL DEFAULT '00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `DutySched_TimeOut` time NOT NULL DEFAULT '00:00:00',
+  PRIMARY KEY (`DutySched_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `dutysched`
@@ -115,13 +159,14 @@ INSERT INTO `dutysched` (`DutySched_ID`, `WorkingStudent_ID`, `DutySched_Day`, `
 --
 
 CREATE TABLE IF NOT EXISTS `hall` (
-`Hall_ID` int(11) NOT NULL,
+  `Hall_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Campus_ID` int(11) DEFAULT NULL,
   `Hall_Name` varchar(100) DEFAULT NULL,
   `Hall_Capacity` int(11) DEFAULT NULL,
   `Hall_Desc` text NOT NULL,
-  `Hall_Remarks` varchar(50) NOT NULL DEFAULT 'Functioning'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `Hall_Remarks` varchar(50) NOT NULL DEFAULT 'Functioning',
+  PRIMARY KEY (`Hall_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `hall`
@@ -135,18 +180,32 @@ INSERT INTO `hall` (`Hall_ID`, `Campus_ID`, `Hall_Name`, `Hall_Capacity`, `Hall_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `material_report`
+--
+
+CREATE TABLE IF NOT EXISTS `material_report` (
+  `materialReport_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Software` int(11) NOT NULL DEFAULT '0',
+  `Equipment` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`materialReport_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `person`
 --
 
 CREATE TABLE IF NOT EXISTS `person` (
-`Person_ID` int(11) NOT NULL,
+  `Person_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_Username` varchar(50) DEFAULT NULL,
   `Person_Password` varchar(50) DEFAULT NULL,
   `Person_Fname` varchar(50) DEFAULT NULL,
   `Person_Lname` varchar(50) DEFAULT NULL,
   `Person_Email` varchar(50) DEFAULT NULL,
-  `Person_type` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+  `Person_type` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Person_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `person`
@@ -182,7 +241,8 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `Endorsement_ID` int(11) DEFAULT NULL,
   `Approval_ID` int(11) DEFAULT NULL,
   `Reservation__Endorse_Status` varchar(16) NOT NULL DEFAULT 'Pending',
-  `Reservation_Approve_Status` varchar(16) NOT NULL DEFAULT 'Pending'
+  `Reservation_Approve_Status` varchar(16) NOT NULL DEFAULT 'Pending',
+  PRIMARY KEY (`Reservation_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -192,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 --
 
 CREATE TABLE IF NOT EXISTS `softwares` (
-`Software_ID` int(11) NOT NULL,
+  `Software_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_Username` varchar(11) DEFAULT NULL,
   `Campus_ID` int(11) DEFAULT NULL,
   `Software_CallNumber` varchar(10) NOT NULL,
@@ -200,8 +260,9 @@ CREATE TABLE IF NOT EXISTS `softwares` (
   `Software_runningTime` varchar(50) DEFAULT NULL,
   `Software_Code` varchar(16) DEFAULT NULL,
   `Software_Quantity` int(11) DEFAULT NULL,
-  `Software_Status` varchar(50) DEFAULT 'Available'
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `Software_Status` varchar(50) DEFAULT 'Available',
+  PRIMARY KEY (`Software_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `softwares`
@@ -221,11 +282,12 @@ INSERT INTO `softwares` (`Software_ID`, `Person_Username`, `Campus_ID`, `Softwar
 --
 
 CREATE TABLE IF NOT EXISTS `staff` (
-`Staff_ID` int(11) NOT NULL,
+  `Staff_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_ID` int(11) DEFAULT NULL,
   `Campus_ID` int(11) DEFAULT NULL,
-  `Staff_Position` text
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Staff_Position` text,
+  PRIMARY KEY (`Staff_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `staff`
@@ -241,11 +303,12 @@ INSERT INTO `staff` (`Staff_ID`, `Person_ID`, `Campus_ID`, `Staff_Position`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `studentorg` (
-`SO_ID` int(11) NOT NULL,
+  `SO_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_ID` int(11) DEFAULT NULL,
   `SO_Type` varchar(50) DEFAULT NULL,
-  `SO_Name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `SO_Name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`SO_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `studentorg`
@@ -261,12 +324,13 @@ INSERT INTO `studentorg` (`SO_ID`, `Person_ID`, `SO_Type`, `SO_Name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`User_ID` int(11) NOT NULL,
+  `User_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_ID` int(11) DEFAULT NULL,
   `Campus_ID` int(11) DEFAULT NULL,
   `User_college` varchar(64) DEFAULT NULL,
-  `User_Office_Name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `User_Office_Name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`User_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `user`
@@ -286,154 +350,20 @@ INSERT INTO `user` (`User_ID`, `Person_ID`, `Campus_ID`, `User_college`, `User_O
 --
 
 CREATE TABLE IF NOT EXISTS `workingstudent` (
-`WorkingStudent_ID` int(11) NOT NULL,
+  `WorkingStudent_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Person_ID` int(16) DEFAULT NULL,
   `Campus_ID` int(16) DEFAULT NULL,
-  `Hall_ID` int(16) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `Hall_ID` int(16) DEFAULT NULL,
+  PRIMARY KEY (`WorkingStudent_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `workingstudent`
 --
 
 INSERT INTO `workingstudent` (`WorkingStudent_ID`, `Person_ID`, `Campus_ID`, `Hall_ID`) VALUES
-(1, 7, 1, 1);
+(1, 7, 4, 1);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `activity`
---
-ALTER TABLE `activity`
- ADD PRIMARY KEY (`Activity_ID`);
-
---
--- Indexes for table `asset`
---
-ALTER TABLE `asset`
- ADD PRIMARY KEY (`Asset_ID`), ADD UNIQUE KEY `Asset_ID` (`Asset_ID`);
-
---
--- Indexes for table `campus`
---
-ALTER TABLE `campus`
- ADD PRIMARY KEY (`Campus_ID`);
-
---
--- Indexes for table `dutysched`
---
-ALTER TABLE `dutysched`
- ADD PRIMARY KEY (`DutySched_ID`);
-
---
--- Indexes for table `hall`
---
-ALTER TABLE `hall`
- ADD PRIMARY KEY (`Hall_ID`);
-
---
--- Indexes for table `person`
---
-ALTER TABLE `person`
- ADD PRIMARY KEY (`Person_ID`);
-
---
--- Indexes for table `reservation`
---
-ALTER TABLE `reservation`
- ADD PRIMARY KEY (`Reservation_ID`);
-
---
--- Indexes for table `softwares`
---
-ALTER TABLE `softwares`
- ADD PRIMARY KEY (`Software_ID`);
-
---
--- Indexes for table `staff`
---
-ALTER TABLE `staff`
- ADD PRIMARY KEY (`Staff_ID`);
-
---
--- Indexes for table `studentorg`
---
-ALTER TABLE `studentorg`
- ADD PRIMARY KEY (`SO_ID`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`User_ID`);
-
---
--- Indexes for table `workingstudent`
---
-ALTER TABLE `workingstudent`
- ADD PRIMARY KEY (`WorkingStudent_ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity`
---
-ALTER TABLE `activity`
-MODIFY `Activity_ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `asset`
---
-ALTER TABLE `asset`
-MODIFY `Asset_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `campus`
---
-ALTER TABLE `campus`
-MODIFY `Campus_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `dutysched`
---
-ALTER TABLE `dutysched`
-MODIFY `DutySched_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `hall`
---
-ALTER TABLE `hall`
-MODIFY `Hall_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `person`
---
-ALTER TABLE `person`
-MODIFY `Person_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT for table `softwares`
---
-ALTER TABLE `softwares`
-MODIFY `Software_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `staff`
---
-ALTER TABLE `staff`
-MODIFY `Staff_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `studentorg`
---
-ALTER TABLE `studentorg`
-MODIFY `SO_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `workingstudent`
---
-ALTER TABLE `workingstudent`
-MODIFY `WorkingStudent_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

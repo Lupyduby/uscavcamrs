@@ -26,37 +26,37 @@
           <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
-                <th><h4>Department</h4></th>
-                <th><h4>June</h4></th>
-                <th><h4>July</h4></th>
-                <th><h4>August</h4></th>  
+                <th>Month</th>
+                <th>CAFA</th>
+                <th>CAS</th>
+                <th>COE</th>  
+                <th>COED</th>
+                <th>SBE</th>
+                <th>SHCP</th>  
+                <th>SLG</th>
+                
+
+                 
               </tr>
             </thead>
             <tbody class="table-contents">
+             <?php $i=0; 
+                while($i<$num)
+                {
+                  
+              ?>
               <tr>
-                <th>CAS</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
+                <th><?php echo $college[$i]->Month; ?></th>
+                <td><?php echo $college[$i]->CAFA; ?></td>
+                <td><?php echo $college[$i]->CAS; ?></td>
+                <td><?php echo $college[$i]->COE; ?></td>
+                <td><?php echo $college[$i]->COED; ?></td>
+                <td><?php echo $college[$i]->SBE; ?></td>
+                <td><?php echo $college[$i]->SHCP; ?></td>
+                <td><?php echo $college[$i]->SLG; ?></td>
               </tr>
-              <tr>
-                <th>CAS</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
-              </tr>
-              <tr>
-                <th>CAS</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
-              </tr>
-              <tr>
-                <th>CAS</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
-              </tr>
+              <?php $i++; } ?>
+              </tbody>
             </table>
             </div>
         </div>

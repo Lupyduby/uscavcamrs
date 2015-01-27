@@ -153,6 +153,8 @@ class StaffWS extends CI_Controller {
 		}
 	}
 
+
+
 	public function software(){
 		if($this->session->userdata('type'))
 		{
@@ -290,15 +292,12 @@ class StaffWS extends CI_Controller {
 	public function statistics(){
 		if($this->session->userdata('type'))
 		{
-/*
-			$this->load->model("model_db");
-			$result['result'] = $this->model_db->queryWSInfo();
-			$result['num']=count($result['result']);
-			$result['dutySched'] = $this->model_db->queryWSDutySched();
-			$result['num2']=count($result['dutySched']);
 
-			echo "Sched count: ".$result['num2'];
-*/
+			$this->load->model("model_db");
+			$result['college'] = $this->model_db->queryCollegeReport();
+			$result['activity'] = $this->model_db->queryActivity();
+			$result['num']=count($result['college']);
+			
 			 if ($this->session->userdata('type')=="Staff")
 			{
 				$this->load->view('Header/staffHeader');
@@ -312,7 +311,7 @@ class StaffWS extends CI_Controller {
 			}
 
 			
-			$this->load->view('content/staffws/statistics');
+			$this->load->view('content/staffws/statistics', $result);
 			$this->load->view('Footer/footer');
 		}
 
