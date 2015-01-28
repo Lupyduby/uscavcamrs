@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>University of San Carlos AVC Reservation System</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+   <body data-target=".navigation" data-spy="scroll">
+    <div class="container-fluid">
+      <div class="row">
+
+      
+      <div class="header-container"> <!-- Header -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <img src="img/header-title.png" class="img-responsive" alt="Responsive image">
+          </div>
+          <div class="navigation navbar-collapse collapse">
+            <ul class="nav navbar-nav menu-right">
+                <li class="">
+                  <a href="#home">Home</a>
+                </li>
+                <li class="">
+                  <a href="#guidelines">Guidelines</a>
+                </li>
+                <li class="">
+                  <a href="#reservation">Reservation</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+        Account <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a tabindex="-1" href="#">My Account</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Change Password</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Logout</a></li>
+    </ul>
+</li>  
+            </ul>
+          </div>
+        </div>
+        </nav>
+      </div> <!-- Header -->
+
+ <div class="col-md-11 reservation-form">
+      
+      <form method="POST" action="#">
+      <table class="purpose-content">
+        <tr>
+          <td><h4 id="purpose">Purpose</h4></td>
+          <td> <select class="form-control-group">
+                        <option value="#">Classroom Instruction-Related Activities</option>
+                        <option value="#">College/BED Base Activites</option>
+                        
+                      </select></td>
+        </tr>
+      </table>
+        
+        <div class="col-md-11 asset-area">
+      
+        <ul class="nav nav-pills asset-list">
+        <li role="presentation">
+          <a href="" data-toggle="tab"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+          <span class="glyphicon-class">Activity Details</span></a>
+        </li>
+        <li role="presentation">
+          <a href="" data-toggle="tab"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <span class="glyphicon-class">Equipments Needed</span></a>
+        </li>
+        <li role="presentation">
+          <a href="" data-toggle="tab"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
+          <span class="glyphicon-class">Software Needed</span></a>
+        </li>
+        </ul>    
+        </div>
+        <div class="col-md-11 activity-content">
+        
+            <div style="left:10%; top:15%;">
+              
+
+              <table id="activity-subcontent">
+                    <tr height ="50">
+                      <td id="activity"><label for="activity">Activity</label></td>
+                      <td id="activity-form"> <select class="form-control-group">
+                                    <option value="#">Conference</option>
+                                   <option value="#">Video Showing</option>
+                                   <option value="#">Seminar</option>
+                                   <option value="#">Forum</option>
+                        
+                                 </select></td>
+                      <td id="others"><label><input type="radio" name="optionsOthers" id="" value=""> Others: </label></td>
+                      <td><input type="text" class="form-control-group" placeholder=""></td>
+                    </tr>
+                    <tr height ="50">
+                      <td id="speakers"><label for="speakers">Speaker/s</label></td>
+                      <td><input type="text" class="form-control-group" id="speakers-textbox"placeholder="Speaker's Full Name"></td>
+                    </tr>
+                    <tr height ="50">
+                      <td id="topic"><label for="topic">Topic</label></td>
+                      <td><input type="text" class="form-control-group" id="speakers-textbox"placeholder=""></td>
+                    </tr>
+              </table>
+            </div>
+        </div> 
+
+        <div class="col-md-9 activity-content">
+        EQUIPMENTS NEEDED (Please Check)<br><br>
+        <div class="col-md-4">
+        <table class="equipments">
+        <tr><td><input type="checkbox" name="activity" value=""> Computer</td></tr>
+        <tr><td><input type="checkbox" name="activity" value=""> LCD Projector</td>
+        </tr>
+        <tr><td><input type="checkbox" name="activity" value=""> Television</td></tr>
+            <td><input type="checkbox" name="activity" value=""> Overhead Projector</td>
+        </tr>
+        </table>
+        </div>
+        <div class="col-md-4">
+        <table class="equipments">
+        <tr><td><input type="checkbox" name="activity" value=""> DVD/CD Player</td>
+        <tr><td><input type="checkbox" name="activity" value=""> VHS Player</td></tr>
+
+        <tr><td><input type="checkbox" name="activity" value=""> Audio Cassete Recorder</td>
+        <tr><td><input type="checkbox" name="activity" value=""> Others <input type="text" class="form-control-group" placeholder=""></td>
+        </tr>
+
+        </table>
+        </div>
+        </div>
+
+        <div class="col-md-9 activity-content">
+        SOFTWARE NEEDED (Please Check)<br><br>
+        <div class="col-md-4">
+        <table id="software">
+        <tr><td><input type="checkbox" name="activity" value=""> DVD Disc</td>
+        <tr><td><input type="checkbox" name="activity" value=""> VCD</td></tr>
+        <tr><td><input type="checkbox" name="activity" value=""> VHS Tape</td>
+        <tr><td><input type="checkbox" name="activity" value=""> Audio Cassette Tape</td>
+        </tr>
+        </table>
+        </div>
+        <div class="col-md-4">
+        <table>
+        <tr><td><input type="checkbox" name="activity" value=""> Transparency</td>
+        <tr><td><input type="checkbox" name="activity" value=""> Poster/Chart Picture</td>
+        </tr>
+        <tr><td><input type="checkbox" name="activity" value=""> Others <input type="text" class="form-control-group" placeholder=""></td>
+        <tr><td><input type="checkbox" name="activity" value=""> For Materials provided by Applicant</td></tr>
+
+        </table>
+        </div>
+        </div>
+
+        <div class="col-md-9 button-area"><a href="#"> <button type="button" class="btn btn-success">Submit</button></a>
+        </div>
+              </form>
+            </div>
+            </div>
+
+
+
+    </div>
+    </div> <!-- End of Container -->
+     
+
+<footer>
+  <div class="footer-container"> <!-- Footer -->
+    <div align="center">
+    Copyright 2014. All Rights Reserved.<br>
+    University of San Carlos<br>
+    P. del Rosario Street, Cebu City, Philippines 6000<br>
+    </div>
+  </div> <!-- End of Footer -->
+  </footer>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
