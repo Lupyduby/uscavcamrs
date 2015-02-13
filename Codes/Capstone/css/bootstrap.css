@@ -4217,11 +4217,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777;
+    color: white;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #333;
+    color: gold;
     background-color: transparent;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
@@ -6330,3 +6330,483 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+
+
+.navbar-inverse
+{
+	background-color: #006600;
+	width: 100%;
+	line-height: 100px;
+	border: none;
+
+}
+
+.menu-right{
+	float: right;
+	padding: 5px;
+	color: #ffffff;
+	margin-top: 10px;
+}
+
+.navbar-nav > li > a{
+	color: #ffffff;
+	
+	padding-bottom: 10px;
+	line-height: 23px;
+	display: block;
+}
+
+.dropdown:hover .dropdown-menu 
+{
+display: block;
+}
+
+#over
+{
+	background-image: url('../img/university-of-san-carlos.jpg'); 
+	background-repeat:  no-repeat;	
+	background-size: cover;
+	position: relative;
+}
+
+.body-container{
+	color: #ffffff;
+	margin: 69px auto;
+}
+
+.body-content{
+	padding: 40px;
+	margin: 100px auto;
+}
+
+#sys-desc{
+	background: rgba(0, 0, 0, 0.4);	
+}
+
+#sys-desc p{
+	padding: 10px;	
+}
+
+.body-content h1{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-bottom: 10px;
+}
+
+.form-title {
+    background-color: rgba(0, 102, 0, 0.8);
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.form-body{
+	padding: 30px;
+	background: rgba(0, 0, 0, 0.4);	
+}
+
+.form-control {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px medium;
+    border-radius: 0;
+    box-shadow: none;
+    color: #36be36;
+    height: auto;
+    margin-bottom: 15px;
+    outline: medium none;
+    padding: 13px 15px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.login-form a{
+	color: #36be36;
+}
+
+.btn{
+    background-color: rgba (0, 102, 0, 0.4);
+    display: block;
+    width: 100px;
+    padding: 11px;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}
+
+
+
+.footer-container{
+	background-color: #006600;
+	height: auto;
+	margin-bottom: 0px;
+	color: #b6b4b4;
+	padding-top: 10px;
+}
+
+.userhome-content{
+	padding: 40px;
+	margin: 10px auto;
+}
+
+.carousel{
+	margin-top: 85px;
+}
+
+#myCarousel {
+padding:5px;
+}
+
+#myCarousel .carousel-caption {
+top:auto;
+width:auto;
+right:auto;
+bottom:0px;
+left:0;
+padding:20px;
+
+text-align:center;
+height:auto;
+width:100%;
+color:#fff;
+text-shadow:none;
+}
+
+#myCarousel .carousel-caption h2 {
+color:#fff;
+margin-top:0;
+}
+
+.carousel-control {
+color:#fff;
+top:30%;
+bottom:auto;
+padding-top:auto;
+padding-bottom:auto;
+width:36px;
+height:36px;
+opacity:1;
+}
+
+.carousel-control.left, .carousel-control.right {
+background-image:none !important;
+}
+
+.carousel-control.right,
+.carousel-control .glyphicon-chevron-right {
+left:auto;
+right:16px;
+}
+
+.carousel-control.left {
+right:auto;
+left:16px;
+} 
+
+#usertabs{
+	border: 1px solid #dddddd;
+    border-radius: 4px 4px 4px 4px; 
+    height: 500px !important;
+ }
+
+#usertab-content{
+	padding-top: 5px;
+}
+
+.guidelines-container{
+	margin-top: 100px;
+
+}
+
+#guidelines-sidebar{
+	margin-top: 40px;
+	width: 230px;
+}
+
+#guidelines-sidebar li{
+	border-bottom: 1px solid #eee;
+}
+
+#guidelines-sidebar a{
+	color: #000000;
+	font-weight: bold;
+}
+
+.page-header{
+	border-bottom: 1px solid #eee;
+    margin: 40px 0 20px;
+    padding-bottom: 9px;
+}
+
+.quote{
+	font-weight:bold;
+}
+
+
+.guidelines-content{
+	border: 1px solid #eee;
+	padding-right: 20px;
+	padding-left: 20px;
+
+}
+
+.reservation-form{
+	margin: 100px !important;
+	padding-right: 20px;
+	padding-left: 20px;	
+}
+
+.equipments-container{
+	margin-top: 80px;
+
+}
+
+.equipments-content{
+	border: 1px solid #eee;
+    border-radius: 4px 4px 4px 4px; 
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 400px !important;
+	overflow-y: scroll;
+}
+
+.tbodycontainer{
+	margin: 0px;
+}
+
+.btn-sm, .btn-group-sm > .btn {
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 5px 5px;
+ }
+
+ .pagination{
+	margin-right: 0px;
+ }
+
+ .action-header{
+	padding-bottom: 5px;
+ }
+
+.input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+
+
+.input-group-addon, .input-group-btn, .input-group .form-control-search {
+    display: table-cell;
+}
+
+input-group .form-control-search {
+	position: relative;
+	float: left;
+}
+
+#timestart{
+	padding-right: 50px;
+}
+
+
+.form-control-search{
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    box-shadow: none;
+    height: 44px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 0px;
+    outline: medium none;
+    padding: 13px 15px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+#changepass, #purpose{
+	color: #006600;
+	font-weight: bold;
+}
+
+#purpose{
+	padding-right: 15px;
+}
+
+
+.changepass-content{
+	border: 1px solid #eee;
+    border-radius: 4px 4px 4px 4px; 
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	height: auto;
+}
+
+.form-control-general{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #555;
+    box-shadow: none;
+    height: 44px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 0px;
+    outline: medium none;
+    padding: 13px 15px;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.breadcrumb a{
+	color: black;
+}
+
+#activity, #others, #speakers, #topic{
+	padding-right: 15px;
+}
+
+#speakers-textbox{
+	width: 300px;
+}
+
+#activity-form{
+	padding-right: 15px;
+}
+
+.activity-content{
+	margin-top: 30px;
+	border-top: 1px solid #eee;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eee;
+}
+
+#activity-subcontent tr{
+	padding-bottom: 5px;
+}
+
+.breadcrumb > .active {
+    color: #36be36;
+}
+
+.statistics-container{
+	margin-top: 80px;
+
+}
+
+.tab-pane{
+	height: 450px !important;
+	overflow-y: scroll;
+}
+
+.asset-list{
+	list-style: outside none none;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.asset-area li {
+    background-color: #d6d4d4;
+    border: 1px solid #fff;
+    float: left;
+    font-size: 12px;
+    height: 110px;
+    line-height: 1.4 !important;
+    padding: 10px;
+    text-align: center;
+    width: 115px;
+}
+
+.glyphicon {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+}
+
+
+
+.asset-area .glyphicon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.asset-area .glyphicon-class {
+    display: block;
+    text-align: center;
+}
+
+.asset-area li a{
+    color: #36be36;
+}
+
+.button-area{
+	margin-top: 20px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #006600;
+    color: #fff;
+}
+
+
+
+
+
+
+
+#navbar-green.navbar-default .navbar-brand {
+    color: rgba(255, 215, 0, 1);
+}
+#navbar-green.navbar-default {
+    font-size: 14px;
+    background-color: rgba(0, 102, 0, 1);
+    border-bottom-width: 1px;
+}
+#navbar-green.navbar-default .navbar-nav>li>a {
+    color: rgba(255, 215, 0, 1);
+    background-color: rgba(0, 102, 0, 1);
+}
+#navbar-green.navbar-default .navbar-nav>li>a:hover,
+#navbar-green.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(204, 172, 0, 1);
+    background-color: rgba(0, 81, 0, 1);
+}
+#navbar-green.navbar-default .navbar-nav>.active>a,
+#navbar-green.navbar-default .navbar-nav>.active>a:hover,
+#navbar-green.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(204, 172, 0, 1);
+    background-color: rgba(0, 81, 0, 1);
+}
+#navbar-green.navbar-default .navbar-toggle {
+    border-color: #005100;
+}
+#navbar-green.navbar-default .navbar-toggle:hover,
+#navbar-green.navbar-default .navbar-toggle:focus {
+    background-color: #005100;
+}
+#navbar-green.navbar-default .navbar-toggle .icon-bar {
+    background-color: #005100;
+}
+#navbar-green.navbar-default .navbar-toggle:hover .icon-bar,
+#navbar-green.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #006600;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+color: #ffd700;
+text-decoration: none;
+background-color: green;
+}
