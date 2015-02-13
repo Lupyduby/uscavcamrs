@@ -1,129 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>University of San Carlos AVC Reservation System</title>
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
     <link href="css/bootstrap.css" rel="stylesheet">
-  </head>
-   <body data-target=".navigation" data-spy="scroll">
+</head>
+<body data-target=".navigation" data-spy="scroll">
     <div class="container-fluid">
-
-      <header>
-      <div class="header-container"> <!-- Header -->
-       <div id="navbar-green" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-          <div class="navbar-header  col-sm-5 col-md-5" >
-            <img src="img/header-title.png" class="img-responsive" alt="Responsive image">
-         
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse navbar-menubuilder">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a>
-                </li>
-                <li><a href="#">Products</a>
-                </li>
-                <li><a href="#-us">About Us</a>
-                </li>
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-                    Account <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="#">My Account</a></li>
-                    <li><a tabindex="-1" href="#">Change Password</a></li>
-                    <li><a tabindex="-1" href="#">Logout</a></li>
-                </ul>
-            </li>  
-            </ul>
-        </div>
+        <header><!-- Header -->
+        	<div class="header-container"> 
+                <div id="navbar-green" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header  col-sm-5 col-md-5" >
+                            <img src="img/header-title.png" class="img-responsive" alt="Responsive image">
+                            
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-menubuilder">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Guidelines</a></li>
+                                <li><a href="#-us">Reservation</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                                    Account <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="#">My Account</a></li>
+                                        <li><a tabindex="-1" href="#">Change Password</a></li>
+                                        <li><a tabindex="-1" href="#">Logout</a></li>
+                                    </ul>
+                                </li>  
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Header -->
+        </header>
+        <div class="container guidelines-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="guidelines-sidebar">
+                        <ul class="nav bs-docs-sidenav">
+                            <li> <a href="#">AV Center Guidelines</a></li>
+                            <li><a href="#">Policy</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-md-9" role="main">
+                    <div class="guidelines-content">
+                    	<h1 id="avc-guidelines" class="page-header">AV Center Guidelines</h1>
+                    	<h4>Your ooperation is needed in maintaining an orderly and clean hall.</h4>
+                    	<br>
+                    	<p class="reminder">Please be reminded of the following:</p>
+                    	<ul>
+                            <li>Eating, drinking and smoking are not allowed inside the hall.</li>
+                            <li>Put cellular phone in silent mode.</li>
+                            <li>Raising legs on the backrest of the person sitting in front of you shall not be tolerated.</li>
+                            <li>Sharing of seat with a friend or classmate is not allowed.</li>
+                            <li>Routine checking before and after each activity will be done; any damage discovered will be charged to the users/organizers of the activity.</li>
+                            <li>Nails, thumbtacks and pins, writing pens, double-sided tape or any material that can damage the stage, walls, chairs, and backdrop is not allowed.</li>
+                            <li>Clean-up of the back stage is expected after every activity by the organizer. Props left inside the hall or backstage will be thrown away right after the activity.</li>
+                            <li>Bringing in personal equipment such as laptop, LCD, lapel microphones, lights, etc. Should be referred to AV Librarian/AV technician for appropriate use guidelines and charges.</li>
+                            <li>Acts of vandalism or any damage done intentionally or maliciously on any part of the hall shall be dealt with accordingly. </li>
+                    	</ul>
+                    	<br>
+                    	<p class="quote">"A Clean and well functioning AV Hall benefits everyone"</p>
+                    	<p>Thank you very much!</p>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of Container --> 
     </div>
-</div>
-       
-       
-       
-        <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header col-xs-5 col-sm-5 col-lg" >
-            <img src="img/header-title.png" class="img-responsive" alt="Responsive image">
-          </div>
-          <div class="navigation navbar-collapse collapse">
-            <ul class="nav navbar-nav menu-right">
-                <li class="">
-                  <a href="#home">Home</a>
-                </li>
-                <li class="">
-                  <a href="#guidelines">Guidelines</a>
-                </li>
-                <li class="">
-                  <a href="#reservation">Reservation</a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-        Account <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a tabindex="-1" href="#">My Account</a></li>
-        <li class="divider"></li>
-        <li><a tabindex="-1" href="#">Change Password</a></li>
-        <li class="divider"></li>
-        <li><a tabindex="-1" href="#">Logout</a></li>
-    </ul>
-</li>  
-            </ul>
-          </div>
-        </div>
-        </nav>-->
-      </div> <!-- Header -->
-    </header>
-<div class="container guidelines-container">
-<div class="row">
-<div class="col-md-3">
-  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="guidelines-sidebar">
-    <ul class="nav bs-docs-sidenav">
-      <li>
-      <a href="#">AV Center Guidelines</a>
-      </li>
-      <li>
-      <a href="#">Policy</a>
-      </li>
-    </ul>
-  </nav>
-</div>
-    
-    <div class="col-md-9" role="main">
-      <div class="guidelines-content">
-        <h1 id="avc-guidelines" class="page-header">AV Center Guidelines</h1>
-        <h4>Your ooperation is needed in maintaining an orderly and clean hall.</h4>
-        <br>
-        <p class="reminder">Please be reminded of the following:</p>
-          <ul>
-            <li>Eating, drinking and smoking are not allowed inside the hall.</li>
-            <li>Put cellular phone in silent mode.</li>
-            <li>Raising legs on the backrest of the person sitting in front of you shall not be tolerated.</li>
-            <li>Sharing of seat with a friend or classmate is not allowed.</li>
-            <li>Routine checking before and after each activity will be done; any damage discovered will be charged to the users/organizers of the activity.</li>
-            <li>Nails, thumbtacks and pins, writing pens, double-sided tape or any material that can damage the stage, walls, chairs, and backdrop is not allowed.</li>
-            <li>Clean-up of the back stage is expected after every activity by the organizer. Props left inside the hall or backstage will be thrown away right after the activity.</li>
-            <li>Bringing in personal equipment such as laptop, LCD, lapel microphones, lights, etc. Should be referred to AV Librarian/AV technician for appropriate use guidelines and charges.</li>
-            <li>Acts of vandalism or any damage done intentionally or maliciously on any part of the hall shall be dealt with accordingly. </li>
-          </ul>
-          <br>
-        <p class="quote">"A Clean and well functioning AV Hall benefits everyone"</p>
-        <p>Thank you very much!</p>
-      </div>
-    </div>
-    </div>
-    </div> <!-- End of Container -->
-
-</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  </body>
+</body>
 </html>
