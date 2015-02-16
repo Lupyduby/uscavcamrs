@@ -27,36 +27,37 @@
                            
                     <div class="form-group">
                         <label class="control-label col-md-4">ID Number</label>
-                        <input id="banner-name" class="form-control2" type="text"   name="idNum">
+                        <input id="banner-name" class="form-control-group" type="text"   name="idNum">
                      </div>
                     <div class="form-group">
                         <label class="control-label col-md-4">SurName</label>
-                        <input id="banner-name" class="form-control2" type="text"   name="lname">
+                        <input id="banner-name" class="form-control-group" type="text"   name="lname">
                      </div>                                     
                    
 
                     <div class="form-group">
                         <label class="control-label col-md-4">ForeName</label>
-                        <input id="banner-name" class="form-control2" type="text"   name="fname">
+                        <input id="banner-name" class="form-control-group" type="text"   name="fname">
                      </div>
                      <div class="form-group">
                         <label class="control-label col-md-4">Email</label>
-                        <input id="banner-name" class="form-control2" type="text"   name="email">
+                        <input id="banner-name" class="form-control-group" type="text"   name="email">
                      </div>
 
 
                      <div class="form-group">
                       <label class="control-label col-md-4">Campus</label>
-                     <select name="campus" class="form-control2">
+                     <select name="campus" class="form-control-group">
                         <option value="1">Downtown Campus</option>
                         <option value="2">North Campus</option>
                         <option value="3">South Campus</option>
                         <option value="4">Talamban Campus</option>
                     </select>
+                    </div>
 
                       <div class="form-group">
                       <label class="control-label col-md-4">User type</label>
-                      <select name="type" class="form-control2">
+                      <select name="type" class="form-control-group">
                           <option value="Chairman" id="ordi">Chairman</option>
                           <option value="Dean" id="ordi">Dean</option>
                           <option value="Faculty" id="ordi">Faculty</option>
@@ -71,7 +72,7 @@
                       
                       <div id="ordinary" class="form-group">
                       <label class="control-label col-md-4">College</label>
-                        <select name="college" class="form-control2">
+                        <select name="college" class="form-control-group">
                             <option value="SBE">SBE</option>
                             <option value="SLG">SLG</option>
                             <option value="COED">COED</option>
@@ -87,12 +88,14 @@
                       
                       <div class="form-group">
                           <label class="control-label col-md-4">Department/Office/SO Name</label>
-                          <input id="banner-name" class="form-control2" type="text" name="officeName"><br><br>
+                          <input id="banner-name" class="form-control-group" type="text" name="officeName"><br><br>
                       </div>
 
                      <div class="form-group">
-                       <button class="btn btn-default btn-submit" type="submit">Add</button>
+                      
+                       <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Add</button>
                       </div>
+                      </form>
                   <!-- End of form sa modal -->
                       
                      </div><!-- End of Modal body -->
@@ -111,9 +114,9 @@
           <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
+                <th><h4>ID Number</h4></th>
                 <th><h4>Surname</h4></th>
                 <th><h4>Forename</h4></th>
-                <th><h4>ID Number</h4></th>
                 <th><h4>Type</h4></th>
                 <th><h4>College/Office/SO</h4></th>
                 <th><h4>Update</h4></th>
@@ -127,9 +130,9 @@
                   
               ?>
                 <tr>
+                    <td><?php echo $result[$i]->Person_Username; ?></td>
                     <td><?php echo $result[$i]->Person_LName; ?></td>
                     <td><?php echo $result[$i]->Person_FName; ?></td>
-                    <td><?php echo $result[$i]->Person_Username; ?></td>
                     <td><?php echo $result[$i]->Person_type; ?></td>
                     <?php 
                     if($result[$i]->Person_type=="SO") 
@@ -155,6 +158,8 @@
                     <a href="<?php echo "#editmodal".$i; ?>" role="button" class="btn btn-custom" data-toggle="modal">
                       <span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a>
                     <div id="<?php echo "editmodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <!--form sa modal -->
+                            <form method="post" action="<?php echo base_url(); ?>StaffWS/updateClient">
                             <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -162,25 +167,24 @@
                               <h4 class="modal-title">Update Client</h4>
                             </div>
                             <div class="modal-body">
-                            <!--form sa modal -->
-                            <form method="post" action="<?php echo base_url(); ?>StaffWS/updateClient">
+                           
                            
                             <input type="hidden"  value="<?php echo $result[$i]->Person_ID; ?>" name="id">
                           
                             <div class="form-group">
                                 <label class="control-label col-md-4">SurName</label>
-                                <input id="banner-name" class="form-control2" type="text"  value="<?php echo $result[$i]->Person_LName; ?>" name="lname">
+                                <input id="banner-name" class="form-control-group" type="text"  value="<?php echo $result[$i]->Person_LName; ?>" name="lname">
                              </div>                                     
                            
 
                             <div class="form-group">
                                 <label class="control-label col-md-4">ForeName</label>
-                                <input id="banner-name" class="form-control2" type="text" value="<?php echo $result[$i]->Person_FName; ?>"   name="fname">
+                                <input id="banner-name" class="form-control-group" type="text" value="<?php echo $result[$i]->Person_FName; ?>"   name="fname">
                              </div>
 
                               <div class="form-group">
                               <label class="control-label col-md-4">Type</label>
-                              <select name="type" class="form-control2">
+                              <select name="type" class="form-control-group">
 
                                   <option value="VPA" <?php if($result[$i]->Person_type=="VPA") echo "selected"; ?>>VPA</option>  
                                   <option value="VPAA" <?php if($result[$i]->Person_type=="VPAA") echo "selected"; ?>>VPAA</option>
@@ -193,7 +197,7 @@
                               </div>
                               <div class="form-group">
                               <label class="control-label col-md-4">College/Office/SO</label>
-                                 <input id="banner-name" class="form-control2" type="text" value="<?php
+                                 <input id="banner-name" class="form-control-group" type="text" value="<?php
                                       if($result[$i]->Person_type=="SO") 
                                            echo $result[$i]->SO_Name;
                                        else if ($result[$i]->Person_type=="OSA" || $result[$i]->Person_type=="Dean" ||$result[$i]->Person_type=="Office" || $result[$i]->Person_type=="VPA" || $result[$i]->Person_type=="VPAA" )
@@ -203,13 +207,14 @@
                                     ?>" name="officeName">
                              </div>
                              <div class="form-group">
-                               <button class="btn btn-default btn-submit" type="submit">Update</button>
+                               <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>
                               </div>
                               </form>
+                              
                               <form method="post" action="<?php echo base_url(); ?>StaffWS/resetPassword">
                                <input type="hidden"  value="<?php echo $result[$i]->Person_ID; ?>" name="id">
                                <input type="hidden"  value="<?php echo $result[$i]->Person_Username; ?>" name="username">
-                               <button class="btn btn-default btn-submit" type="submit">Reset Password</button>
+                               <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Reset Password</button>
                               </form>
                           <!-- End of form sa modal -->
                               

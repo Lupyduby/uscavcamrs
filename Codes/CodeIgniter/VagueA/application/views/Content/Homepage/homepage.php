@@ -40,7 +40,7 @@ outline: 0;
                 <br><br><br>
                 <center><a href="<?php echo base_url(); ?>main/forgotPassword"><i>Forgot Your Password?</i></a><br>
                 
-                <a href="<?php echo base_url(); ?>main/userRegister"><i  >Want to register?</i></a>
+                <a href="<?php echo base_url(); ?>main/userRegister"><i>Want to register?</i></a>
                 </center>                
                 
                 </form>

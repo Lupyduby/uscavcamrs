@@ -26,24 +26,24 @@
                       
                        <div class="form-group">
 											  <label class="control-label col-md-4">Call number</label>
-											  <input id="banner-name" class="form-control2" type="text"  required="" name="cnum">
+											  <input id="banner-name" class="form-control-group" type="text"  required="" name="cnum">
                           </div>
 
                             <div class="form-group">
                             <label class="control-label col-md-4">Title</label>
-                              <input id="banner-email" class="form-control2" type="text" required="" name="title">
+                              <input id="banner-email" class="form-control-group" type="text" required="" name="title">
                             </div>
                             <div class="form-group">
                             <label class="control-label col-md-4">Runtime</label>
-                              <input id="banner-name" class="form-control2" type="time"  required="" name="runtime">
+                              <input id="banner-name" class="form-control-group" type="time"  required="" name="runtime">
                            </div>
                             <div class="form-group">
                             <label class="control-label col-md-4">Code</label>
-                              <input id="banner-email" class="form-control2" type="text"   name="code">
+                              <input id="banner-email" class="form-control-group" type="text"   name="code">
                             </div>
 			                     <div class="form-group">
                             <label class="control-label col-md-4">Quantity</label>
-                              <input id="banner-email" class="form-control2" type="number" min="1" required="" name="qty">
+                              <input id="banner-email" class="form-control-group" type="number" min="1" required="" name="qty">
                             </div>
 			
                            
@@ -63,14 +63,13 @@
       
       <div class="equipments-content">
         <div class="table-responsive">
-          <table id="table_id" class="display">
+          <table id="table_soft" class="display">
             <thead class="theader-contents">
               <tr>
-                <th><h4>Call Number</h4></th>
+                <th><h4>Code</h4></th>
                 <th><h4>Title</h4></th>
                 <th><h4>Runtime</h4></th>
-                <th><h4>Code</h4></th>
-                <th><h4>Quantity</h4></th>
+                <th><h4>Call Number</h4></th>
                 <th><h4>Status</h4></th>
                 <th><h4>Borrowed by</h4></th>
                 <th><h4>Update</h4></th>
@@ -88,7 +87,6 @@
                     <td><?php echo $result[$i]->Software_title; ?></td>
                     <td><?php echo $result[$i]->Software_runningTime; ?></td>
                     <td><?php echo $result[$i]->Software_Code; ?></td>
-                    <td><?php echo $result[$i]->Software_Quantity; ?></td>
                     <td><?php echo $result[$i]->Software_Status; ?></td>
                     <td><?php echo $result[$i]->Person_FName." ".$result[$i]->Person_LName; ?></td>
                     <td>
@@ -111,31 +109,32 @@
 
 										  <div class="form-group">
 											  <label class="control-label col-md-4">Call number</label>
-											  <input id="banner-name" class="form-control2" type="text"  required="" name="cnum" value="<?php echo $result[$i]->Software_CallNumber; ?>">
+											  <input id="banner-name" class="form-control-group" type="text"  required="" name="cnum" value="<?php echo $result[$i]->Software_CallNumber; ?>">
                       </div>
 
                       <div class="form-group">
                       <label class="control-label col-md-4">Title</label>
-                        <input id="banner-email" class="form-control2" type="text" required="" name="title" value="<?php echo $result[$i]->Software_title; ?>">
+                        <input id="banner-email" class="form-control-group" type="text" required="" name="title" value="<?php echo $result[$i]->Software_title; ?>">
                       </div>
                       <div class="form-group">
                       <label class="control-label col-md-4">Runtime</label>
-                        <input id="banner-name" class="form-control2" type="text"  required="" name="runtime" value="<?php echo $result[$i]->Software_runningTime; ?>">
+                        <input id="banner-name" class="form-control-group" type="text"  required="" name="runtime" value="<?php echo $result[$i]->Software_runningTime; ?>">
                      </div>
                       <div class="form-group">
                       <label class="control-label col-md-4">Code</label>
-                        <input id="banner-email" class="form-control2" type="text"  required="" name="code" value="<?php echo $result[$i]->Software_Code; ?>">
+                        <input id="banner-email" class="form-control-group" type="text"  required="" name="code" value="<?php echo $result[$i]->Software_Code; ?>">
                       </div>
 											<div class="form-group">
                       <label class="control-label col-md-4">Quantity</label>
-                        <input id="banner-email" class="form-control2" type="number" min="1" required="" name="qty" value="<?php echo $result[$i]->Software_Quantity; ?>">
+                        <input id="banner-email" class="form-control-group" type="number" min="1" required="" name="qty" value="<?php echo $result[$i]->Software_Quantity; ?>">
                       </div>
+
 											<div class="form-group">
 											<label class="control-label col-md-4">Status</label>
-											  <div class="col-md-6">
+											  <div class="col-md-8">
 											  <div class="btn-group bootstrap-select">
 												
-											<select name="status" class="form-control2">
+											<select name="status" class="form-control-group">
                           <option value="Available" <?php if($result[$i]->Software_Status == "Available") echo "selected"; ?>>Available</option>
                           <option value="Borrowed" <?php if($result[$i]->Software_Status == "Borrowed") echo "selected"; ?>>Borrowed</option>
                           <option value="Damage" <?php if($result[$i]->Software_Status == "Damage") echo "selected"; ?>>Damage</option>
@@ -143,9 +142,10 @@
 											  </div>
 											  </div>
 						<!--end dropdown --></div>
+
 											 <div class="form-group">
                         <label class="control-label col-md-4">Borrowed by</label>
-                           <input id="banner-email" class="form-control2" type="text"  required="" name="username" value="<?php echo $result[$i]->Person_Username; ?>">
+                           <input id="banner-email" class="form-control-group" type="text"  required="" name="username" value="<?php echo $result[$i]->Person_Username; ?>">
                         </div>
                         
                          <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>

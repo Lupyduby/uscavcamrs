@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <staticContent>
+            <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+        </staticContent>
+    </system.webServer>
+</configuration>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -35,6 +43,9 @@
                 <li class="">
                   <a href="<?php echo base_url(); ?>user/guideline">Guidelines</a>
                 </li>
+                <li class="">
+                  <a href="<?php echo base_url(); ?>user/calendar">Calendar</a>
+                </li>
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
                       Manage<b class="caret"></b>
@@ -51,7 +62,7 @@
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-        Account <b class="caret"></b>
+                  <?php echo "Hi ".$this->session->userdata('fname'); ?> <b class="caret"></b>
     </a>
         <ul class="dropdown-menu">
             <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ChangePass">Change Password</a></li>

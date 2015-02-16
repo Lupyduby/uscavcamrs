@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <staticContent>
+            <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+        </staticContent>
+    </system.webServer>
+</configuration>
 <html lang="en">
 
   <head>

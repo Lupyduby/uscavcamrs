@@ -15,8 +15,14 @@
             <div style="left:10%; top:15%;">
             
               <form method="POST" action="<?php echo base_url(); ?>user/updatePass">
-                <?php echo validation_errors(); 
-                	echo $this->session->set_flashdata('successPass');
+                <?php 
+                echo validation_errors(); 
+                	if($this->session->userdata('successPass'))
+                  {
+                    echo $this->session->userdata('successPass');
+                    $this->session->unset_userdata('successPass');
+                  }
+                 
                 ?>
 
               <table>

@@ -31,21 +31,73 @@ class EndorseApprove extends CI_Controller {
 			$this->load->view('content/homepage/homepage');
 	}
 
-	public function formConfirmation(){
+	public function formConfirmationEndorse(){
+
+		$this->load->model("model_db");
+		$result['result'] = $this->model_db->queryForEndorse();
+		$result['num']=count($result['result']);
+		//print_r($result['result']);
+
 
 		if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 		{
 			$this->load->view('Header/approverHeader');
-			$this->load->view('content/approver/FormConfirmation-approver');
+			$this->load->view('content/approver/FormConfirmation-approver', $result);
 			
 		}
 
 		else
 		{
 			$this->load->view('Header/endorserHeader');
-			$this->load->view('content/endorser/FormConfirmation-endorser');
+			$this->load->view('content/endorser/FormConfirmation-endorser', $result);
 		}
 
 		$this->load->view('Footer/footer');
+	
+
+	}
+
+	public function formConfirmationApprove(){
+
+		$this->load->model("model_db");
+		$result['result'] = $this->model_db->queryForApprove();
+		$result['num']=count($result['result']);
+
+		if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+		{
+			$this->load->view('Header/approverHeader');
+			$this->load->view('content/approver/FormConfirmation-approver', $result);
+			
+		}
+
+		else
+		{
+			$this->load->view('Header/endorserHeader');
+			$this->load->view('content/endorser/FormConfirmation-approver', $result);
+		}
+
+		$this->load->view('Footer/footer');
+	}
+
+	public function endorseStatus(){
+		$r_id = $this->input->post('id');
+		$data = array( 'Reservation__Endorse_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
+
+		$this->load->model('model_db');
+		$this->model_db->endorseStatus($r_id, $data);
+
+		redirect('EndorseApprove/formConfirmationEndorse');
+
+	}
+
+	public function approveStatus(){
+		$r_id = $this->input->post('id');
+		$data = array( 'Reservation_Approve_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
+
+		$this->load->model('model_db');
+		$this->model_db->endorseStatus($r_id, $data);
+
+		redirect('EndorseApprove/formConfirmationApprove');
+
 	}
 }

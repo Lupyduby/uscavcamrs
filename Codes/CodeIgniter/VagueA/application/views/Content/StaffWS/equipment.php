@@ -33,24 +33,24 @@
                    
                       <div class="form-group">
                          <label class="control-label col-md-4">Name</label>
-                        <input id="banner-name" class="form-control2" type="text"  required="" name="name">
+                        <input id="banner-name" class="form-control-group" type="text"  required="" name="name">
                      </div>
 
                       <div class="form-group">
                       <label class="control-label col-md-4">Brand</label>
-                        <input id="banner-email" class="form-control2" type="text" required="" name="brand">
+                        <input id="banner-email" class="form-control-group" type="text" required="" name="brand">
                       </div>
                       <div class="form-group">
                       <label class="control-label col-md-4">Serial #</label>
-                        <input id="banner-name" class="form-control2" type="text"  required="" name="serial">
+                        <input id="banner-name" class="form-control-group" type="text"  required="" name="serial">
                      </div>
                       <div class="form-group">
                       <label class="control-label col-md-4">Remarks</label>
-                        <input id="banner-email" class="form-control2" type="text"  required="" name="remarks">
+                        <input id="banner-email" class="form-control-group" type="text"  required="" name="remarks">
                       </div>
                       <div class="form-group">
                       <label class="control-label col-md-4">Quantity</label>
-                        <input id="banner-email" class="form-control2" type="number" min="1" required="" name="qty">
+                        <input id="banner-email" class="form-control-group" type="number" min="1" required="" name="qty">
                       </div>
                        <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Save</button>
                                             
@@ -117,28 +117,28 @@
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Name</label>
-                            <input id="banner-name" class="form-control2" type="text"  value="<?php echo $result[$i]->Asset_Name; ?>" required="" name="name">
+                            <input id="banner-name" class="form-control-group" type="text"  value="<?php echo $result[$i]->Asset_Name; ?>" required="" name="name">
                          </div>
 
                           <div class="form-group">
                           <label class="control-label col-md-4">Brand</label>
-                            <input id="banner-email" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Brand; ?>" required="" name="brand">
+                            <input id="banner-email" class="form-control-group" type="text" value="<?php echo $result[$i]->Asset_Brand; ?>" required="" name="brand">
                           </div>
                           <div class="form-group">
                           <label class="control-label col-md-4">Serial #</label>
-                            <input id="banner-name" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Serial; ?>" required="" name="serial">
+                            <input id="banner-name" class="form-control-group" type="text" value="<?php echo $result[$i]->Asset_Serial; ?>" required="" name="serial">
                          </div>
                           <div class="form-group">
                           <label class="control-label col-md-4">Remarks</label>
-                            <input id="banner-email" class="form-control2" type="text" value="<?php echo $result[$i]->Asset_Remarks; ?>" required="" name="remarks">
+                            <input id="banner-email" class="form-control-group" type="text" value="<?php echo $result[$i]->Asset_Remarks; ?>" required="" name="remarks">
                           </div>
                           <div class="form-group">
                           <label class="control-label col-md-4">Quantity</label>
-                            <input id="banner-email" class="form-control2" type="number" min="1" value="<?php echo $result[$i]->Asset_Quantity; ?>" required="" name="qty">
+                            <input id="banner-email" class="form-control-group" type="number" min="1" value="<?php echo $result[$i]->Asset_Quantity; ?>" required="" name="qty">
                           </div>
-                          <div class="form-group">
-                           <button class="btn btn-default btn-submit" type="submit">Update</button>
-                          </div>
+                           <div class="form-group">
+                               <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>
+                              </div>
                        
                           
                          </div><!-- End of Modal body -->
@@ -156,9 +156,9 @@
                             <div id="<?php echo "deletemodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog" id="deleteModalSize">
                                 <div class="modal-content">
-                                  <div class="modal-header">
+                                  <div class="modal-body">
                                     <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteEquipment">
-                                      Are you sure you want to delete?
+                                      <h4>Are you sure you want to delete?</h4>
                                       <input type="hidden" name="id" value="<?php echo $result[$i]->Asset_ID; ?>" >
                                       <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
                                       <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>

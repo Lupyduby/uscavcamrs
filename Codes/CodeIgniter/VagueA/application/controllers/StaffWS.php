@@ -39,6 +39,10 @@ class StaffWS extends CI_Controller {
 				$this->load->view('Header/staffHeader');
 				
 			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
 
 			else
 			{
@@ -128,12 +132,20 @@ class StaffWS extends CI_Controller {
 
 			$this->load->model("model_db");
 			$result['result'] = $this->model_db->queryEquip();
+			
+
+
 			$result['num']=count($result['result']);
+
 			
 			 if ($this->session->userdata('type')=="Staff")
 			{
 				$this->load->view('Header/staffHeader');
 				
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
 			}
 
 			else
@@ -142,9 +154,19 @@ class StaffWS extends CI_Controller {
 				
 			}
 
+			if($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('content/superAdmin/equipSuper', $result);
+			}
+			else
+			{
+				$this->load->view('content/staffWs/equipment', $result);
+			}
+
 			
-			$this->load->view('content/staffWs/equipment', $result);
 			$this->load->view('Footer/footer');
+
+			
 		}
 
 		else
@@ -168,6 +190,10 @@ class StaffWS extends CI_Controller {
 				$this->load->view('Header/staffHeader');
 				
 			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
 
 			else
 			{
@@ -175,8 +201,15 @@ class StaffWS extends CI_Controller {
 				
 			}
 
+			if($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('content/superAdmin/softwareSuper', $result);
+			}
+			else
+			{
+				$this->load->view('content/staffws/software', $result);
+			}
 			
-			$this->load->view('content/staffws/software', $result);
 			$this->load->view('Footer/footer');
 		}
 
@@ -201,6 +234,10 @@ class StaffWS extends CI_Controller {
 			{
 				$this->load->view('Header/staffHeader');
 				
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
 			}
 
 			else
@@ -228,21 +265,9 @@ class StaffWS extends CI_Controller {
 			$this->load->model("model_db");
 			$result['result'] = $this->model_db->queryHall();
 			$result['num']=count($result['result']);
-
-			 if ($this->session->userdata('type')=="Staff")
-			{
-				$this->load->view('Header/staffHeader');
-				
-			}
-
-			else
-			{
-				$this->load->view('Header/wsHeader');
-				
-			}
-
 			
-			$this->load->view('content/staffws/hall', $result);
+			$this->load->view('Header/superAdmin');
+			$this->load->view('content/superAdmin/hallSuper', $result);
 			$this->load->view('Footer/footer');
 		}
 
@@ -270,6 +295,10 @@ class StaffWS extends CI_Controller {
 				$this->load->view('Header/staffHeader');
 				
 			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
 
 			else
 			{
@@ -296,12 +325,29 @@ class StaffWS extends CI_Controller {
 			$this->load->model("model_db");
 			$result['college'] = $this->model_db->queryCollegeReport();
 			$result['activity'] = $this->model_db->queryActivity();
-			$result['num']=count($result['college']);
+			$result['numColl']=count($result['college']);
+			$result['numAct']=count($result['activity']);
+
+			for($i=1; $i<13; $i++){
+				$month = date("F", mktime(0, 0, 0, $i, 10));
+				
+				$res = $this->model_db->sumColumnSoft($month);
+				$result["".$month] = $res[0]->month;
+				echo $res[0]->month;
+			}
+
+
+
 			
+
 			 if ($this->session->userdata('type')=="Staff")
 			{
 				$this->load->view('Header/staffHeader');
 				
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
 			}
 
 			else
@@ -326,21 +372,19 @@ class StaffWS extends CI_Controller {
 
 	public function updateEquipment(){
 
-			$id = $this->input->post('id');
+		$id = $this->input->post('id');
 
-			$data = array(
-                   'Asset_Name'     =>$this->input->post('name'),
-                   'Asset_Brand' => $this->input->post('brand'),
-                   'Asset_Serial' => $this->input->post('serial'),
-                   'Asset_Remarks' => $this->input->post('remarks'),
-                   'Asset_Quantity' => $this->input->post('qty')
-                   );
+		$data = array(
+               'Asset_Name'     =>$this->input->post('name'),
+               'Asset_Brand' => $this->input->post('brand'),
+               'Asset_Serial' => $this->input->post('serial'),
+               'Asset_Remarks' => $this->input->post('remarks'),
+               'Asset_Quantity' => $this->input->post('qty')
+               );
 
-			$this->load->model("model_db");
-			$this->model_db->updateEquip($data, $id);
+		$this->load->model("model_db");
+		$this->model_db->updateEquip($data, $id);
 			
-			
-
 		redirect('StaffWS/equipment');
 	}
 
@@ -417,10 +461,11 @@ class StaffWS extends CI_Controller {
 		redirect('StaffWS/client');
 	}
 
-	public function resetPassword(){
-		$data2 = array('Person_Password'  => $this->input->post('username'));
+	public function resetPassword(){ 
+		$data2 = array('Person_Password' =>md5($this->input->post('username')));
 		$id = $this->input->post('id');
 		$this->load->model("model_db");
+
 		$res = $this->model_db->updatePassword($data2, $id);
 		redirect('StaffWS/client');
 	}
@@ -478,9 +523,11 @@ class StaffWS extends CI_Controller {
 	}
 
 
+
+
 	public function addHall(){
 			$data1=array(
-					'Campus_ID' => $this->session->userdata('campus'),
+					'Campus_ID' => $this->input->post('campus'),
 					'Hall_Name' => $this->input->post('name'),
 					'Hall_Capacity' => $this->input->post('capacity'),
 					'Hall_Desc' => $this->input->post('desc'),
