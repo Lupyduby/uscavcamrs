@@ -108,7 +108,7 @@ class StaffWS extends CI_Controller {
 
 					$data['results2'] = $this->model_db->addUser($data2);
 					$data['join'] = $this->model_db->joinData();
-
+					$this->EmailNewUser();
 
 					$this->load->view('success', $data);	
 				}
@@ -615,7 +615,96 @@ class StaffWS extends CI_Controller {
 				redirect('StaffWS/client');
 	}
 
+	public function reservationOK(){
+		$this->load->model("model_db");
+		$data['result'] = $this->model_db->queryReservationOK();	
+		$data['num'] = count($data['result']);
 
+
+			 if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+				
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else
+			{
+				$this->load->view('Header/wsHeader');
+				
+			}
+
+			
+			$this->load->view('content/staffws/reservationApprove', $data);
+			$this->load->view('Footer/footer');
+		}
+
+	public function validateBlock(){
+		$activity = $this->input->post('activity');
+		$data = array('Reservation_BlockActivity' => $activity,
+					'Reservation_Block' => 1);
+
+		$this->load->model("model_db");
+
+		$data['result'] = $this->model_db->addReservationBlock($data);
+		$res = $this->model_db->getReservationId();
+		$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+			'campus_reservation' => $campusID,
+			'month' => $month);
+		$this->session->set_userdata($rID);
+
+		print_r($res);
+		redirect('StaffWS/blockSum');
+
+	}
+
+	public function blockSum(){
+
+		$this->load->model('model_db');
+		$result['reservation'] = $this->model_db->queryBlockSummary($this->session->userdata('R_ID'));
+
+		echo $result['reservation'][0]->Reservation_BlockActivity."asdasdadsa " .$this->session->userdata('R_ID');
+
+		$this->load->view('Header/staffHeader');
+		$this->load->view('content/staffws/blockSummary', $result);
+		$this->load->view('Footer/footer');
+	}
+			
+	
+
+	public function EmailNewUser($data){
+				
+		$this->load->library('email');	
+	
+		$this->load->model('model_db');
+		$this->email->from('aki_chaka@yahoo.com', 'USC-AVC');
+			
+		if($data['result'] != null)
+		{
+			$this->email->to($data->Person_Email);
+			$this->email->subject('welcome New Client (^_^)');
+
+			$message = '<p> Hello ' .$data->Person_Fname. ' </p>' ; 
+			
+				$message .= "<p>Welcome to the our system! It's easy and fast!</p>";
+
+			$this->email->message($message);
+		}	
+		 
+		if($this->email->send()){
+			echo 'it worke';
+		}
+		else{
+			echo "it didn't worke";
+		
+		//	redirect('main/home');
+		}
+
+		//echo $this->email->print_debugger();
+	}
 
 
 }

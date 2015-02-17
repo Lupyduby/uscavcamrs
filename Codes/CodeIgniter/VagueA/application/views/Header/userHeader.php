@@ -45,7 +45,7 @@
                   <a href="<?php echo base_url(); ?>user/calendar">Calendar</a>
                 </li>
                 <li class="">
-                  <a href="<?php echo base_url(); ?>user/reservationList">Reservation</a>
+                  <a href="<?php echo base_url(); ?>user/queryReservationList">Reservation</a>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">

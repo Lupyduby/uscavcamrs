@@ -151,7 +151,14 @@
 
                   if($result[$i]->Hall_ID==5)
                   {
-                   echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                     echo  $result[$i]->Reservation_BlockActivity;
+                   else
+                     $result[$i]->Activity_Name; 
+                  
+                   echo" c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
                    $k++;
                   }
                   $i++;
@@ -167,10 +174,17 @@
                 <?php $i=0; $k=0;
                 while($i<$num)
                 {
-                  if($result[$i]->Hall_ID==6)
-                {
-                  echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
-                  $k++;
+                   if($result[$i]->Hall_ID==6)
+                  {
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                     echo  $result[$i]->Reservation_BlockActivity;
+                   else
+                     $result[$i]->Activity_Name; 
+                  
+                   echo" c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   $k++;
                 }
                 $i++;
                 }
@@ -184,10 +198,17 @@
                <?php $i=0; $k=0;
                 while($i<$num)
                 {
-                  if($result[$i]->Hall_ID==2)
-                {
-                   echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
-                  $k++;
+                   if($result[$i]->Hall_ID==4)
+                  {
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                     echo $result[$i]->Reservation_BlockActivity;
+                   else
+                     echo $result[$i]->Activity_Name; 
+                  
+                   echo " c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   $k++;
                 }
                   $i++;
                 }
@@ -202,10 +223,17 @@
                <?php $i=0; $k=0;
                 while($i<$num)
                 {
-                  if($result[$i]->Hall_ID==1)
+                   if($result[$i]->Hall_ID==1)
                   {
-                    echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
-                     $k++;
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                     echo  $result[$i]->Reservation_BlockActivity;
+                   else
+                     echo $result[$i]->Activity_Name; 
+                  
+                   echo" c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   $k++;
                   }
                   $i++;
                 }
@@ -221,8 +249,15 @@
                 {
                   if($result[$i]->Hall_ID==3)
                   {
-                    echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
-                     $k++;
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                     echo  $result[$i]->Reservation_BlockActivity;
+                   else
+                     echo $result[$i]->Activity_Name; 
+                  
+                   echo" c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   $k++;
                   }
                 $i++;
                 }
@@ -236,8 +271,16 @@
                 <?php $i=0; $k=0;
                 while($i<$num)
                 {
-                  if($result[$i]->Hall_ID==2){
-                    echo "<p class='list-group-item-text'> ".$result[$i]->Activity_Name." c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
+                   if($result[$i]->Hall_ID==2)
+                  {
+                   echo "<p class='list-group-item-text'>";
+                   
+                   if($result[$i]->Reservation_Block==1)
+                      echo  $result[$i]->Reservation_BlockActivity;
+                   else
+                      echo  $result[$i]->Activity_Name; 
+                  
+                   echo" c/o ".$result[$i]->Person_Lname." - ". date("g:i A", strtotime($result[$i]->Reservation_timeStart))." - ".date("g:i A", strtotime($result[$i]->Reservation_timeEnd))."</p>";
                    $k++;
                 }
                   $i++;

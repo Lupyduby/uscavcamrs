@@ -31,7 +31,12 @@
 				end: '2015-02-15T09:30:00'
 				/*url: '<?php echo base_url(); ?> application/controllers/json-rigney'*/
 			}
-			]		
+			],
+			eventClick: function(event) {
+	         	if (event.title) {
+	             alert(event.title);
+	         	}	
+	         }	
 		});
 			
 		

@@ -41,7 +41,7 @@
                      </div>
                      <div class="form-group">
                         <label class="control-label col-md-4">Email</label>
-                        <input id="banner-name" class="form-control2" type="text"   name="email">
+                        <input id="banner-name" class="form-control2" type="email"   name="email">
                      </div>
 
 
@@ -102,7 +102,7 @@
                       <span class="glyphicon glyphicon-edit"  aria-hidden="true"></span></a>
                     <div id="<?php echo "editmodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                              <!--form sa modal -->
-                            <form method="post" action="<?php echo base_url(); ?>superAdmine/updateStaff">
+                            <form method="post" action="<?php echo base_url(); ?>superAdmin/updateStaff">
                             <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">

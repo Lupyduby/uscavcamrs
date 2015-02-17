@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2015 at 04:33 PM
--- Server version: 5.6.16
--- PHP Version: 5.5.9
+-- Generation Time: Feb 17, 2015 at 01:53 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `uscavcamrs`
 --
+CREATE DATABASE IF NOT EXISTS `uscavcamrs` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `uscavcamrs`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `activity` (
   `Activity_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Activity_Name` varchar(100) DEFAULT NULL,
+  `Activity_Name` text NOT NULL,
   `Activity_February` int(11) NOT NULL DEFAULT '0',
   `Activity_January` int(11) NOT NULL DEFAULT '0',
   `Activity_March` int(11) NOT NULL DEFAULT '0',
@@ -41,26 +43,27 @@ CREATE TABLE IF NOT EXISTS `activity` (
   `Activity_October` int(11) NOT NULL DEFAULT '0',
   `Activity_November` int(11) NOT NULL DEFAULT '0',
   `Activity_December` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`Activity_ID`),
-  UNIQUE KEY `Activity_Name` (`Activity_Name`),
-  UNIQUE KEY `Activity_Name_2` (`Activity_Name`),
-  UNIQUE KEY `Activity_Name_3` (`Activity_Name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+  PRIMARY KEY (`Activity_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `activity`
 --
 
 INSERT INTO `activity` (`Activity_ID`, `Activity_Name`, `Activity_February`, `Activity_January`, `Activity_March`, `Activity_April`, `Activity_May`, `Activity_June`, `Activity_July`, `Activity_August`, `Activity_September`, `Activity_October`, `Activity_November`, `Activity_December`) VALUES
-(1, 'Conference', 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 'Video Showing', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 'Seminar', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 'Forum', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(6, 'Reporting', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(7, 'asdasdasd', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, 'zxczxczxczx', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(9, 'fvdfgdfgdfgdfg', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, 'sadasdasdasdasd', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(1, 'Seminar', 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 'Forum', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 'Video Showing', 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 'Conference', 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 'Sound System', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(6, 'Documentation', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(21, 'sdsdfsdf', 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(24, 'Wow!', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(25, 'wahahaha', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(26, 'sdfsdfsdf', 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(27, 'sdfsdfsdf', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(28, 'sdfsdfsdf', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(29, 'ReEd 10', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -88,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `asset` (
 INSERT INTO `asset` (`Asset_ID`, `Campus_ID`, `Hall_ID`, `Asset_Name`, `Asset_Brand`, `Asset_Serial`, `Asset_Remarks`, `Asset_Quantity`) VALUES
 (1, 1, 0, 'pAULO', 'Shaark', '123', 'Functioning', 10),
 (2, 3, 0, 'DVD', 'Pioneere', 'asdasdas3132154', 'Functioning', 3),
-(4, 3, 0, 'Speaker', 'MartinLogan CLX', '32132a1sdas', 'Functioning', 2),
+(4, 3, 0, 'Speaker', 'MartinLogan CLXS', '32132a1sdas', 'Functioning', 2),
 (5, 3, 0, 'DVD Player', 'Pioneer', '1030241', 'Functioning', 1);
 
 -- --------------------------------------------------------
@@ -142,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `college_report` (
 --
 
 INSERT INTO `college_report` (`college_ID`, `college_Name`, `college_January`, `college_February`, `college_March`, `college_April`, `college_May`, `college_June`, `college_July`, `college_August`, `college_September`, `college_October`, `college_November`, `college_December`) VALUES
-(0, 'CAS', 0, 38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(0, 'CAS', 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (2, 'CAFA', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (3, 'SBE', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (4, 'SLG', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -233,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `Person_Email` varchar(50) DEFAULT NULL,
   `Person_type` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Person_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `person`
@@ -254,7 +257,10 @@ INSERT INTO `person` (`Person_ID`, `Person_Username`, `Person_Password`, `Person
 (31, '1234StaffMain', '2ee8ffeb9790d72b22b2471bea76420d', 'Ka', 'Isda', 'kaka@gmail.com', NULL),
 (32, '1234StaffMain', '2ee8ffeb9790d72b22b2471bea76420d', 'Ka', 'Isda', 'kaka@gmail.com', 'Staff'),
 (33, '1234StaffMain', '2ee8ffeb9790d72b22b2471bea76420d', 'Ka', 'Isda', 'kaka@gmail.com', 'Staff'),
-(34, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', 'Chairman');
+(34, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', 'Chairman'),
+(35, '10301328', '01f75cdf9df2496015bbc438236be02f', 'chibelle', 'flores', 'chibelle.flores@yahoo.com', 'Chairman'),
+(36, '11111111', '1bbd886460827015e5d605ed44252251', 'robert', 'cario', 'johngalexis@yahoo.com', 'Chairman'),
+(37, '12345678', '25d55ad283aa400af464c76d713c07ad', 'Antonio', 'Canete', 'efi_tony@yahoo.com', 'Chairman');
 
 -- --------------------------------------------------------
 
@@ -281,17 +287,21 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `Reservation_Mic` tinyint(4) NOT NULL,
   `Reservation_LCD` tinyint(4) NOT NULL,
   `Reservation_VHS` int(11) NOT NULL DEFAULT '0',
+  `Reservation_Block` int(11) NOT NULL DEFAULT '0',
+  `Reservation_BlockActivity` text NOT NULL,
   PRIMARY KEY (`Reservation_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`Reservation_ID`, `Person_ID`, `Hall_ID`, `Campus_ID`, `Activity_ID`, `Reservation_Purpose`, `Reservation_Date`, `Reservation_timeStart`, `Reservation_timeEnd`, `Endorsement_ID`, `Approval_ID`, `Reservation__Endorse_Status`, `Reservation_Approve_Status`, `Reservation_Computer`, `Reservation_DVDPlayer`, `Reservation_Mic`, `Reservation_LCD`, `Reservation_VHS`) VALUES
-(1, 28, 5, 3, 1, 'College Based Activities', '2015-02-16', '08:30:00', '09:00:00', 28, 2, 'approve', 'Pending', 0, 0, 0, 0, 0),
-(70, 23, 3, 3, 1, 'Classroom Instruction-Related Activities', '2015-02-16', '07:30:00', '08:30:00', 28, 2, 'Pending', 'Pending', 0, 1, 1, 0, 0),
-(71, 28, 0, 2, NULL, '', '2015-02-25', '07:30:00', '08:30:00', NULL, NULL, 'Pending', 'Pending', 0, 0, 0, 0, 0);
+INSERT INTO `reservation` (`Reservation_ID`, `Person_ID`, `Hall_ID`, `Campus_ID`, `Activity_ID`, `Reservation_Purpose`, `Reservation_Date`, `Reservation_timeStart`, `Reservation_timeEnd`, `Endorsement_ID`, `Approval_ID`, `Reservation__Endorse_Status`, `Reservation_Approve_Status`, `Reservation_Computer`, `Reservation_DVDPlayer`, `Reservation_Mic`, `Reservation_LCD`, `Reservation_VHS`, `Reservation_Block`, `Reservation_BlockActivity`) VALUES
+(1, 28, 5, 3, 1, 'College Based Activities', '2015-02-16', '08:30:00', '09:00:00', 28, 2, 'approve', 'Bushing Bucia', 0, 0, 0, 0, 0, 0, ''),
+(96, 6, 1, 3, NULL, '', '2015-02-25', '07:30:00', '08:30:00', NULL, NULL, 'Pending', 'Pending', 0, 0, 0, 0, 0, 1, 'waaaa'),
+(97, 6, 5, 1, NULL, '', '2015-02-21', '07:30:00', '08:30:00', NULL, NULL, 'Pending', 'Pending', 0, 0, 0, 0, 0, 1, 'mangaon ang rigney boys'),
+(98, 23, 5, 1, NULL, '', '2015-02-27', '07:30:00', '08:30:00', NULL, NULL, 'Pending', 'Pending', 0, 0, 0, 0, 0, 0, ''),
+(99, 23, 5, 1, NULL, '', '2015-02-25', '07:30:00', '08:30:00', NULL, NULL, 'Pending', 'Pending', 0, 0, 0, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -330,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `softwares` (
 --
 
 INSERT INTO `softwares` (`Software_ID`, `Reservation_ID`, `Person_Username`, `Campus_ID`, `Software_CallNumber`, `Software_title`, `Software_runningTime`, `Software_Code`, `Software_Quantity`, `Software_Status`, `Software_January`, `Software_February`, `Software_March`, `Software_April`, `Software_May`, `Software_June`, `Software_July`, `Software_August`, `Software_September`, `Software_October`, `Software_November`, `Software_December`) VALUES
-(2, NULL, 'N/A', 2, 'CDm102r', 'Insurgent V2', '1:35:36', 'absc', 2, 'Available', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 73, '11103083', 2, 'CDm102r', 'Insurgent V2', '1:35:36', 'absc', 2, 'Borrowed', 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (14, 54, '11103083', 3, 'CD1', 'Vigin', '1:31', 'N/A', 1, 'Borrowed', 0, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (15, 52, '11103083', 3, 'CDm104r', 'Nothing', '1:00', 'N/A', 1, 'Borrowed', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (16, 65, '11103083', 3, 'CDm305r', 'Viriginity', '1:39', 'N/A', 1, 'Borrowed', 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -392,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `User_college` varchar(64) DEFAULT NULL,
   `User_Office_Name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`User_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `user`
@@ -405,7 +415,10 @@ INSERT INTO `user` (`User_ID`, `Person_ID`, `Campus_ID`, `User_college`, `User_O
 (13, 23, 3, 'CAS', 'Department of Computer Science'),
 (17, 28, 3, 'CAS', 'Office of the CAS Dean'),
 (18, 29, 3, 'CAS', 'CS'),
-(19, 34, 3, 'SBE', '');
+(19, 34, 3, 'SBE', ''),
+(20, 35, 3, 'CAS', 'Chemistry'),
+(21, 36, 3, 'SBE', 'Scurity office'),
+(22, 37, 3, 'SBE', 'Security Office');
 
 -- --------------------------------------------------------
 

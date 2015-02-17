@@ -112,6 +112,9 @@ $(document).ready(function() {
                 <li class="">
                   <a href="<?php echo base_url(); ?>user/calendar">Calendar</a>
                 </li>
+                <li class="">
+                  <a href="<?php echo base_url(); ?>user/queryReservationList">Block</a>
+                </li>
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
                       Manage<b class="caret"></b>
@@ -122,6 +125,8 @@ $(document).ready(function() {
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/equipment">Equipment</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/hall">AV Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/reservationOK">Reservation</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/statistics">Statistics</a></li>
                             <li class="divider"></li>

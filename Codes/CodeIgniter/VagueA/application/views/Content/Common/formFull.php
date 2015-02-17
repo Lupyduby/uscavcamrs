@@ -17,7 +17,7 @@
           <span class="glyphicon-class" id="equip">Equipments Needed</span></a>
         </li>
         <li role="presentation">
-          <a href="" data-toggle="tab"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
+          <a href="" data-toggle="tab"><span class="glyphicon glyphicon-record" aria-hidden="true"></span>
           <span class="glyphicon-class" id="soft">Software Needed</span></a>
         </li>
         </ul>    
@@ -36,7 +36,7 @@
                               {
                               ?>
                                 <?php echo $i; ?>
-                                <option value="<?php echo $activity[$i]->Activity_ID; ?>"><?php echo $activity[$i]->Activity_Name; ?></option>
+                                <option value="<?php echo $activity[$i]->Activity_Name; ?>"><?php echo $activity[$i]->Activity_Name; ?></option>
 
                               <?php $i++; } ?>
 
@@ -119,10 +119,9 @@
             </tbody>
   
           </table>
-  
-        </div>
+           <div class="col-md-9 button-area"><button type="submit" class="btn2 btn-success">Submit</button>
+       </div>
 
-        <div class="col-md-9 button-area"><button type="submit" class="btn2 btn-success">Submit</button>
         </div>
               </form>
             </div>

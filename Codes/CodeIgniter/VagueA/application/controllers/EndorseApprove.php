@@ -83,8 +83,21 @@ class EndorseApprove extends CI_Controller {
 		$r_id = $this->input->post('id');
 		$data = array( 'Reservation__Endorse_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
 
+	$this->load->model('model_db');
+	$this->model_db->endorseStatus($r_id, $data);
+		$this->EmailEndorseApprove();
+
+		redirect('EndorseApprove/formConfirmationEndorse');
+
+	}
+
+	public function disEndorseStatus(){
+		$r_id = $this->input->post('id');
+		$data = array( 'Reservation__Endorse_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
+
 		$this->load->model('model_db');
 		$this->model_db->endorseStatus($r_id, $data);
+		$this->emailDisEndorseApprove($dis);
 
 		redirect('EndorseApprove/formConfirmationEndorse');
 
@@ -92,12 +105,134 @@ class EndorseApprove extends CI_Controller {
 
 	public function approveStatus(){
 		$r_id = $this->input->post('id');
-		$data = array( 'Reservation_Approve_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
+		$data = array( 'Reservation_Approve_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'),
+						'Reservation_Status' => "Approve");
 
 		$this->load->model('model_db');
 		$this->model_db->endorseStatus($r_id, $data);
+		$this->EmailEndorseApprove();
 
 		redirect('EndorseApprove/formConfirmationApprove');
 
 	}
+
+
+	public function disApproveStatus(){
+		$r_id = $this->input->post('id');
+		$dis = $this->input->post('dis');
+		$data = array( 'Reservation_Approve_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'),
+						'Reservation_Status' => "Disapprove");
+
+		$this->load->model('model_db');
+		$this->model_db->endorseStatus($r_id, $data);
+		$this->emailDisEndorseApprove($dis);
+
+		redirect('EndorseApprove/formConfirmationApprove');
+
+	}
+
+
+	public function EmailApprove(){
+		$this->load->library('email');
+		$this->load->model("model_db");
+
+		$r_id = $this->input->post('id');
+		$this->email->from('johngalexislyka@gail.com', 'USC-AVC');
+		
+		$data['result'] = $this->model_db->queryforEmail($r_id);
+			
+		if($data['result'] != null){
+				$this->email->to($data['result']->Person_Email);
+				$this->email->subject('Reservation approval');
+				$this->email->message('Hello' .$data['result']->Person_Fname. 'Your Reservation form is successfully approve by approver');
+			}	 
+		if($this->email->send()){
+			echo 'it worke';
+		}
+		else{
+			redirect('main/home');
+		}
+	}
+
+
+	public function emailDisEndorseApprove($dis){
+				
+		$this->load->library('email');	
+	
+		$this->load->model('model_db');
+		$this->email->from('aki_chaka@yahoo.com', 'USC-AVC');
+		$r_id = $this->input->post('id');
+		$data['result'] = $this->model_db->queryforEmail($r_id);
+			
+		if($data['result'] != null)
+		{
+			$this->email->to($data['result'][0]->Person_Email);
+			$this->email->subject('Reservation approval');
+
+			$message = '<p> Hello ' .$data['result'][0]->Person_Fname. ' </p>' ; 
+
+
+
+			if($this->session->userdata('type')=="Dean")
+				$message .= '<p>Your Reservation form is failed to endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+			
+			else
+				$message .= '<p>Your Reservation form is failed to approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+
+				$message .= '<p>For the reason of:</p>';
+				$message .= '<p>'.$dis.':</p>';
+
+
+			$this->email->message($message);
+		}	
+
+		if($this->email->send()){
+			echo 'it worke';
+		}
+		else{
+			echo "it didn't worke";
+		
+		//	redirect('main/home');
+		}
+
+		//echo $this->email->print_debugger();
+	}
+
+
+	public function EmailEndorseApprove(){
+				
+		$this->load->library('email');	
+	
+		$this->load->model('model_db');
+		$this->email->from('aki_chaka@yahoo.com', 'USC-AVC');
+		$r_id = $this->input->post('id');
+		$data['result'] = $this->model_db->queryforEmail($r_id);
+			
+		if($data['result'] != null)
+		{
+			$this->email->to($data['result'][0]->Person_Email);
+			$this->email->subject('Reservation approval');
+
+			$message = '<p> Hello ' .$data['result'][0]->Person_Fname. ' </p>' ; 
+			if($this->session->userdata('type')=="Dean")
+			$message .= '<p>Your Reservation form is successfully endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+			
+			else
+				$message .= '<p>Your Reservation form is successfully approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+
+			$this->email->message($message);
+		}	
+		 
+		if($this->email->send()){
+			echo 'it worke';
+		}
+		else{
+			echo "it didn't worke";
+		
+		//	redirect('main/home');
+		}
+
+		//echo $this->email->print_debugger();
+	}
+	
 }

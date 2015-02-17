@@ -506,3 +506,9 @@ table.table th{
 	padding-top:15px;
 }
 
+#btnFix{
+	position: absolute;
+	right: 9%;
+	top:20%;
+}
+

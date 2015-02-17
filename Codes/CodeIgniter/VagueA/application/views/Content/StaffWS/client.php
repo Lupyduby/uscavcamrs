@@ -41,7 +41,7 @@
                      </div>
                      <div class="form-group">
                         <label class="control-label col-md-4">Email</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="email">
+                        <input id="banner-name" class="form-control-group" type="email"   name="email">
                      </div>
 
 

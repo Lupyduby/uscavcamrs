@@ -103,6 +103,7 @@ class User extends CI_Controller {
 				$this->load->view('Header/userHeader');
 			}
 
+
 			$this->load->view('content/common/FormValidation');
 			$this->load->view('Footer/footer');
 		}
@@ -266,7 +267,16 @@ class User extends CI_Controller {
 			{	
 				$this->load->view('Header/userHeader');
 			}
-			$this->load->view('content/Common/formFull', $result);
+
+
+			if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('content/StaffWS/blockFull', $result);
+			}
+			else{
+				$this->load->view('content/Common/formFull', $result);
+			}
+			
 			$this->load->view('Footer/footer');
 		}
 
@@ -283,6 +293,9 @@ class User extends CI_Controller {
 			$result['reservation'] = $this->model_db->queryReservationSummary($this->session->userdata('R_ID'));
 			$result['software'] = $this->model_db->querySoftwareReservation();
 			$result['num'] = count($result['software']);
+
+
+			
 
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -325,7 +338,10 @@ class User extends CI_Controller {
 		//month in activity doesn;t exist yet
 		
 		//Activity Management
-		if(empty($this->input->post('others')))
+
+
+
+		/*		if(empty($this->input->post('others')))
 		{ 
 			$act = $this->input->post('activity');
 			$columnAct = "Activity_".$this->session->userdata('month');
@@ -344,13 +360,38 @@ class User extends CI_Controller {
 			$data = array($columnAct => $res2[0]->$columnAct+1);
 			$updateCount = $this->model_db->addActivityCount($data, $res2[0]->Activity_ID);
 		}
+*/	
+		if(($this->input->post('others'))=='')
+		{
+			$act = $this->input->post('activity');
+
+		}
+
+		else
+		{
+			$act = $this->input->post('others');
+			$acti['Activity_Name'] = $act;
+			$res = $this->model_db->addactivity($acti);
+		}
+
+		echo $act;
+
+
+			$columnAct = "Activity_".$this->session->userdata('month');
+			$res2 = $this->model_db->getActivityReservation($act);
+			$data = array($columnAct => $res2[0]->$columnAct+1);
+			$updateCount = $this->model_db->addActivityCount($data, $res2[0]->Activity_ID);
+			echo $res2[0]->$columnAct+1;
+
 		//getting input from the view	
 		$purpose = $this->input->post('purpose');
+echo $columnAct;
+
 		$equip = $this->input->post('equip');
 		$soft = $this->input->post('software');
 
 		$data = array (
-						'Activity_ID' => $act,
+						'Activity_ID' => $res2[0]->Activity_ID,
 		 				'Reservation_Purpose' => $purpose
 						);
 		if($this->session->userdata('type')=="Dean")
@@ -384,9 +425,11 @@ class User extends CI_Controller {
 				if($equip[$i]=="vhs")			
 					$data['Reservation_VHS'] = 1;
 			}
-			$result = $this->model_db->updateReservation($data);
+			
 		}
 
+		$result = $this->model_db->updateReservation($data);
+print_r($data);
 		//Software Management
 		
 		echo "Equip count: ".count($equip);
@@ -415,10 +458,10 @@ class User extends CI_Controller {
 								 $columnCollege => $collegeID[0]->$columnCollege+1);
 			$res = $this->model_db->addCollegeCount($collegeID[0]->college_ID, $collegeData);
 
-
+echo $this->session->userdata('month');
 
 		redirect('user/formSummary');
-	}
+	 }
 
 
 	public function addreservation()
@@ -447,7 +490,7 @@ class User extends CI_Controller {
 		
 		else
 		{
-			$hallID = $this->input->post('hall3');
+			$hallID = 4;
 			$timeStart = $this->input->post('timestartSC');
 			$timeEnd = $this->input->post('timeendSC');
 		}
@@ -537,7 +580,9 @@ class User extends CI_Controller {
 											{
 												$info=array('message' => "Schedule already reserved!");
 												$this->session->set_userdata($info);
-												redirect('user/reservation');
+											
+													redirect('user/reservation');
+												
 											}
 										
 									}
@@ -608,7 +653,7 @@ class User extends CI_Controller {
 	}
 
 
-	public function reservationList()
+	public function queryReservationList()
 	{
 			$this->load->model("model_db");
 			$result['result'] = $this->model_db->queryReservationList();
@@ -644,7 +689,15 @@ class User extends CI_Controller {
 			{	
 				$this->load->view('Header/userHeader');
 			}
-			$this->load->view('content/Common/reservationList', $result);
+
+			if($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('content/StaffWS/blockList', $result);
+			}
+			else
+			{
+				$this->load->view('content/Common/reservationList', $result);
+			}
 			$this->load->view('Footer/footer');
 		}
 

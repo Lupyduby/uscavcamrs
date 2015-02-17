@@ -115,7 +115,7 @@
             </table>
         </div>
         <div class="tab-pane" id="AVmat">
-           <table id="table_id" class="display">
+           <table id="table_id3" class="display">
             <thead class="theader-contents">
               <tr>
                 <th>Materials</th>

@@ -48,12 +48,15 @@ class Model_db extends CI_Model{
 
 	public function addactivity($data){
 		$res = $this->db->insert('activity', $data);
-		return $result;
+		return $res;
 	}
 
 	public function insert_csv($data) {
-        $this->db->insert('softwares', $data);
+        $res = $this->db->insert('softwares', $data);
+        return $res;
     }
+
+    
 /*-----------------------------End of Insert--------------------*/
 
 
@@ -288,7 +291,7 @@ class Model_db extends CI_Model{
 	}
 
 	public function getReservationId(){
-		$result = $this->db->query("Select Reservation_ID from reservation order by reservation_id DESC LIMIT 1");
+		$result = $this->db->query("Select * from reservation order by reservation_id DESC LIMIT 1");
 		return $result->result();
 	}
 
@@ -346,7 +349,7 @@ class Model_db extends CI_Model{
 	}
 
 	public function getActivityReservation($id){
-		$result = $this->db->query("Select * from activity where Activity_ID='".$id."'");
+		$result = $this->db->query("Select * from activity where Activity_Name='".$id."'");
 		return $result->result();
 	}
 
@@ -453,6 +456,42 @@ class Model_db extends CI_Model{
 		return $query->result();
 	}
 
+	public function queryReservationOK(){
+				$this->db->select('reservation.*,
+							hall.Hall_Name,
+							campus.Campus_Name,
+							activity.Activity_Name,
+							person.Person_FName,
+							person.Person_LName');
+	//	$this->db->where('Reservation_Approve_Status !=', "Pending");
+	//	$this->db->where('Reservation__Endorse_Status !=', "Pending");
+		$this->db->from('reservation');
+		$this->db->join('campus', 'reservation.Campus_ID = campus.Campus_ID','left');
+		$this->db->join('activity', 'reservation.Activity_ID = activity.Activity_ID','left');
+		$this->db->join('hall', 'reservation.Hall_ID = hall.Hall_ID','left');
+		$this->db->join('person', 'reservation.Person_ID = person.Person_ID','left');
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+
+
+	public function queryBlockSummary($id){
+		$this->db->select('reservation.*,
+							hall.Hall_Name,
+							campus.Campus_Name,
+							person.Person_FName,
+							person.Person_LName');
+		$this->db->where('Reservation_ID =', $id);
+		$this->db->from('reservation');
+		$this->db->join('campus', 'reservation.Campus_ID = campus.Campus_ID','left');
+		$this->db->join('hall', 'reservation.Hall_ID = hall.Hall_ID','left');
+		$this->db->join('person', 'reservation.Person_ID = person.Person_ID','left');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 
 /*-----------------------End of Query--------------------*/
 
@@ -488,6 +527,19 @@ class Model_db extends CI_Model{
 
 		$result=$this->db->get();
 		return $result->row();
+	}
+
+	public function queryforEmail($r_id)
+	{
+		$this->db->select('person.*,
+							reservation.*');
+		$this->db->from('person');
+		$this->db->where('reservation.Reservation_ID =', $r_id);
+		$this->db->where('reservation.Person_ID = person.Person_ID');
+		$this->db->join('reservation', 'Reservation.Person_ID = person.Person_ID', 'left');
+
+		$result=$this->db->get();
+		return $result->result();
 	}
 
 /*--------------------------------End of Join Data---------------------------*/
@@ -577,6 +629,14 @@ class Model_db extends CI_Model{
 		$result = $this->db->update('reservation', $data);
 		return $result;
 	}
+
+	public function addReservationBlock($data) {
+		$this->db->where('Reservation_ID', $this->session->userdata('R_ID'));
+        $res = $this->db->update('reservation', $data);
+
+        return $res;
+    }
+
 
 
 /*-----------------------------End of Update----------------------------*/

@@ -33,6 +33,7 @@ class Main extends CI_Controller {
 
 
 		*/
+
 		$this->load->view('Header/homepageHeader');
 		$this->load->view('content/homepage/homepage');
 		$this->load->view('footer/footer');
@@ -271,27 +272,7 @@ class Main extends CI_Controller {
 
 	}
 
-	public function EmailApprove(){
-		$this->load->library('email');
-
-
-		$this->email->from('johngalexislyka@gail.com', 'USC-AVC');
-		$this->load->model("model_db");
-		$data['result'] = $this->load->model_db->queryforEmail();
-			
-		if($data['result'] != null){
-
-				$this->email->to($data['result']->Person_Email);
-				$this->email->subject('Reservation approval');
-				$this->email->message('Hello' .$data['result']->Person_Fname, 'Your Reservation form is successfully approve by approver');
-			}	 
-		if($this->email->send()){
-			echo 'workred';
-		}
-		else{
-			redirect('main/home');
-		}
-	}
+	
 
 	public function disapprove(){
 		$id = $this->input->post('id');
