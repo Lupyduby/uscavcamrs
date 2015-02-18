@@ -207,17 +207,355 @@ class User extends CI_Controller {
 
 	}
 
-	public function calendar()
+	public function RigneyCal()
 	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(1);
+		$result['num']=count($result['result']);
 
-		if($this->session->userdata('type'))
-		{
-			$this->load->view('content/common/calendar');		
+		$sched = array();
+
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
 		}
-		else
-		{
-			redirect('user/index');
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		$result['hall'] = "Rigney Hall";
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
+
+	}
+
+
+	public function PhlpCal()
+	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(3);
+		$result['num']=count($result['result']);
+
+		$sched = array();
+		$result['hall'] = "Philip Van Engelen Hall";
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
 		}
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
+
+	}
+
+
+
+	public function HoepCal()
+	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(2);
+		$result['num']=count($result['result']);
+
+		$sched = array();
+		$result['hall'] = "Heoppener Hall";
+
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
+		}
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
+
+	}
+
+
+	public function ButtenCal()
+	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(5);
+		$result['num']=count($result['result']);
+
+		$sched = array();
+		$result['hall'] = "Buttenbruch Hall";
+
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
+		}
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
+
+	}
+
+
+	public function GanseCal()
+	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(6);
+		$result['num']=count($result['result']);
+
+		$sched = array();
+		$result['hall'] = "Albert van Ganseiwinkel Hall";
+
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
+		}
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
+
+	}
+
+
+	public function BuchCal()
+	{
+		$this->load->model('model_db');
+		$result['result'] = $this->model_db->queryReservationCalendar(4);
+		$result['num']=count($result['result']);
+
+		$sched = array();
+		$result['hall'] = "Buchcick Hall";
+
+
+		for($i=0; $i<$result['num']; $i++){
+			if($result['result'][0]->Reservation_Block)
+				$sched[] = array('title' => $result['result'][$i]->Reservation_BlockActivity, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd );
+			else
+				$sched[] = array('title' => $result['result'][$i]->Activity_Name, 
+								'start' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeStart, 
+								'end' => $result['result'][$i]->Reservation_Date."T".$result['result'][$i]->Reservation_timeEnd);
+		}
+
+		$result['sked'] = json_encode($sched);
+		echo $result['sked'];
+
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
+			{
+				$this->load->view('Header/endorserHeader');
+			}
+
+			else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
+			{
+				$this->load->view('Header/approverHeader');
+			}
+
+			else if ($this->session->userdata('type')=="Staff")
+			{
+				$this->load->view('Header/staffHeader');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+			else if ($this->session->userdata('type')=="Super")
+			{
+				$this->load->view('Header/superAdmin');
+			}
+
+			else if ($this->session->userdata('type')=="WS")
+			{
+				$this->load->view('Header/wsHeader');
+			}
+
+			else
+			{	
+				$this->load->view('Header/userHeader');
+			}
+			$this->load->view('content/common/calendarSched', $result);	
+			//$this->load->view('Footer/footer');
 
 	}
 
@@ -374,7 +712,7 @@ class User extends CI_Controller {
 			$res = $this->model_db->addactivity($acti);
 		}
 
-		echo $act;
+		
 
 
 			$columnAct = "Activity_".$this->session->userdata('month');
@@ -383,27 +721,41 @@ class User extends CI_Controller {
 			$updateCount = $this->model_db->addActivityCount($data, $res2[0]->Activity_ID);
 			echo $res2[0]->$columnAct+1;
 
-		//getting input from the view	
-		$purpose = $this->input->post('purpose');
-echo $columnAct;
+			//getting input from the view	
+			$purpose = $this->input->post('purpose');
 
-		$equip = $this->input->post('equip');
-		$soft = $this->input->post('software');
 
-		$data = array (
+			$equip = $this->input->post('equip');
+			$soft = $this->input->post('software');
+
+			$data = array (
 						'Activity_ID' => $res2[0]->Activity_ID,
 		 				'Reservation_Purpose' => $purpose
 						);
-		if($this->session->userdata('type')=="Dean")
+		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="Office")
+		{
 			$data['Reservation__Endorse_Status']="Approve";
-		else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA") {
+			if($this->session->userdata('type')=="Dean")
+			{
+				$data['Approval_ID']=3;
+			}
+			else
+			{
+				$data['Approval_ID']=2;
+			}
+			
+		}
+			
+		else if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA") 
+		{
 			$data['Reservation__Endorse_Status']="Approve";
 			$data['Reservation_Approve_Status']="Approve";
 		}
+	
 		else
 		{
 			$data['Endorsement_ID']=28;
-			$data['Approval_ID']=2;
+			$data['Approval_ID']=3;
 		}
 
 		if($equip)
@@ -518,123 +870,144 @@ echo $this->session->userdata('month');
 			if($reserveDate>$currentDate)
 			{			
 				echo $currentDate ;
-						//checking for time of reservation
-						if($timeStart <= $timeEnd)
+					if(date("F", $reserveDate) == date("F", $currentDate) || date("F", strtotime($reserveDate."+30 days")) == date("F", strtotime($currentDate."+30 days")) )
+					{
+					/*	if(date("F", strtotime($reserveDate."+30 days")) == date("F", strtotime($currentDate."+30 days")))
 						{
-							
-							//calling DB function
-							$this->load->model('model_db');
-			
-							//checking for campus
-							$res = $this->model_db->checkCampusReservation($campusID);
-							if(count($res))
-							{	
-			
-								echo count($res)." can insert campus <br>";
-			
-								//checking campus and hall
-								$res = $this->model_db->checkCampusHallReservation($campusID, $hallID);
+							if(date("d", strtotime($currentDate))<25)
+							{
+								$info=array('message' => "Please call the DOL for advance reservation!");
+								$this->session->set_userdata($info);
+								redirect('user/reservation');
+							}
+						}
+						
+					*/	//checking for time of reservation
+							if($timeStart <= $timeEnd)
+							{
+								
+								//calling DB function
+								$this->load->model('model_db');
+				
+								//checking for campus
+								$res = $this->model_db->checkCampusReservation($campusID);
 								if(count($res))
 								{	
-									echo count($res)." can insert campus&Time <br>";
-									//checking campus and hall and date
-									$res = $this->model_db->checkCampusHallDateReservation($campusID, $hallID, $date);
+				
+									echo count($res)." can insert campus <br>";
+				
+									//checking campus and hall
+									$res = $this->model_db->checkCampusHallReservation($campusID, $hallID);
 									if(count($res))
-									{
-										//values for checking the time
-											
-											$canInsert=0;
-											$flag=0;
-											for($i=0; $i<count($res) && $flag!=1; $i++)
-											{
-												echo  date("H:i", strtotime($timeStart))." - ".date("H:i", strtotime($timeEnd))."<br>";
-												echo date("H:i", strtotime($res[$i]->Reservation_timeStart)). " - ".date("H:i", strtotime($res[$i]->Reservation_timeEnd))."<br>";
+									{	
+										echo count($res)." can insert campus&Time <br>";
+										//checking campus and hall and date
+										$res = $this->model_db->checkCampusHallDateReservation($campusID, $hallID, $date);
+										if(count($res))
+										{
+											//values for checking the time
 												
-												if( date("H:i", strtotime($res[$i]->Reservation_timeStart)) < date("H:i", strtotime($timeEnd))  || date("H:i", strtotime($res[$i]->Reservation_timeStart)) <= date("H:i", strtotime($timeStart)) )
+												$canInsert=0;
+												$flag=0;
+												for($i=0; $i<count($res) && $flag!=1; $i++)
 												{
-													if( date("H:i", strtotime($res[$i]->Reservation_timeEnd)) >= date("H:i", strtotime($timeEnd)) || date("H:i", strtotime($res[$i]->Reservation_timeEnd)) > date("H:i", strtotime($timeStart)) )
-														{
-															$flag=1;
-															echo "flag=1"."<br>";
-														}
-														else
-														{
-															echo "ok E.s "."<br>";
-														}
+													echo  date("H:i", strtotime($timeStart))." - ".date("H:i", strtotime($timeEnd))."<br>";
+													echo date("H:i", strtotime($res[$i]->Reservation_timeStart)). " - ".date("H:i", strtotime($res[$i]->Reservation_timeEnd))."<br>";
+													
+													if( date("H:i", strtotime($res[$i]->Reservation_timeStart)) < date("H:i", strtotime($timeEnd))  || date("H:i", strtotime($res[$i]->Reservation_timeStart)) <= date("H:i", strtotime($timeStart)) )
+													{
+														if( date("H:i", strtotime($res[$i]->Reservation_timeEnd)) >= date("H:i", strtotime($timeEnd)) || date("H:i", strtotime($res[$i]->Reservation_timeEnd)) > date("H:i", strtotime($timeStart)) )
+															{
+																$flag=1;
+																echo "flag=1"."<br>";
+															}
+															else
+															{
+																echo "ok E.s "."<br>";
+															}
+													}
+													else
+													{
+														echo "ok s.s "."<br>";
+													}
+				
+				
+				
+												}
+						
+												if($flag==0)
+												{
+													echo count($res)." can insert timeChecking " . $i; 
+													$ok=1;
 												}
 												else
 												{
-													echo "ok s.s "."<br>";
-												}
-			
-			
-			
-											}
-					
-											if($flag==0)
-											{
-												echo count($res)." can insert timeChecking " . $i; 
-												$ok=1;
-											}
-											else
-											{
-												$info=array('message' => "Schedule already reserved!");
-												$this->session->set_userdata($info);
-											
-													redirect('user/reservation');
+													$info=array('message' => "Schedule already reserved!");
+													$this->session->set_userdata($info);
 												
-											}
-										
+														redirect('user/reservation');
+													
+												}
+											
+										}
+										else
+										{
+											echo "can insert campus&hall&date"; $ok=1;
+										}
 									}
 									else
 									{
-										echo "can insert campus&hall&date"; $ok=1;
+										echo "can insert campus&hall"; $ok=1;
 									}
+				
 								}
 								else
 								{
-									echo "can insert campus&hall"; $ok=1;
+									echo "can insert campus"; $ok=1;
 								}
-			
+										
+								if($ok==1)
+								{
+									//saving values to the array
+									$data = array (
+											'Campus_ID' => $campusID,
+											'Person_ID' => $this->session->userdata('ID'),
+							 				'Hall_ID' => $hallID,
+											'Reservation_Date' => $date,
+											'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
+											'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
+											);
+									//inserting values to the DB
+									$result = $this->model_db->addreservation($data);
+									$this->session->set_userdata($data);
+									$res = $this->model_db->getReservationId();
+									$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+												'campus_reservation' => $campusID,
+												'month' => $month);
+
+									$this->session->set_userdata($rID);
+								//	echo "<br><br><br> campus ID:".$campusID;
+									redirect('user/formFull');
+				
+								}
+								
+								
 							}
 							else
-							{
-								echo "can insert campus"; $ok=1;
-							}
-									
-							if($ok==1)
-							{
-								//saving values to the array
-								$data = array (
-										'Campus_ID' => $campusID,
-										'Person_ID' => $this->session->userdata('ID'),
-						 				'Hall_ID' => $hallID,
-										'Reservation_Date' => $date,
-										'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
-										'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
-										);
-								//inserting values to the DB
-								$result = $this->model_db->addreservation($data);
-								$this->session->set_userdata($data);
-								$res = $this->model_db->getReservationId();
-								$rID= array('R_ID' =>  $res[0]->Reservation_ID,
-											'campus_reservation' => $campusID,
-											'month' => $month);
+									{
+										$info=array('message' => "Time start/end is invalid!");
+										$this->session->set_userdata($info);
+										redirect('user/reservation');
+									}
 
-								$this->session->set_userdata($rID);
-							//	echo "<br><br><br> campus ID:".$campusID;
-								redirect('user/formFull');
-			
-							}
-							
-							
-						}
-						else
-								{
-									$info=array('message' => "Time start/end is invalid!");
-									$this->session->set_userdata($info);
-									redirect('user/reservation');
-								} 
+
+					}
+					else
+					{
+						$info=array('message' => "Please call the DOL for advance!");
+						$this->session->set_userdata($info);
+						redirect('user/reservation');
+					}
 			}
 			else
 			{
@@ -653,7 +1026,7 @@ echo $this->session->userdata('month');
 	}
 
 
-	public function queryReservationList()
+	public function reservationList()
 	{
 			$this->load->model("model_db");
 			$result['result'] = $this->model_db->queryReservationList();

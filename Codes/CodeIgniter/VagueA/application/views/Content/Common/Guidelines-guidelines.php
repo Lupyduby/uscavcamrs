@@ -10,19 +10,21 @@
       <li id="policy">
       <a href="#Policy">Policy</a>
       </li>
+       <li id="steps">
+      <a href="#Steps">Steps for Booking</a>
+      </li>
     </ul>
   </nav>
 </div>
     
     <div class="col-md-9" role="main">
-
       <div class="guidelines-content" id="guidelinesDiv"> <!-- Start of Guidelines -->
         <h1 id="avc-guidelines" class="page-header">AV Center Guidelines</h1>
-        <h4>Your ooperation is needed in maintaining an orderly and clean hall.</h4>
+        <h4>Your cooperation is needed in maintaining an orderly and clean hall.</h4>
         <br>
         <p class="reminder">Please be reminded of the following:</p>
           <ul>
-            <li>Eating, drinking and smoking are not allowed inside the hall.</li>
+            <li><b>Eating, drinking and smoking are not allowed inside the hall.</b></li>
             <li>Put cellular phone in silent mode.</li>
             <li>Raising legs on the backrest of the person sitting in front of you shall not be tolerated.</li>
             <li>Sharing of seat with a friend or classmate is not allowed.</li>
@@ -50,6 +52,22 @@
           <br>
       </div> <!-- End of Policy -->
 
+      <div class="guidelines-content" id="stepsDiv">
+        <h1 id="avc-policy" class="page-header">Steps for Booking a Hall</h1>
+         <ol class="steps-content">
+                    <li>Go to Calendar Tab and select the Hall you want to view and book.</li><br>
+                    <li>View the available dates either in monthly or daily view in the calendar.</li><br>
+                    <li>Click on the date you want to book.</li><br>
+                    <li>The Validation Form will appear. Then fill-up the information needed. Click "Validate" button to validate if the hall is available base from the time and date inputted.</li><br>
+                    <li>After validating, you will be redirected to the Reservation Form. Input the reservation details asked and click "Submit". </li><br>
+                    <li>A Summary of Information regaring the Reservation made will appear. You can choose to print it or not for proof of Reservation.</li><br>
+                    <li>An email will be sent to you after a successful booking.</li><br>
+                    <li>Wait for the Endorser to endorse your booking and for the Approver to approve it. </li><br>
+                    <li>Emails will be sent to notify you whether your booking is endorsed/approved or not.</li><br>
+                 </ol> 
+          <br>
+      </div>
+
 
 
 
@@ -58,7 +76,7 @@
     </div> <!-- End of Container -->
 </div>
 
-<script src='<?php echo base_url(); ?>assets/js/jquery.min.js'></script>
+
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/guidelinesPolicy.js"></script>
 
 

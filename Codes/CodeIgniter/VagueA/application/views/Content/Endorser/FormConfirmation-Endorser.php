@@ -53,8 +53,11 @@
                                             <div class="modal-dialog" id="deleteModalSize">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
-                                                    <textarea rows="4" cols="50" name="delMessage"></textarea>
+                                                 Do not endorse
+                                              </div>
+                                              <div class="modal-body">
+                                                 <form method="post" action="<?php echo base_url(); ?>EndorseApprove/disEndorseStatus">
+                                                    <textarea rows="4" cols="50" name="message"></textarea>
                                                     <input type="hidden" name="id" value="<?php echo $result[$i]->Reservation_ID; ?>" >
                                                     <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
                                                     <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>

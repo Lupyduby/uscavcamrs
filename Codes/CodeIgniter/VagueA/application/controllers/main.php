@@ -33,11 +33,50 @@ class Main extends CI_Controller {
 
 
 		*/
+/*				$info = array(60, 50, 40);
+			$info3 = array(35, 57, 65);
+			$info4 = array(39, 45, 43);
+			$info5 = array(87, 87, 67);
+			$info6 = array(50, 23, 33);
+			
+				for($i=1, $year = date("Y"); $i<13; $i++)
+				{	
+					$info2[] = $i;
+				
+				if(date("m") >= $i)
+				{
+					$yr = $year;
+				}
+				else
+					$yr = $year-1;
 
-		$this->load->view('Header/homepageHeader');
+				echo date("F", mktime(0, 0, 0, $i, 10))." ".$yr."<br>";
+
+				$month[] =  array(date("F", mktime(0, 0, 0, $i, 10))." ".$yr);
+			}
+
+		//	$info= array();
+
+			array_push($info, $info2);
+
+			$results[] = array('name' => 'Rigney', 'data'=> $info5);
+			$results[] = array('name' => 'HS', 'data'=> $info6);
+			$results[] = array('name' => 'AS', 'data'=> $info3);
+			$results[] = array('name' => 'Buttenbruch', 'data'=> $info4);
+
+		 $results['monthJ'] = json_encode($month); 
+		 $results['monthK'] = json_encode($results);
+	//	print_r();
+		//	echo $data['monthJ'];
+
+	//	$this->load->view('Header/homepageHeader');
+	//	$this->load->view('content/common/chart', $results);
+	//	$this->load->view('footer/footer');
+*/	
+	$this->load->view('Header/homepageHeader');
 		$this->load->view('content/homepage/homepage');
 		$this->load->view('footer/footer');
-		
+
 	}
 
 

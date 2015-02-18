@@ -9,14 +9,8 @@
         <div class="col-md-6 col-md-offset-6">
             <a href="<?php echo base_url(); ?>user/reservation" role="button" id="btnReserve" data-toggle="modal"><center>
             <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD RESERVATION</span></center></a>
-    
-                  
-    
-    
-        </div>
+         </div>
       </div>
-      
-      
       
       <div class="equipments-content">
         <div class="table-responsive">

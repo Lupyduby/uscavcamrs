@@ -16,6 +16,14 @@
     <script type="text/javascript" charset="utf8" src=" <?php echo base_url(); ?>assets/js/dataTables.tableTools.js"></script>
      <script type="text/javascript" charset="utf8" src=" <?php echo base_url(); ?>assets/js/dataTables.tableTools.min.js"></script>
   
+<link rel='stylesheet' href='<?php echo base_url(); ?>assets/js/calendar/lib/cupertino/jquery-ui.min.css' />
+<link href='<?php echo base_url(); ?>assets/css/fullcalendar.css' rel='stylesheet' />
+<link href='<?php echo base_url(); ?>assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='<?php echo base_url(); ?>assets/js/calendar/lib/moment.min.js'></script>
+<script src='<?php echo base_url(); ?>assets/js/calendar/fullcalendar.min.js'></script>
+
+
+  
     <script type="text/javascript">
 $(document).ready(function() {
     $('#table_id').DataTable( {
@@ -109,11 +117,27 @@ $(document).ready(function() {
                 <li class="">
                   <a href="<?php echo base_url(); ?>user/guideline">Guidelines</a>
                 </li>
-                <li class="">
-                  <a href="<?php echo base_url(); ?>user/calendar">Calendar</a>
+                <li class="dropdown">
+                  <a href="#Calendar" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                  Calendar<b class="caret"></b>
+                  </a>
+                     <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/RigneyCal">Rigney Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/PhlpCal">Philip Van Engelen Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/HoepCal">Hoeppener Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ButtenCal">Buttenbruch Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/GanseCal">Gansewinkel Hall</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/BuchCal">Buchick Hall</a></li>
+                    
+                    </ul>
                 </li>
                 <li class="">
-                  <a href="<?php echo base_url(); ?>user/queryReservationList">Block</a>
+                  <a href="<?php echo base_url(); ?>user/reservationList">Block</a>
                 </li>
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
@@ -123,8 +147,6 @@ $(document).ready(function() {
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/client">Client</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/equipment">Equipment</a></li>
-                            <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/hall">AV Hall</a></li>
                             <li class="divider"></li>
                             <li><a tabindex="-1" href="<?php echo base_url(); ?>StaffWS/reservationOK">Reservation</a></li>
                             <li class="divider"></li>

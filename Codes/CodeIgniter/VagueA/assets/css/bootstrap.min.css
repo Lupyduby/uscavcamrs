@@ -28,6 +28,8 @@
 .menu-right{
 	float: right;
 	padding: 5px;
+	color: #ffffff;
+	margin-top: 10px;
 
 }
 
@@ -512,3 +514,19 @@ table.table th{
 	top:20%;
 }
 
+
+#calendar {
+		max-width: 1000px;
+		margin-left: 15%;
+		max-height: 10px;
+		margin-bottom: 10%;
+		margin-top: 10%;
+		position: relative;
+		
+	}
+
+	#cal{
+		position: absolute;
+		margin-top: 5%;
+		margin-left: 40%;
+	}

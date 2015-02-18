@@ -61,11 +61,10 @@
                           <option value="Chairman" id="ordi">Chairman</option>
                           <option value="Dean" id="ordi">Dean</option>
                           <option value="Faculty" id="ordi">Faculty</option>
+                          <option value="Office" id="office">Office</option>
                           <option value="OSA" id="vpa">OSA</option>
                           <option value="SOC" id="soType">Student Organization - Co-Curricular</option>
                           <option value="SOE" id="soType">Student Organization - Extra-Curricular</option>
-                          <option value="VPA"  id="vpa">VPA</option>
-                          <option value="VPAA" id="vpa">VPAA</option>
                       </select>
                       </div>
 
@@ -186,8 +185,8 @@
                               <label class="control-label col-md-4">Type</label>
                               <select name="type" class="form-control-group">
 
-                                  <option value="VPA" <?php if($result[$i]->Person_type=="VPA") echo "selected"; ?>>VPA</option>  
-                                  <option value="VPAA" <?php if($result[$i]->Person_type=="VPAA") echo "selected"; ?>>VPAA</option>
+                                  
+                                  <option value="Office" id="office" <?php if($result[$i]->Person_type=="Office") echo "selected"; ?>>Office</option>
                                   <option value="OSA" <?php if($result[$i]->Person_type=="OSA") echo "selected"; ?>>OSA</option>
                                   <option value="Dean" <?php if($result[$i]->Person_type=="Dean") echo "selected"; ?>>Dean</option>
                                   <option value="Faculty" <?php if($result[$i]->Person_type=="Faculty") echo "selected"; ?>>Faculty</option>

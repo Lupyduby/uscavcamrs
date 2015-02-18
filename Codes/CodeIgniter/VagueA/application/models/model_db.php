@@ -146,13 +146,17 @@ class Model_db extends CI_Model{
 						   user.Campus_ID				   
 						    ');
 		$this->db->from('person');
+
 		if($this->session->userdata('type')!="Super")
 		{		
-				$this->db->where('Person_type !=', "Staff");
-				$this->db->where('Person_type !=', "WS");
+			$this->db->where('Person_type !=', "VPA");
+			$this->db->where('Person_type !=', "VPAA");
+			$this->db->where('Person_type !=', "Staff");
+			$this->db->where('Person_type !=', "WS");
 				
 		}
 		$this->db->where('Person_type !=', "Super");
+		$this->db->where('Person_type !=', "WS");
 		$this->db->join('studentorg', 'person.Person_ID = studentorg.Person_ID','left');
 		$this->db->join('user', 'person.Person_ID = user.Person_ID', 'left');
 				
@@ -457,7 +461,7 @@ class Model_db extends CI_Model{
 	}
 
 	public function queryReservationOK(){
-				$this->db->select('reservation.*,
+		$this->db->select('reservation.*,
 							hall.Hall_Name,
 							campus.Campus_Name,
 							activity.Activity_Name,
@@ -490,6 +494,25 @@ class Model_db extends CI_Model{
 		$this->db->join('person', 'reservation.Person_ID = person.Person_ID','left');
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+
+	public function queryReservationCalendar($Hid){
+		$this->db->select('reservation.*,
+							hall.Hall_Name,
+							campus.Campus_Name,
+							activity.Activity_Name,
+							person.Person_FName,
+							person.Person_LName');
+		$this->db->from('reservation');
+		$this->db->where('reservation.Hall_ID =', $Hid);
+		$this->db->join('campus', 'reservation.Campus_ID = campus.Campus_ID','left');
+		$this->db->join('activity', 'reservation.Activity_ID = activity.Activity_ID','left');
+		$this->db->join('hall', 'reservation.Hall_ID = hall.Hall_ID','left');
+		$this->db->join('person', 'reservation.Person_ID = person.Person_ID','left');
+		$result = $this->db->get();
+
+		return $result->result();
 	}
 
 
@@ -636,6 +659,12 @@ class Model_db extends CI_Model{
 
         return $res;
     }
+
+    public function disapproveEndorse($id, $data) {
+		$this->db->where('Reservation_ID', $id);
+		$result = $this->db->update('reservation', $data);
+		return $result;
+	}
 
 
 

@@ -93,11 +93,14 @@ class EndorseApprove extends CI_Controller {
 
 	public function disEndorseStatus(){
 		$r_id = $this->input->post('id');
-		$data = array( 'Reservation__Endorse_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'));
+		$data['message'] = $this->input->post('message');
+		$data = array( 'Reservation__Endorse_Status' => 'Disapprove',
+						'Reservation_Message' => $data['message']
+						);
 
 		$this->load->model('model_db');
-		$this->model_db->endorseStatus($r_id, $data);
-		$this->emailDisEndorseApprove($dis);
+		$this->model_db->disapproveEndorse($r_id, $data);
+		$this->emailDisEndorseApprove($data['message']);
 
 		redirect('EndorseApprove/formConfirmationEndorse');
 
@@ -124,7 +127,7 @@ class EndorseApprove extends CI_Controller {
 						'Reservation_Status' => "Disapprove");
 
 		$this->load->model('model_db');
-		$this->model_db->endorseStatus($r_id, $data);
+		$this->model_db->disEndorseStatusatus($r_id, $data);
 		$this->emailDisEndorseApprove($dis);
 
 		redirect('EndorseApprove/formConfirmationApprove');
@@ -146,6 +149,9 @@ class EndorseApprove extends CI_Controller {
 				$this->email->subject('Reservation approval');
 				$this->email->message('Hello' .$data['result']->Person_Fname. 'Your Reservation form is successfully approve by approver');
 			}	 
+		
+
+
 		if($this->email->send()){
 			echo 'it worke';
 		}
@@ -180,7 +186,7 @@ class EndorseApprove extends CI_Controller {
 				$message .= '<p>Your Reservation form is failed to approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
 
 				$message .= '<p>For the reason of:</p>';
-				$message .= '<p>'.$dis.':</p>';
+				$message .= '<p>'.$dis.'</p>';
 
 
 			$this->email->message($message);
@@ -234,5 +240,8 @@ class EndorseApprove extends CI_Controller {
 
 		//echo $this->email->print_debugger();
 	}
+
+
+
 	
 }

@@ -1,3 +1,5 @@
+
+
  <div id="contentMargin">
 
 
@@ -71,6 +73,38 @@
   </div>
   </div>
 </div> <!--Carousel-->
+
+
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon glyphicon-remove"></i></button>
+            <h2 class="modal-title" id="myModalLabel"><i class="glyphicon glyphicon-list"></i> Steps for Booking</h2>
+            </div>
+            <div class="modal-body">
+                 <ol class="steps-content">
+                    <li>Go to Calendar Tab and select the Hall you want to view and book.</li><br>
+                    <li>View the available dates either in monthly or daily view in the calendar.</li><br>
+                    <li>Click on the date you want to book.</li><br>
+                    <li>The Validation Form will appear. Then fill-up the information needed. Click "Validate" button to validate if the hall is available based from the time and date inputted.</li><br>
+                    <li>After validating, you will be redirected to the Reservation Form. Input the reservation details asked and click "Submit". </li><br>
+                    <li>A Summary of Information regaring the Reservation made will appear. You can choose to print it or not for proof of Reservation.</li><br>
+                    <li>An email will be sent to you after a successful booking.</li><br>
+                    <li>Wait for the Endorser to endorse your booking and for the Approver to approve it. </li><br>
+                    <li>Emails will be sent to notify you whether your booking is endorsed/approved or not.</li><br>
+
+                 </ol> 
+            </div>
+            <div class="modal-footer">
+             <a href="<?php echo base_url(); ?>user/guideline"><h4>Click to see AVC Guidelines and Policy</h4></a>   
+        </div>
+    </div>
+  </div>
+</div>
+
+
 
 
     <div class="userhome-content">
@@ -299,3 +333,13 @@
   </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+
+
+    $(window).load(function(){
+        $('#basicModal').modal('show');
+    });
+
+</script>

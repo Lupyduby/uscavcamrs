@@ -322,6 +322,54 @@ class StaffWS extends CI_Controller {
 		if($this->session->userdata('type'))
 		{
 
+
+			$info = array(60, 50, 40);
+			$info3 = array(35, 57, 65);
+			$info4 = array(39, 45, 43);
+			$info5 = array(87, 87, 67);
+			$info6 = array(50, 23, 33);
+			
+				for($i=1, $year = date("Y"); $i<13; $i++)
+				{	
+					$info2[] = $i;
+				
+				if(date("m") >= $i)
+				{
+					$yr = $year;
+				}
+				else
+					$yr = $year-1;
+
+				echo date("F", mktime(0, 0, 0, $i, 10))." ".$yr."<br>";
+
+				$month[] =  array(date("F", mktime(0, 0, 0, $i, 10))." ".$yr);
+			}
+
+		//	$info= array();
+
+			array_push($info, $info2);
+
+			$results['dept'] = array('name' => 'Rigney', 'data'=> $info5);
+			$results['dept'] = array('name' => 'HS', 'data'=> $info6);
+			$results['dept'] = array('name' => 'AS', 'data'=> $info3);
+			$results['dept'] = array('name' => 'Buttenbruch', 'data'=> $info4);
+
+		 $results['monthJ'] = json_encode($month); 
+		 $results['monthK'] = json_encode($results['dept']);
+	//	print_r();
+			echo $data['monthJ'];
+
+
+
+
+
+
+
+
+
+
+
+
 			$this->load->model("model_db");
 			$result['college'] = $this->model_db->queryCollegeReport();
 			$result['activity'] = $this->model_db->queryActivity();
@@ -705,6 +753,8 @@ class StaffWS extends CI_Controller {
 
 		//echo $this->email->print_debugger();
 	}
+
+	
 
 
 }

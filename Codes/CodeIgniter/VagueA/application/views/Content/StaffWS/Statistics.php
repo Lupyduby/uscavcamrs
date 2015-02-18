@@ -25,6 +25,10 @@
       <div class="tab-content">
         <div class="tab-pane active" id="department">
             <div class="table-responsive">
+
+          <div id="containerDept" style="min-width: 400px; height: 400px; margin: 0 auto">
+            <br><br><br>
+
           <table id="table_dept" class="display">
             <thead class="theader-contents">
               <tr>
@@ -71,7 +75,7 @@
         </div>
 
         <div class="tab-pane" id="activities">
-          <table id="table_id" class="display">
+          <table id="table_act" class="display">
             <thead class="theader-contents">
               <tr>
                 <th>Activity</th>

@@ -9,6 +9,11 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <!--<script src="<?php echo base_url(); ?>assets/js/chart/js/adapters/standalone-framework.js"></script>
 -->
+
+<style type="text/css">
+        div#container {width: 550px;}
+</style>
+
 <script>
 /*for more info go to http://www.highcharts.com/docs */
     $(function () {
@@ -23,7 +28,7 @@
             text: 'Audio Visual Center Usage'
         },
         xAxis: {
-            categories: val /*para ni sa month. it should be dynamic*/
+            categories:<?php echo $monthJ; ?>/*para ni sa month. it should be dynamic*/
                 
             
         },
@@ -51,7 +56,10 @@
                 borderWidth: 0
             }
         }, 
-        series: [{ /*ari para retrieve ug data*/ 
+        series: 
+        <?php echo $monthK; ?>
+/*
+        { //ari para retrieve ug data 
             name: 'Rigney Hall',
             color: 'rgba(165,170,217,1)',
             data: [150, 73, 20],
@@ -85,7 +93,9 @@
             pointPadding: 0.4,
             pointPlacement: 0.3,
             yAxis: 1
-        }]
+        }
+*/
+        
     });
 });
 
@@ -95,7 +105,9 @@
 
     <body>
         
-        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
+        <div id="containerDept" style="min-width: 400px; height: 400px; margin: 0 auto">
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <?php echo $monthJ; ?>
             
         </div>
     </body>
