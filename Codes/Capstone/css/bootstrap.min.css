@@ -282,10 +282,14 @@ display: block;
 
 .carousel{
 	margin-top: 85px;
+
 }
 
 #myCarousel {
 padding:5px;
+height: 424px;
+width: 1146px;
+background-color: white;
 }
 
 #myCarousel .carousel-caption {

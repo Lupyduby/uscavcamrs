@@ -43,18 +43,20 @@ calendar
 
       <header>
       <div class="header-container"> <!-- Header -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div id="navbar-green" class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-          <div class="navbar-header">
+          <div class="navbar-header  col-sm-4 col-md-5" >
             <img src="<?php echo base_url(); ?>assets/img/header-title.png" class="img-responsive" alt="Responsive image">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
           </div>
-          <div class="navigation navbar-collapse collapse">
-            <ul class="nav navbar-nav menu-right">
+          <div class="collapse navbar-collapse navbar-menubuilder">
+              <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="<?php echo base_url(); ?>main/home">Home</a>
+                  <a href="<?php echo base_url(); ?>main/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a>
                 </li>
                 <li class="">
-                  <a href="<?php echo base_url(); ?>user/guideline">Guidelines</a>
+                  <a href="<?php echo base_url(); ?>user/guideline"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Guidelines</a></a>
                 </li>
                  <li class="dropdown">
                   <a href="#Calendar" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
@@ -76,10 +78,10 @@ calendar
                     </ul>
                 </li>
                 <li class="">
-                  <a href="<?php echo base_url(); ?>user/reservationList">Reservation</a>
+                  <a href="<?php echo base_url(); ?>user/reservationList"><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>  Reservation</a></a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                   <?php echo "Hi ".$this->session->userdata('fname'); ?> <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
