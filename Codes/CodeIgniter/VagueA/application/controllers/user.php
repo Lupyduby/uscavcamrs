@@ -103,8 +103,11 @@ class User extends CI_Controller {
 				$this->load->view('Header/userHeader');
 			}
 
-
+			if($this->session->userdata('type')!="Super")
 			$this->load->view('content/common/FormValidation');
+
+			else
+			$this->load->view('content/superAdmin/FormValidationSuper');
 			$this->load->view('Footer/footer');
 		}
 
@@ -167,13 +170,13 @@ class User extends CI_Controller {
 		if($this->form_validation->run())
 		{
 			$id = $this->session->userdata('person_id');
-			echo $this->session->userdata('person_id');
+		//	echo $this->session->userdata('person_id');
 			$data = array('Person_Password'  => md5($this->input->post('newpass')));
 			$this->load->model("model_db");
 			$this->session->set_userdata('password', md5($this->input->post('newpass')));
 			
 			$this->model_db->updatePassword($data, $id);
-			echo "<br><br><br><br>". md5($this->input->post('newpass'));
+		//	echo "<br><br><br><br>". md5($this->input->post('newpass'));
 
 				$info=array('successPass' => "Update password success!");
 				$this->session->set_userdata($info);
@@ -228,7 +231,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		$result['hall'] = "Rigney Hall";
 
@@ -287,7 +290,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -346,7 +349,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -404,7 +407,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -462,7 +465,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -520,7 +523,7 @@ class User extends CI_Controller {
 		}
 
 		$result['sked'] = json_encode($sched);
-		echo $result['sked'];
+	//	echo $result['sked'];
 
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
 			{
@@ -572,8 +575,24 @@ class User extends CI_Controller {
 			$this->load->model("model_db");
 			$result['result'] = $this->model_db->querySoftReservation();
 			$result['activity'] = $this->model_db->queryActivity();
+			$result['asset'] = $this->model_db->queryEquipmentFormFull();
 			$result['actNum'] = count($result['activity']);
 			$result['num']=count($result['result']);
+			$result['numAsset']=count($result['asset']);
+
+
+			
+
+
+
+
+
+
+
+
+
+
+			
 
 			if($this->session->userdata('type'))
 		{
@@ -633,6 +652,15 @@ class User extends CI_Controller {
 			$result['num'] = count($result['software']);
 
 
+			 $assetID = json_decode($result['reservation'][0]->Reservation_AssetID);
+			 $result['numAsset'] = count($assetID);
+			 for($i=0; $i<$result['numAsset']; $i++)
+			 	$queryAssetID[] = $assetID[$i]->assetName;
+
+			 
+			 $result['assetNames'] = $this->model_db->queryEquipmentFormSummary($queryAssetID);
+	//		print_r($result['assetNames'] );
+
 			
 
 			if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="OSA")
@@ -677,9 +705,9 @@ class User extends CI_Controller {
 		
 		//Activity Management
 
+/*
 
-
-		/*		if(empty($this->input->post('others')))
+		if(empty($this->input->post('others')))
 		{ 
 			$act = $this->input->post('activity');
 			$columnAct = "Activity_".$this->session->userdata('month');
@@ -698,8 +726,21 @@ class User extends CI_Controller {
 			$data = array($columnAct => $res2[0]->$columnAct+1);
 			$updateCount = $this->model_db->addActivityCount($data, $res2[0]->Activity_ID);
 		}
-*/	
-		if(($this->input->post('others'))=='')
+
+
+	*/
+
+
+		if(($this->input->post('activity'))=='Others' && $this->input->post('others')=='')
+		{
+			$info=array('message' => "Please input the others!");
+			$this->session->set_userdata($info);
+			redirect('user/formFull');
+												
+			
+		}
+
+		else if(($this->input->post('others'))=='')
 		{
 			$act = $this->input->post('activity');
 
@@ -712,18 +753,16 @@ class User extends CI_Controller {
 			$res = $this->model_db->addactivity($acti);
 		}
 
-		
-
-
 			$columnAct = "Activity_".$this->session->userdata('month');
 			$res2 = $this->model_db->getActivityReservation($act);
 			$data = array($columnAct => $res2[0]->$columnAct+1);
 			$updateCount = $this->model_db->addActivityCount($data, $res2[0]->Activity_ID);
-			echo $res2[0]->$columnAct+1;
+	
 
 			//getting input from the view	
 			$purpose = $this->input->post('purpose');
 
+			$getCollegeID = $this->model_db->queryCollegeIDFullForm();
 
 			$equip = $this->input->post('equip');
 			$soft = $this->input->post('software');
@@ -732,6 +771,9 @@ class User extends CI_Controller {
 						'Activity_ID' => $res2[0]->Activity_ID,
 		 				'Reservation_Purpose' => $purpose
 						);
+
+
+
 		if($this->session->userdata('type')=="Dean" || $this->session->userdata('type')=="Office")
 		{
 			$data['Reservation__Endorse_Status']="Approve";
@@ -751,40 +793,43 @@ class User extends CI_Controller {
 			$data['Reservation__Endorse_Status']="Approve";
 			$data['Reservation_Approve_Status']="Approve";
 		}
-	
-		else
-		{
-			$data['Endorsement_ID']=28;
+
+
+		//ID for endorser and approver
+		if($this->session->userdata('type')=='Faculty' || $this->session->userdata('type')=='Chairman')
+		{	
+			$data['Reservation__Endorse_Status']="Pending";
+			$data['Reservation_Approve_Status']="Pending";
+			$data['Endorsement_ID']=$getCollegeID[0]->Person_ID;
 			$data['Approval_ID']=3;
+
 		}
+
+		if($this->session->userdata('type')=='SO')
+		{
+			//PLease ko himo og OSA nga account char lang :D
+		}
+
+	
+	
 
 		if($equip)
 		{
 			for($i=0; $i<count($equip); $i++)
 			{
-				if($equip[$i]=="computer")
-					$data['Reservation_Computer'] = 1;
-
-				if($equip[$i]=="mic")
-					$data['Reservation_DVDPlayer'] = 1;
-
-				if($equip[$i]=="lcd")
-					$data['Reservation_Mic'] = 1;
-
-				if($equip[$i]=="dvd")
-					$data['Reservation_LCD'] = 1;
-
-				if($equip[$i]=="vhs")			
-					$data['Reservation_VHS'] = 1;
+				$equipments[] = array('assetName' => $equip[$i]);
 			}
+			$json = json_encode($equipments);
+			$data['Reservation_AssetID'] = $json;
+
 			
 		}
-
 		$result = $this->model_db->updateReservation($data);
-print_r($data);
+	
+
 		//Software Management
 		
-		echo "Equip count: ".count($equip);
+	//	echo "Equip count: ".count($equip);
 
 		$columnSoft = "Software_".$this->session->userdata('month');
 	
@@ -810,9 +855,10 @@ print_r($data);
 								 $columnCollege => $collegeID[0]->$columnCollege+1);
 			$res = $this->model_db->addCollegeCount($collegeID[0]->college_ID, $collegeData);
 
-echo $this->session->userdata('month');
 
 		redirect('user/formSummary');
+	
+
 	 }
 
 
@@ -857,7 +903,7 @@ echo $this->session->userdata('month');
 */		
 		$currentDate = date('Y-m-d H:i:s');
 		$reserveDate = date("Y-m-d", strtotime($date. ' - 2 days'));
-		echo $reserveDate;
+	//	echo $reserveDate;
 		$month = date("F", strtotime($date));
 
 
@@ -869,20 +915,30 @@ echo $this->session->userdata('month');
 		{	
 			if($reserveDate>$currentDate)
 			{			
-				echo $currentDate ;
-					if(date("F", $reserveDate) == date("F", $currentDate) || date("F", strtotime($reserveDate."+30 days")) == date("F", strtotime($currentDate."+30 days")) )
+		//		echo $currentDate ;
+					if((date("m", strtotime($reserveDate. ' + 2 days'))) == (date("m", strtotime($currentDate))) || (date("m", strtotime($reserveDate. ' + 2 days'))) == (date("m", strtotime($currentDate))+1) )
 					{
-					/*	if(date("F", strtotime($reserveDate."+30 days")) == date("F", strtotime($currentDate."+30 days")))
+		
+						if((date("m", strtotime($reserveDate. ' + 2 days'))) > date("m", strtotime($currentDate)))
 						{
-							if(date("d", strtotime($currentDate))<25)
+			//				echo "Same sila og moth";
+							if((date("m", strtotime($reserveDate. ' + 2 days'))) > (date("m", strtotime($currentDate))+1))
 							{
+			//					echo "dako ang month";
 								$info=array('message' => "Please call the DOL for advance reservation!");
 								$this->session->set_userdata($info);
-								redirect('user/reservation');
+							//	redirect('user/reservation');							
+							}
+
+							else if(date("d", strtotime($currentDate))<=25)
+							{
+			//					echo "dako ang day";
+								$info=array('message' => "Please call the DOL for advance reservation!");
+								$this->session->set_userdata($info);
+							//	redirect('user/reservation');
 							}
 						}
-						
-					*/	//checking for time of reservation
+						//checking for time of reservation
 							if($timeStart <= $timeEnd)
 							{
 								
@@ -894,13 +950,13 @@ echo $this->session->userdata('month');
 								if(count($res))
 								{	
 				
-									echo count($res)." can insert campus <br>";
+			//						echo count($res)." can insert campus <br>";
 				
 									//checking campus and hall
 									$res = $this->model_db->checkCampusHallReservation($campusID, $hallID);
 									if(count($res))
 									{	
-										echo count($res)." can insert campus&Time <br>";
+			//							echo count($res)." can insert campus&Time <br>";
 										//checking campus and hall and date
 										$res = $this->model_db->checkCampusHallDateReservation($campusID, $hallID, $date);
 										if(count($res))
@@ -911,24 +967,24 @@ echo $this->session->userdata('month');
 												$flag=0;
 												for($i=0; $i<count($res) && $flag!=1; $i++)
 												{
-													echo  date("H:i", strtotime($timeStart))." - ".date("H:i", strtotime($timeEnd))."<br>";
-													echo date("H:i", strtotime($res[$i]->Reservation_timeStart)). " - ".date("H:i", strtotime($res[$i]->Reservation_timeEnd))."<br>";
+			//										echo  date("H:i", strtotime($timeStart))." - ".date("H:i", strtotime($timeEnd))."<br>";
+			//										echo date("H:i", strtotime($res[$i]->Reservation_timeStart)). " - ".date("H:i", strtotime($res[$i]->Reservation_timeEnd))."<br>";
 													
 													if( date("H:i", strtotime($res[$i]->Reservation_timeStart)) < date("H:i", strtotime($timeEnd))  || date("H:i", strtotime($res[$i]->Reservation_timeStart)) <= date("H:i", strtotime($timeStart)) )
 													{
 														if( date("H:i", strtotime($res[$i]->Reservation_timeEnd)) >= date("H:i", strtotime($timeEnd)) || date("H:i", strtotime($res[$i]->Reservation_timeEnd)) > date("H:i", strtotime($timeStart)) )
 															{
 																$flag=1;
-																echo "flag=1"."<br>";
+			//													echo "flag=1"."<br>";
 															}
 															else
 															{
-																echo "ok E.s "."<br>";
+			//													echo "ok E.s "."<br>";
 															}
 													}
 													else
 													{
-														echo "ok s.s "."<br>";
+			//											echo "ok s.s "."<br>";
 													}
 				
 				
@@ -937,7 +993,7 @@ echo $this->session->userdata('month');
 						
 												if($flag==0)
 												{
-													echo count($res)." can insert timeChecking " . $i; 
+			//										echo count($res)." can insert timeChecking " . $i; 
 													$ok=1;
 												}
 												else
@@ -952,18 +1008,97 @@ echo $this->session->userdata('month');
 										}
 										else
 										{
-											echo "can insert campus&hall&date"; $ok=1;
+											 $data = array (
+											'Campus_ID' => $campusID,
+											'Person_ID' => $this->session->userdata('ID'),
+							 				'Hall_ID' => $hallID,
+											'Reservation_Date' => $date,
+											'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
+											'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
+											);
+									//inserting values to the DB
+									$result = $this->model_db->addreservation($data);
+									$this->session->set_userdata($data);
+									$res = $this->model_db->getReservationId();
+									$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+												'campus_reservation' => $campusID,
+												'month' => $month,
+												'hallReserve' => $hallID);
+
+									$this->session->set_userdata($rID);
+								//	echo "<br><br><br> campus ID:".$campusID;
+
+
+									$columnAct = "Hall_".$this->session->userdata('month');
+									$res2 = $this->model_db->getHallReservation($hallID);
+									$data = array($columnAct => $res2[0]->$columnAct+1);
+									$updateCount = $this->model_db->addHallCount($data, $hallID);
+
+
+									redirect('user/formFull');
 										}
 									}
 									else
 									{
-										echo "can insert campus&hall"; $ok=1;
+										$data = array (
+											'Campus_ID' => $campusID,
+											'Person_ID' => $this->session->userdata('ID'),
+							 				'Hall_ID' => $hallID,
+											'Reservation_Date' => $date,
+											'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
+											'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
+											);
+									//inserting values to the DB
+									$result = $this->model_db->addreservation($data);
+									$this->session->set_userdata($data);
+									$res = $this->model_db->getReservationId();
+									$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+												'campus_reservation' => $campusID,
+												'month' => $month);
+
+									$this->session->set_userdata($rID);
+								//	echo "<br><br><br> campus ID:".$campusID;
+
+
+									$columnAct = "Hall_".$this->session->userdata('month');
+									$res2 = $this->model_db->getHallReservation($hallID);
+									$data = array($columnAct => $res2[0]->$columnAct+1);
+									$updateCount = $this->model_db->addHallCount($data, $hallID);
+
+
+									redirect('user/formFull');
 									}
 				
 								}
 								else
 								{
-									echo "can insert campus"; $ok=1;
+									$data = array (
+											'Campus_ID' => $campusID,
+											'Person_ID' => $this->session->userdata('ID'),
+							 				'Hall_ID' => $hallID,
+											'Reservation_Date' => $date,
+											'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
+											'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
+											);
+									//inserting values to the DB
+									$result = $this->model_db->addreservation($data);
+									$this->session->set_userdata($data);
+									$res = $this->model_db->getReservationId();
+									$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+												'campus_reservation' => $campusID,
+												'month' => $month);
+
+									$this->session->set_userdata($rID);
+								//	echo "<br><br><br> campus ID:".$campusID;
+
+
+									$columnAct = "Hall_".$this->session->userdata('month');
+									$res2 = $this->model_db->getHallReservation($hallID);
+									$data = array($columnAct => $res2[0]->$columnAct+1);
+									$updateCount = $this->model_db->addHallCount($data, $hallID);
+
+
+									redirect('user/formFull');
 								}
 										
 								if($ok==1)
@@ -987,6 +1122,14 @@ echo $this->session->userdata('month');
 
 									$this->session->set_userdata($rID);
 								//	echo "<br><br><br> campus ID:".$campusID;
+
+
+									$columnAct = "Hall_".$this->session->userdata('month');
+									$res2 = $this->model_db->getHallReservation($hallID);
+									$data = array($columnAct => $res2[0]->$columnAct+1);
+									$updateCount = $this->model_db->addHallCount($data, $hallID);
+
+
 									redirect('user/formFull');
 				
 								}
@@ -1004,7 +1147,7 @@ echo $this->session->userdata('month');
 					}
 					else
 					{
-						$info=array('message' => "Please call the DOL for advance!");
+						$info=array('message' => "Please call the DOL for advance reservation!");
 						$this->session->set_userdata($info);
 						redirect('user/reservation');
 					}

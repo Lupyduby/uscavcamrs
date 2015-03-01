@@ -73,12 +73,112 @@ class Main extends CI_Controller {
 	//	$this->load->view('content/common/chart', $results);
 	//	$this->load->view('footer/footer');
 */	
-	$this->load->view('Header/homepageHeader');
+/*
+		 $info = array(60, 50, 40);
+			$info3 = array(35, 57, 65, 39, 45, 43);
+			$info4 = array(39, 45, 43, 87, 87, 67);
+			$info5 = array(87, 87, 67, 50, 23, 33);
+			$info6 = array(50, 23, 33, 35, 57, 65);
+			
+				for($i=1, $year = date("Y"); $i<13; $i++)
+				{	
+					$info2[] = $i;
+					
+					if(date("m") >= $i)
+					{
+						$yr = $year;
+					}
+					else
+					{
+						$yr = $year-1;
+					}
+						
+
+					echo date("F", mktime(0, 0, 0, $i, 10))." ".$yr."<br>";
+					$month[] =  array(date("F", mktime(0, 0, 0, $i, 10))." ".$yr);
+				}
+
+		//	$info= array();
+
+			array_push($info, $info2);
+
+			$hallUsage[]= array('name' => 'Rigney', 'data'=> $info5);
+			$hallUsage[] = array('name' => 'HS', 'data'=> $info6);
+			$hallUsage[] = array('name' => 'AS', 'data'=> $info3);
+			$hallUsage[] = array('name' => 'Buttenbruch', 'data'=> $info4);
+
+		 $results['monthJ'] = json_encode($month); 
+		 $results['monthK'] = json_encode($hallUsage);
+	//	print_r();
+			echo $results['monthJ'];
+			echo "This s montK ".$results['monthK'];
+			$results['monthL'] = $month;
+
+
+
+			$pract[] = array('name' => 'Microphone');
+			$pract[] = array('name' => 'Speaker');
+			$pract[] = array('name' => 'Karaoke');
+			$json = json_encode($pract);
+			print_r($json); echo "<br><br>";
+			$res = json_decode($json);
+			print_r($res); echo count($res)."<br><br>";
+			echo $res[0]->name;
+
+*/
+		$this->load->view('Header/homepageHeader');
 		$this->load->view('content/homepage/homepage');
 		$this->load->view('footer/footer');
 
+
 	}
 
+
+	public function recoverPassword(){
+		$this->load->model("model_db");
+		$resetEmail = $this->input->post('remail');
+		$ran = rand(99999999, 99999999999999);
+		$res = $this->model_db->checkEmail($resetEmail);
+	//	echo $count = count($res);
+	
+		print_r($res);
+	
+		
+		if($count)
+		{
+			$data = array('Person_Password' => md5($ran));
+
+			$result = $this->model_db->updateResetPass($res[0]->Person_ID, $data);
+			$this->load->library('email');	
+			$this->email->from('uscavcamrs@gmail.com', 'USC-AVC');
+			$this->email->to($resetEmail);
+			$this->email->subject('Reset Password');
+			$message = '<p> Hello '.$res[0]->Person_Fname.' </p>' ; 
+			
+			$message .= '<p>Your temporary password is '.$ran.' Please change your password as you log in to your  account.</p>';
+			
+			$this->email->message($message);
+			
+		 
+		if($this->email->send()){
+			$info = array('message' => 'Please see your email for your new password');
+			$this->session->set_userdata($info);
+		}
+			else{
+				$info = array('message' => 'Please try again!');
+				$this->session->set_userdata($info);
+			}
+			redirect('main/forgotPassword');
+		
+		}
+		else{
+			$info = array('message' => 'Email does not exist!');
+			$this->session->set_userdata($info);
+			redirect('main/forgotPassword');
+		}
+	
+
+	}
 
 	public function login(){
 
@@ -107,7 +207,7 @@ class Main extends CI_Controller {
 
 				$this->session->set_userdata($info);
 
-				echo $this->session->userdata('ID');
+	//			echo $this->session->userdata('ID');
 
 				
 
@@ -152,7 +252,7 @@ class Main extends CI_Controller {
 
                	$this->session->set_userdata($info2);
 				
-		echo print_r($info);		
+	//	echo print_r($info);		
 				redirect('main/home');
 
 				
@@ -265,17 +365,6 @@ class Main extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('main/index');
 	}
-	public function recoverPassword(){
-		$this->load->model('model_db');
-		if ($this->load->model_db('email_exists')){
-			echo "exist";
-			}
-			else{
-			echo 'dont exist';
-
-			}
-		
-	}
 
 	function isEmailExist($email) {
 	    $this->db->select('id');
@@ -303,7 +392,7 @@ class Main extends CI_Controller {
 				$this->email->message('Hello' .$data['result']->Person_Fname. 'Your Reservation form is successfully endorse by Endorser');
 			}	 
 		if($this->email->send()){
-			echo 'workred';
+	//		echo 'workred';
 		}
 		else{
 			redirect('main/home');

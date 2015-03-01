@@ -1,114 +1,22 @@
+                                    <div class="modal-header">
 <div id="contentMargin">
-<div class="container equipments-container">
+<div class="container equipments-container content">
 <div class="row">
   <ol class="breadcrumb">
         <li><a href="#">Manage</a></li>
         <li class="active">Approved Reservation</li>
       </ol>
-    
-    <div class="col-lg-12" role="main">
-      <h2 id="equip-manage" class="page-header">Approved Reservation</h2>
-      <div class="row action-header">
-        <div class="col-md-6 col-md-offset-6">
-           <a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD CLIENT</span></center></a>
+    <div class="panel panel-default">
+  <div class="panel-body">
+  <div class="panel panel-success">
+  <div class="col-md-12 panel-heading">
+  <div class="col-md-9 title-content">
+      <h3 class="panel-title"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  List of Approved Reservations</h3>
+  </div>            
 
-         </div>              
-                <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Add Client</h4>
-                    </div>
-                    <div class="modal-body">
-                    <!--form sa modal -->
-                    <form method="post" action="<?php echo base_url(); ?>StaffWS/addClient">
-                           
-                    <div class="form-group">
-                        <label class="control-label col-md-4">ID Number</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="idNum">
-                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4">SurName</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="lname">
-                     </div>                                     
-                   
-
-                    <div class="form-group">
-                        <label class="control-label col-md-4">ForeName</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="fname">
-                     </div>
-                     <div class="form-group">
-                        <label class="control-label col-md-4">Email</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="email">
-                     </div>
-
-
-                     <div class="form-group">
-                      <label class="control-label col-md-4">Campus</label>
-                     <select name="campus" class="form-control-group">
-                        <option value="1">Downtown Campus</option>
-                        <option value="2">North Campus</option>
-                        <option value="3">South Campus</option>
-                        <option value="4">Talamban Campus</option>
-                    </select>
-                    </div>
-
-                      <div class="form-group">
-                      <label class="control-label col-md-4">User type</label>
-                      <select name="type" class="form-control-group">
-                          <option value="Chairman" id="ordi">Chairman</option>
-                          <option value="Dean" id="ordi">Dean</option>
-                          <option value="Faculty" id="ordi">Faculty</option>
-                          <option value="OSA" id="vpa">OSA</option>
-                          <option value="SOC" id="soType">Student Organization - Co-Curricular</option>
-                          <option value="SOE" id="soType">Student Organization - Extra-Curricular</option>
-                          <option value="VPA"  id="vpa">VPA</option>
-                          <option value="VPAA" id="vpa">VPAA</option>
-                      </select>
-                      </div>
-
-                      
-                      <div id="ordinary" class="form-group">
-                      <label class="control-label col-md-4">College</label>
-                        <select name="college" class="form-control-group">
-                            <option value="SBE">SBE</option>
-                            <option value="SLG">SLG</option>
-                            <option value="COED">COED</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CAFA">CAFA</option>
-                            <option value="COE">COE</option>
-                            <option value="SHCP">SHCP</option>
-                        </select>
-                        
-                      </div>
-                      
-                      
-                      
-                      <div class="form-group">
-                          <label class="control-label col-md-4">Department/Office/SO Name</label>
-                          <input id="banner-name" class="form-control-group" type="text" name="officeName"><br><br>
-                      </div>
-
-                     <div class="form-group">
-                      
-                       <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Add</button>
-                      </div>
-                      </form>
-                  <!-- End of form sa modal -->
-                      
-                     </div><!-- End of Modal body -->
-                    </div><!-- End of Modal content -->
-                    </div><!-- End of Modal dialog -->
-                  </div><!-- End of editModal -->
-           
-        
         </div>
-      
-      
-      
-      
+    
+    <div class="panel-body">
       <div class="equipments-content">
         <div class="table-responsive">
           <table id="table_id" class="display">
@@ -122,8 +30,8 @@
                   <th id="oneLineTd">Purpose</th>
                   <th id="oneLineTd">Activity</th>
                   <th id="oneLineTd">Endorsed by</th>
-                  <th id="oneLineTd">Approve</th>
-                  <th id="oneLineTd">Status</th>
+                  <th id="oneLineTd">Approved by</th>
+                  <th id="oneLineTd">Action</th>
                 
               </tr>
             </thead>
@@ -144,26 +52,35 @@
                     <td id="oneLineTd"><?php echo $result[$i]->Reservation__Endorse_Status; ?></td>
                     <td id="oneLineTd"><?php echo $result[$i]->Reservation_Approve_Status; ?></td>
                    
-                     <td id="oneLineTd"> 
-                         <form method="post" action="<?php echo base_url(); ?>EndorseApprove/approveStatus">
-                             <input type="hidden" name="id" value="<?php echo $result[$i]->Reservation_ID; ?>" >
-                              <button type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                          </form>
 
+
+                     <td id="oneLineTd"> 
                          
-                            <a href="<?php echo "#removeModal".$i; ?>" role="button" class="btn3 btn-custom" data-toggle="modal">
-                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </a>
+                         <?php if($result[$i]->Reservation_Status=="OK")
+                         echo "<a href= #removeModal".$i." role='button' data-toggle='modal' class='btn btn-danger btn-xs'>
+                             <span class='glyphicon glyphicon-remove' aria-hidden='true'></span>CANCEL 
+                            </a>";
+
+                          else
+                            echo 'CANCELED';
+
+                          ?>
+                               
+
 
                              <div id="<?php echo "removeModal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" id="deleteModalSize">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
-                                        <textarea rows="4" cols="50" name="delMessage"></textarea>
+                                      <form method="post" action="<?php echo base_url(); ?>StaffWS/updateReservationStatusCancel">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title">Are you sure you want to cancel?</h4>
+                                      </div>
+                                      <div class="modal-footer">
                                         <input type="hidden" name="id" value="<?php echo $result[$i]->Reservation_ID; ?>" >
-                                        <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
-                                        <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
+                                        <button type="button" id="deleteModalNo" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+                                         <button type="submit" id="deleteModalYes" class="btn btn-success" value="YES">Yes</button>
+                                        </div>
                                      </form>
                                   </div>
                                 </div>
@@ -184,10 +101,15 @@
         </div>
 
       </div>
+    </div>
      
     </div>
-    </div>
+  </div>
+  </div>
+  </div> <!-- End of row -->
+  </div> <!-- End of container -->
     </div> <!-- End of Container -->
   </div>
-</div>
+  
+  
   

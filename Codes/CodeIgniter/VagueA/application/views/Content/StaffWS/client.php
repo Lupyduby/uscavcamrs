@@ -1,114 +1,25 @@
 <div id="contentMargin">
-<div class="container equipments-container">
+<div class="container equipments-container content">
 <div class="row">
-  <ol class="breadcrumb">
+<ol class="breadcrumb">
         <li><a href="#">Manage</a></li>
         <li class="active">Client Management</li>
       </ol>
-    
-    <div class="col-lg-12" role="main">
-      <h2 id="equip-manage" class="page-header">Client Management</h2>
-      <div class="row action-header">
-        <div class="col-md-6 col-md-offset-6">
-           <a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD CLIENT</span></center></a>
-
-         </div>              
-                <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Add Client</h4>
-                    </div>
-                    <div class="modal-body">
-                    <!--form sa modal -->
-                    <form method="post" action="<?php echo base_url(); ?>StaffWS/addClient">
-                           
-                    <div class="form-group">
-                        <label class="control-label col-md-4">ID Number</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="idNum">
-                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4">SurName</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="lname">
-                     </div>                                     
-                   
-
-                    <div class="form-group">
-                        <label class="control-label col-md-4">ForeName</label>
-                        <input id="banner-name" class="form-control-group" type="text"   name="fname">
-                     </div>
-                     <div class="form-group">
-                        <label class="control-label col-md-4">Email</label>
-                        <input id="banner-name" class="form-control-group" type="email"   name="email">
-                     </div>
-
-
-                     <div class="form-group">
-                      <label class="control-label col-md-4">Campus</label>
-                     <select name="campus" class="form-control-group">
-                        <option value="1">Downtown Campus</option>
-                        <option value="2">North Campus</option>
-                        <option value="3">South Campus</option>
-                        <option value="4">Talamban Campus</option>
-                    </select>
-                    </div>
-
-                      <div class="form-group">
-                      <label class="control-label col-md-4">User type</label>
-                      <select name="type" class="form-control-group">
-                          <option value="Chairman" id="ordi">Chairman</option>
-                          <option value="Dean" id="ordi">Dean</option>
-                          <option value="Faculty" id="ordi">Faculty</option>
-                          <option value="Office" id="office">Office</option>
-                          <option value="OSA" id="vpa">OSA</option>
-                          <option value="SOC" id="soType">Student Organization - Co-Curricular</option>
-                          <option value="SOE" id="soType">Student Organization - Extra-Curricular</option>
-                      </select>
-                      </div>
-
-                      
-                      <div id="ordinary" class="form-group">
-                      <label class="control-label col-md-4">College</label>
-                        <select name="college" class="form-control-group">
-                            <option value="SBE">SBE</option>
-                            <option value="SLG">SLG</option>
-                            <option value="COED">COED</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CAFA">CAFA</option>
-                            <option value="COE">COE</option>
-                            <option value="SHCP">SHCP</option>
-                        </select>
-                        
-                      </div>
-                      
-                      
-                      
-                      <div class="form-group">
-                          <label class="control-label col-md-4">Department/Office/SO Name</label>
-                          <input id="banner-name" class="form-control-group" type="text" name="officeName"><br><br>
-                      </div>
-
-                     <div class="form-group">
-                      
-                       <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Add</button>
-                      </div>
-                      </form>
-                  <!-- End of form sa modal -->
-                      
-                     </div><!-- End of Modal body -->
-                    </div><!-- End of Modal content -->
-                    </div><!-- End of Modal dialog -->
-                  </div><!-- End of editModal -->
-           
-        
-        </div>
-      
-      
-      
-      
-      <div class="equipments-content">
+<div class="panel panel-default">
+  <div class="panel-body">
+  <div class="panel panel-success">
+  <div class="col-md-12 panel-heading">
+  <div class="col-md-9 title-content">
+    <h3 class="panel-title"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Client Management</h3>
+  </div>
+  <div class="col-md-3">
+  <a href="#addmodal" role="button" class="btn btn-primary btn-xs" id="btnAddManage" data-toggle="modal" style="float:right;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD CLIENT</a>                          
+  </div>
+  </div>
+  
+  <div class="panel-body">
+        <div class="equipments-content">
         <div class="table-responsive">
           <table id="table_id" class="display">
             <thead class="theader-contents">
@@ -172,18 +83,18 @@
                           
                             <div class="form-group">
                                 <label class="control-label col-md-4">SurName</label>
-                                <input id="banner-name" class="form-control-group" type="text"  value="<?php echo $result[$i]->Person_LName; ?>" name="lname">
+                                <input id="banner-name" class="form-control" type="text"  value="<?php echo $result[$i]->Person_LName; ?>" name="lname">
                              </div>                                     
                            
 
                             <div class="form-group">
                                 <label class="control-label col-md-4">ForeName</label>
-                                <input id="banner-name" class="form-control-group" type="text" value="<?php echo $result[$i]->Person_FName; ?>"   name="fname">
+                                <input id="banner-name" class="form-control" type="text" value="<?php echo $result[$i]->Person_FName; ?>"   name="fname">
                              </div>
 
                               <div class="form-group">
                               <label class="control-label col-md-4">Type</label>
-                              <select name="type" class="form-control-group">
+                              <select name="type" class="form-control">
 
                                   
                                   <option value="Office" id="office" <?php if($result[$i]->Person_type=="Office") echo "selected"; ?>>Office</option>
@@ -196,7 +107,7 @@
                               </div>
                               <div class="form-group">
                               <label class="control-label col-md-4">College/Office/SO</label>
-                                 <input id="banner-name" class="form-control-group" type="text" value="<?php
+                                 <input id="banner-name" class="form-control" type="text" value="<?php
                                       if($result[$i]->Person_type=="SO") 
                                            echo $result[$i]->SO_Name;
                                        else if ($result[$i]->Person_type=="OSA" || $result[$i]->Person_type=="Dean" ||$result[$i]->Person_type=="Office" || $result[$i]->Person_type=="VPA" || $result[$i]->Person_type=="VPAA" )
@@ -205,44 +116,48 @@
                                           echo $result[$i]->User_college;
                                     ?>" name="officeName">
                              </div>
-                             <div class="form-group">
-                               <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>
-                              </div>
-                              </form>
+                          <!-- End of form sa modal -->
                               
-                              <form method="post" action="<?php echo base_url(); ?>StaffWS/resetPassword">
+                             </div><!-- End of Modal body -->
+               <div class="modal-footer">
+        <button type="submit" class="btn btn-success" id="btnAdd">Update</button>
+    <form method="post" action="<?php echo base_url(); ?>StaffWS/resetPassword">
                                <input type="hidden"  value="<?php echo $result[$i]->Person_ID; ?>" name="id">
                                <input type="hidden"  value="<?php echo $result[$i]->Person_Username; ?>" name="username">
                                <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Reset Password</button>
                               </form>
-                          <!-- End of form sa modal -->
-                              
-                             </div><!-- End of Modal body -->
+    </form>
+      </div>
                             </div><!-- End of Modal content -->
                             </div><!-- End of Modal dialog -->
                           </div><!-- End of editModal -->
                     </td>
                     <td>         
-                        	<a href="<?php echo "#deletemodal".$i; ?>" role="button" class="btn btn-custom" data-toggle="modal">
-                      			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                          <a href="<?php echo "#deletemodal".$i; ?>" role="button" class="btn btn-custom" data-toggle="modal">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </a>
 
 
                              <div id="<?php echo "deletemodal".$i; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            	<div class="modal-dialog" id="deleteModalSize">
-		                            <div class="modal-content">
-			                            <div class="modal-header">
-			                              <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
-			                            	 	Are you sure you want to delete?
-							                        <input type="hidden" name="id" value="<?php echo $result[$i]->Person_ID; ?>" >
-							                        <input type="hidden" name="type" value="<?php echo $result[$i]->Person_type; ?>" >
-							                        <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
-							                        <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
-			                        	 	</form>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </div>
+                              <div class="modal-dialog" id="deleteModalSize">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteClient">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title">Are you sure you want to delete?</h4>
+                    </div>
+                    <div class="modal-footer">
+                    <input type="hidden" name="id" value="<?php echo $result[$i]->Person_ID; ?>" >
+                                      <input type="hidden" name="type" value="<?php echo $result[$i]->Person_type; ?>" >
+        <button type="button" id="deleteModalNo" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" id="deleteModalYes" class="btn btn-success" value="YES">Yes</button>
+      </div>
+    </form>
+                      
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                        
                         </td>
                 </tr>
@@ -257,8 +172,123 @@
       </div>
      
     </div>
-    </div>
-    </div> <!-- End of Container -->
   </div>
 </div>
+           
+            
   
+
+          
+   </div>
+
+      </div>
+  </div>
+</div>
+
+        <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Add Client</h4>
+                    </div>
+                    <div class="modal-body">
+                    <!--form sa modal -->
+                    <form method="post" action="<?php echo base_url(); ?>StaffWS/addClient" class="form-horizontal">
+                           
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">ID Number</label>
+            <div class="col-md-4">
+                        <input id="banner-name" class="form-control" type="text"   name="idNum">
+            </div>
+                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">SurName</label>
+            <div class="col-md-4">
+                        <input id="banner-name" class="form-control" type="text"   name="lname">
+            </div>
+                     </div>                                     
+                   
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">ForeName</label>
+            <div class="col-md-4">
+                        <input id="banner-name" class="form-control" type="text"   name="fname">
+            </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="control-label col-lg-4">Email</label>
+            <div class="col-md-4">
+                        <input id="banner-name" class="form-control" type="email"   name="email">
+            </div>
+                     </div>
+
+
+                     <div class="form-group">
+                      <label class="control-label col-lg-4">Campus</label>
+            <div class="col-md-4">
+                     <select name="campus" class="form-control">
+                        <option value="1">Downtown Campus</option>
+                        <option value="2">North Campus</option>
+                        <option value="3">South Campus</option>
+                        <option value="4">Talamban Campus</option>
+                    </select>
+          </div>
+                    </div>
+
+                      <div class="form-group">
+                      <label class="control-label col-lg-4">User type</label>
+            <div class="col-md-4">
+                      <select name="type" class="form-control">
+                          <option value="Chairman" id="ordi">Chairman</option>
+                          <option value="Dean" id="ordi">Dean</option>
+                          <option value="Faculty" id="ordi">Faculty</option>
+                          <option value="Office" id="office">Office</option>
+                          <option value="OSA" id="vpa">OSA</option>
+                          <option value="SOC" id="soType">Student Organization - Co-Curricular</option>
+                          <option value="SOE" id="soType">Student Organization - Extra-Curricular</option>
+                      </select>
+            </div>
+                      </div>
+
+                      
+                      <div id="ordinary" class="form-group">
+                      <label class="control-label col-lg-4">College</label>
+            <div class="col-md-4">
+                        <select name="college" class="form-control">
+                            <option value="SBE">SBE</option>
+                            <option value="SLG">SLG</option>
+                            <option value="COED">COED</option>
+                            <option value="CAS">CAS</option>
+                            <option value="CAFA">CAFA</option>
+                            <option value="COE">COE</option>
+                            <option value="SHCP">SHCP</option>
+                        </select>
+                        </div>
+                      </div>
+                      
+                      
+                      
+                      <div class="form-group">
+                          <label class="control-label col-lg-4">Department/Office/SO Name</label>
+              <div class="col-md-4">
+                          <input id="banner-name" class="form-control" type="text" name="officeName"><br><br>
+              </div>
+                      </div>
+          
+          <div class="form-group">
+            
+                  <!-- End of form sa modal -->
+                      
+                     </div><!-- End of Modal body -->
+            <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+    </form>
+                    </div><!-- End of Modal content -->
+                    </div><!-- End of Modal dialog -->
+                  </div><!-- End of editModal -->
+    </div>
+    </div>
+    </div> <!-- End of Container -->

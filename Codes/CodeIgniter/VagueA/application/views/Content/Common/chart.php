@@ -9,17 +9,9 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <!--<script src="<?php echo base_url(); ?>assets/js/chart/js/adapters/standalone-framework.js"></script>
 -->
-
-<style type="text/css">
-        div#container {width: 550px;}
-</style>
-
 <script>
 /*for more info go to http://www.highcharts.com/docs */
     $(function () {
-    var m = $('#m');
-    var val = ['August', 'July']; 
-
     $('#container').highcharts({
         chart: {
             type: 'column'
@@ -28,8 +20,8 @@
             text: 'Audio Visual Center Usage'
         },
         xAxis: {
-            categories:<?php echo $monthJ; ?>/*para ni sa month. it should be dynamic*/
-                
+            categories:  /*para ni sa month. it should be dynamic*/
+                <?php echo $monthJ; ?>
             
         },
         yAxis: [{
@@ -51,16 +43,13 @@
         },
         plotOptions: {
             column: {
-                grouping: false,
-                shadow: false,
+                pointPadding: 0.1,
                 borderWidth: 0
             }
         }, 
-        series: 
-        <?php echo $monthK; ?>
-/*
-        { //ari para retrieve ug data 
-            name: 'Rigney Hall',
+        series:
+        // [{ /*ari para retrieve ug data*/ 
+ /*           name: 'Rigney Hall',
             color: 'rgba(165,170,217,1)',
             data: [150, 73, 20],
             pointPadding: 0.4,
@@ -93,9 +82,10 @@
             pointPadding: 0.4,
             pointPlacement: 0.3,
             yAxis: 1
-        }
-*/
-        
+        }]
+   */
+    <?php echo $monthK; ?>
+
     });
 });
 
@@ -104,11 +94,9 @@
 </head>
 
     <body>
-        
-        <div id="containerDept" style="min-width: 400px; height: 400px; margin: 0 auto">
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <?php echo $monthJ; ?>
+        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto">
             
         </div>
+         <?php echo $monthK; ?>
     </body>
 </html>

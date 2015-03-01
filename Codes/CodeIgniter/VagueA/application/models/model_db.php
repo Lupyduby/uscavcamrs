@@ -86,19 +86,17 @@ class Model_db extends CI_Model{
 
 	public function queryEquip(){
 
-		$this->db->select('asset.Asset_Name, 
-							asset.Asset_ID,
-							asset.Asset_Brand, 
-							asset.Asset_Serial, 
-							asset.Asset_Remarks, 
-							asset.Asset_Quantity,
-							campus.Campus_Name');
+		$this->db->select('asset.*,
+							campus.Campus_Name,
+							hall.Hall_Name');
+		
 		$this->db->from('asset');
 		if($this->session->userdata('type')!="Super")
 		{
 			$this->db->where('asset.Campus_ID =', $this->session->userdata('campus'));
 		}
 		$this->db->join('campus', 'asset.Campus_ID = campus.Campus_ID', 'left');
+		$this->db->join('hall', 'asset.Hall_ID = hall.Hall_ID', 'left');
 		$this->db->order_by('Asset_Name', 'asc');	
 		$query = $this->db->get();
 		echo $query->num_rows();
@@ -221,6 +219,13 @@ class Model_db extends CI_Model{
 		return $query->result();
 	}
 
+	public function queryHallReport(){
+		$this->db->select('*');
+		$this->db->from('hall');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function queryActivity(){
 		$this->db->select('*');
 		$this->db->from('activity');
@@ -275,6 +280,7 @@ class Model_db extends CI_Model{
 		$this->db->where('Approval_ID =', $this->session->userdata('ID'));
 		$this->db->where('Reservation_Approve_Status =', "Pending");
 		$this->db->where('Reservation__Endorse_Status !=', "Pending");
+		$this->db->where('Reservation__Endorse_Status !=', "Disapprove");
 		$this->db->from('reservation');
 		$this->db->join('campus', 'reservation.Campus_ID = campus.Campus_ID','left');
 		$this->db->join('activity', 'reservation.Activity_ID = activity.Activity_ID','left');
@@ -357,6 +363,12 @@ class Model_db extends CI_Model{
 		return $result->result();
 	}
 
+
+	public function getHallReservation($id){
+		$result = $this->db->query("Select * from hall where Hall_ID='".$id."'");
+		return $result->result();
+	}
+
 	
 
 	public function queryReservationSummary($id){
@@ -399,6 +411,7 @@ class Model_db extends CI_Model{
 		$this->db->from('softwares');
 		$this->db->where('softwares.Campus_ID =', $this->session->userdata('campus_reservation'));
 		$this->db->where('softwares.Software_Status =', "Available");
+		$this->db->where('softwares.Software_Status =', "Borrowed");
 		$query = $this->db->get();
 		echo $query->num_rows();
 		return $query->result();
@@ -469,6 +482,9 @@ class Model_db extends CI_Model{
 							person.Person_LName');
 	//	$this->db->where('Reservation_Approve_Status !=', "Pending");
 	//	$this->db->where('Reservation__Endorse_Status !=', "Pending");
+		if($this->session->userdata('type')!="Super")
+			$this->db->where('reservation.Campus_ID =', $this->session->userdata('campus'));
+		
 		$this->db->from('reservation');
 		$this->db->join('campus', 'reservation.Campus_ID = campus.Campus_ID','left');
 		$this->db->join('activity', 'reservation.Activity_ID = activity.Activity_ID','left');
@@ -515,6 +531,58 @@ class Model_db extends CI_Model{
 		return $result->result();
 	}
 
+	public function queryUserID($id){
+		$this->db->select('*');
+		$this->db->from('Person');
+		$this->db->where('Person_Username', $id);
+		$result = $this->db->get();
+		return $result->result();
+
+	}
+
+
+	public function checkEmail($email){
+		$this->db->select('*');
+		$this->db->from('Person');
+		$this->db->where('Person_Email', $email);
+		$result = $this->db->get();
+		return $result->result();
+
+	}
+
+
+	public function queryCollegeIDFullForm(){
+		$this->db->select('*');
+		$this->db->from('person');
+		$this->db->where('Person_college = ', $this->session->userdata('college'));
+		$this->db->where('Person_type = ', 'Dean');
+		$result = $this->db->get();
+		return $result->result();
+
+	}
+	
+	public function queryEquipmentFormFull(){
+		$this->db->select('asset.*');
+		
+		$this->db->from('asset');
+		$this->db->where('asset.Hall_ID =', $this->session->userdata('hallReserve'));
+		$this->db->order_by('Asset_Name', 'asc');	
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
+
+
+	public function queryEquipmentFormSummary($data){
+		$this->db->select('asset.*');
+		
+		$this->db->from('asset');
+		$this->db->where_in('asset.Asset_ID', $data);
+		$this->db->order_by('Asset_Name', 'asc');	
+		$query = $this->db->get();
+		echo $query->num_rows();
+		return $query->result();
+	}
 
 /*-----------------------End of Query--------------------*/
 
@@ -635,6 +703,13 @@ class Model_db extends CI_Model{
 
 	}
 
+	public function addHallCount($data, $id){
+			$this->db->where('Hall_ID', $id);
+			$result = $this->db->update('hall', $data);
+			return $result;
+
+	}
+
 	public function addSoftwareCount($id, $data){
 		$this->db->where('Software_ID', $id);
 		$result = $this->db->update('softwares', $data);
@@ -666,6 +741,18 @@ class Model_db extends CI_Model{
 		return $result;
 	}
 
+	 public function cancelReservation($id, $data) {
+		$this->db->where('Reservation_ID', $id);
+		$result = $this->db->update('reservation', $data);
+		return $result;
+	}
+
+
+	public function updateResetPass($id, $data) {
+		$this->db->where('Person_ID', $id);
+		$result = $this->db->update('person', $data);
+		return $result;
+	}
 
 
 /*-----------------------------End of Update----------------------------*/
@@ -748,6 +835,77 @@ public function sumColumnSoft($month){
 }
 
 /*-------------End Sum up column------------*/
+
+/*-------------Reset Reservatopm------------*/
+
+public function resetReservation(){
+	$res = $this->db->empty_table('reservation'); 
+	return $res;
+}
+
+
+public function resetActivity(){
+	$res = $this->db->empty_table('activity'); 
+	$data = array( array('Activity_Name' => 'Seminar'),
+					array('Activity_Name' => 'Forum'),	
+					array('Activity_Name' => 'Video Showing'),
+					array('Activity_Name' => 'Conference')
+				);
+
+	$this->db->insert_batch('activity', $data); 
+	return $res;
+}
+
+public function resetClient(){
+	$this->db->where('Person_type !=', 'VPA');
+	$this->db->where('Person_type !=', 'VPAA');
+	$this->db->where('Person_type !=', 'Staff');
+	$this->db->where('Person_type !=', 'WS');
+	$this->db->where('Person_type !=', 'Dean');
+	$this->db->where('Person_type !=', 'Super');
+	$this->db->delete('person'); 
+	$res = $this->db->empty_table('studentorg');
+	
+	return $res;
+}
+
+public function selectPerson(){
+	$query = $this->db->query("Select * from person");	
+	return $query->result();
+}
+
+
+public function resetUser($data){
+	$count = count($data);
+	for($i=0; $i<$count; $i++)
+		$this->db->where('Person_ID !=', $data[$i]);
+	$this->db->delete('user'); 
+}
+
+
+public function resetCollege(){
+	$res = $this->db->empty_table('college_report'); 
+	$data = array( array('Activity_Name' => 'CAS'),
+					array('Activity_Name' => 'CAFA'),
+					array('Activity_Name' => 'SBE'),
+					array('Activity_Name' => 'SLG'),
+					array('Activity_Name' => 'COE'),
+					array('Activity_Name' => 'COED'),
+					array('Activity_Name' => 'SHCP')
+				);
+
+	$this->db->insert_batch('college_report', $data); 
+	return $res;
+}
+
+
+
+
+/*-------------EOF Reset Reservatopm------------*/
+
+
+
+
 
 }//end of class
 

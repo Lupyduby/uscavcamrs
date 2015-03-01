@@ -1,3 +1,5 @@
+
+<div id="marginTopValidate">
 <div class="col-lg-12" role="main">
       <div class="reservation-form">
         <h1 id="avc-guidelines" class="page-header">AVC Reservation Form</h1>

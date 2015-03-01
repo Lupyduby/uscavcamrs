@@ -288,7 +288,7 @@ class StaffWS extends CI_Controller {
 			$result['dutySched'] = $this->model_db->queryWSDutySched();
 			$result['num2']=count($result['dutySched']);
 
-			echo "Sched count: ".$result['num2'];
+	//		echo "Sched count: ".$result['num2'];
 
 			 if ($this->session->userdata('type')=="Staff")
 			{
@@ -322,75 +322,148 @@ class StaffWS extends CI_Controller {
 		if($this->session->userdata('type'))
 		{
 
-
-			$info = array(60, 50, 40);
-			$info3 = array(35, 57, 65);
-			$info4 = array(39, 45, 43);
-			$info5 = array(87, 87, 67);
-			$info6 = array(50, 23, 33);
-			
-				for($i=1, $year = date("Y"); $i<13; $i++)
-				{	
-					$info2[] = $i;
-				
-				if(date("m") >= $i)
-				{
-					$yr = $year;
-				}
-				else
-					$yr = $year-1;
-
-				echo date("F", mktime(0, 0, 0, $i, 10))." ".$yr."<br>";
-
-				$month[] =  array(date("F", mktime(0, 0, 0, $i, 10))." ".$yr);
+			if(date("F")<12 && date("F")>5)
+			{
+				$monthCountStart=4;
+				$monthCountStop = 11;
 			}
+			else
+			{
+				$monthCountStart = 10;
+				$monthCountStop = 5;
+			}
+			
 
-		//	$info= array();
-
-			array_push($info, $info2);
-
-			$results['dept'] = array('name' => 'Rigney', 'data'=> $info5);
-			$results['dept'] = array('name' => 'HS', 'data'=> $info6);
-			$results['dept'] = array('name' => 'AS', 'data'=> $info3);
-			$results['dept'] = array('name' => 'Buttenbruch', 'data'=> $info4);
-
-		 $results['monthJ'] = json_encode($month); 
-		 $results['monthK'] = json_encode($results['dept']);
-	//	print_r();
-			echo $data['monthJ'];
-
-
-
-
-
-
-
-
-
-
-
+ 			$info = array(21,23,23,45,67);
+ 			$collegeData=array();
+ 			$activityData=array();
+ 			$hallData=array();
+ 			$softData=array();
+ 			$activityUsage=array();
 
 			$this->load->model("model_db");
 			$result['college'] = $this->model_db->queryCollegeReport();
 			$result['activity'] = $this->model_db->queryActivity();
+			$result['hall'] = $this->model_db->queryHallReport();
+			$result['numHall'] = count($result['hall']);
 			$result['numColl']=count($result['college']);
 			$result['numAct']=count($result['activity']);
 
-			for($i=1; $i<13; $i++){
-				$month = date("F", mktime(0, 0, 0, $i, 10));
+			//College chart manipulation
+			for($j=0; $j<$result['numColl']; $j++)
+			{
+				for($i=$monthCountStart; $i!=$monthCountStop; $i++)
+				{	
+					$monthName = "college_".date("F", mktime(0, 0, 0, $i, 10));
+					$collegeData[] = intval($result['college'][$j]->$monthName);
+					if($i==12)
+						$i=0;
+				}
+				$collegeUsage[] = array('name' => $result['college'][$j]->college_Name, 'data'=> $collegeData);
+				$collegeData = array();
 				
-				$res = $this->model_db->sumColumnSoft($month);
-				$result["".$month] = $res[0]->month;
-				echo $res[0]->month;
 			}
+		//	$collegeUsage[] = array('name' => "Rigney", 'data'=> $info);
+			$result['collegeChart'] = json_encode($collegeUsage);
+
+
+
+			//Hall chart manipulation
+			for($y=0; $y<$result['numHall']; $y++)
+			{
+				for($x=$monthCountStart; $x!=$monthCountStop; $x++)
+				{	
+					$monthName = "Hall_".date("F", mktime(0, 0, 0, $x, 10));
+					$hallData[] = intval($result['hall'][$y]->$monthName);
+					if($x==12)
+						$x=0;
+				}
+				$hallUsage[] = array('name' => $result['hall'][$y]->Hall_Name, 'data'=> $hallData);
+				$hallData = array();
+				
+			}
+			$result['hallChart'] = json_encode($hallUsage);
 
 
 
 			
 
+
+			//Activity chart manipulation
+			for($j=0; $j<$result['numAct']; $j++)
+			{
+				for($i=$monthCountStart; $i!=$monthCountStop; $i++)
+				{	
+					$monthName = "Activity_".date("F", mktime(0, 0, 0, $i, 10));
+					$activityData[] = intval($result['activity'][$j]->$monthName);
+					if($i==12)
+						$i=0;
+				}
+
+				$activityUsage[] = array('name' => $result['activity'][$j]->Activity_Name, 'data'=> $activityData);	
+				$activityData=null;
+				
+				
+			}
+			$result['activityChart'] = json_encode($activityUsage);
+
+			//softare manipulation
+			for($i=1; $i<13; $i++)
+			{
+				$month = date("F", mktime(0, 0, 0, $i, 10));
+				$res = $this->model_db->sumColumnSoft($month);
+				$result["".$month] = $res[0]->month;
+			
+			
+			}
+
+
+			for($i=$monthCountStart; $i!=$monthCountStop; $i++)
+			{
+				$month = date("F", mktime(0, 0, 0, $i, 10));
+				$res = $this->model_db->sumColumnSoft($month);
+			 	$softData[] = intval($res[0]->month);
+		
+				if($i==12)
+					$i=0;
+
+			}
+
+			$softUsage = array('name' => 'Software', 'data'=> $softData);
+			$result['softwareChart'] = json_encode($softUsage);
+			$softData=null;
+
+
+
+			
+			//Saving for the category in high chart
+				for($i=$monthCountStart, $year = date("Y"); $i!=$monthCountStop ; $i++)
+				{	
+					if(date("m") >= $i)
+					{
+						$yr = $year;
+					}
+					else
+					{
+						$yr = $year-1;
+					}
+					
+					
+					$month2[] =  array(date("F", mktime(0, 0, 0, $i, 10))." ".$yr);
+					if($i==12)
+						$i=0;
+				}
+
+
+				 $result['monthJ'] = json_encode($month2); 
+		//		 $result['monthK'] = json_encode($hallUsage);
+
+				$result['monthL'] = $month;
+		///	echo $result['monthJ'] ;
+
 			 if ($this->session->userdata('type')=="Staff")
 			{
-				$this->load->view('Header/staffHeader');
+		 			$this->load->view('Header/staffHeader');
 				
 			}
 			else if ($this->session->userdata('type')=="Super")
@@ -405,7 +478,7 @@ class StaffWS extends CI_Controller {
 			}
 
 			
-			$this->load->view('content/staffws/statistics', $result);
+			$this->load->view('content/staffws/statistic', $result);
 			$this->load->view('Footer/footer');
 		}
 
@@ -422,12 +495,35 @@ class StaffWS extends CI_Controller {
 
 		$id = $this->input->post('id');
 
+		if($this->input->post('remarks')=="others")
+		{
+
+               $remarks = $this->input->post('remarks2');
+		}
+
+		else
+		{
+			$remarks = $this->input->post('remarks');
+		}
+
+		if($this->session->userdata('hall')==1){
+			$hallID = $this->input->post('hall2');
+		}
+		else if ($this->session->userdata('hall')==2){
+			$hallID = $this->input->post('hall3');
+		}
+		else {
+			$hallID = $this->input->post('hall1');
+		}
 		$data = array(
                'Asset_Name'     =>$this->input->post('name'),
                'Asset_Brand' => $this->input->post('brand'),
                'Asset_Serial' => $this->input->post('serial'),
-               'Asset_Remarks' => $this->input->post('remarks'),
-               'Asset_Quantity' => $this->input->post('qty')
+               'Asset_Serial' => $this->input->post('serial'),
+               'Hall_ID' => $hallID,
+			   'Asset_dateUpdate' => date('Y-m-d H'),               
+               'Asset_Remarks' => $remarks,
+               'Asset_Quantity' => $this->input->post('qty')	
                );
 
 		$this->load->model("model_db");
@@ -556,12 +652,24 @@ class StaffWS extends CI_Controller {
 	}
 
 	public function addEquipment(){
+		if($this->session->userdata('hall')==1){
+			$hallID = $this->input->post('hall2');
+		}
+		else if ($this->session->userdata('hall')==2){
+			$hallID = $this->input->post('hall3');
+		}
+		else {
+			$hallID = $this->input->post('hall1');
+		}
 		$data = array(
                    'Campus_ID'  => $this->session->userdata('campus'),
                    'Asset_Name'     =>$this->input->post('name'),
                    'Asset_Brand' => $this->input->post('brand'),
                    'Asset_Serial' => $this->input->post('serial'),
-                   'Asset_Remarks' => $this->input->post('remarks'),
+				   'Hall_ID' => $hallID,
+                   'Asset_Remarks' => 'Functioning',
+                   'Asset_datePurchase' => $this->input->post('date'),
+                   'Asset_dateUpdate' => $this->input->post('date'),
                    'Asset_Quantity' => $this->input->post('qty')
                    );
 		$this->load->model("model_db");
@@ -714,7 +822,7 @@ class StaffWS extends CI_Controller {
 		$this->load->model('model_db');
 		$result['reservation'] = $this->model_db->queryBlockSummary($this->session->userdata('R_ID'));
 
-		echo $result['reservation'][0]->Reservation_BlockActivity."asdasdadsa " .$this->session->userdata('R_ID');
+	//	echo $result['reservation'][0]->Reservation_BlockActivity."asdasdadsa " .$this->session->userdata('R_ID');
 
 		$this->load->view('Header/staffHeader');
 		$this->load->view('content/staffws/blockSummary', $result);
@@ -743,16 +851,36 @@ class StaffWS extends CI_Controller {
 		}	
 		 
 		if($this->email->send()){
-			echo 'it worke';
+	//		echo 'it worke';
 		}
 		else{
-			echo "it didn't worke";
+	//		echo "it didn't worke";
 		
 		//	redirect('main/home');
 		}
 
 		//echo $this->email->print_debugger();
 	}
+
+
+
+	public function updateReservationStatusCancel(){
+
+			$id = $this->input->post('id');
+
+			$data = array(
+                   'Reservation_Status'  => 'Canceled'
+                   );
+
+			$this->load->model("model_db");
+			$this->model_db->cancelReservation($id, $data);
+			
+			
+
+		redirect('StaffWS/reservationOK');
+	}
+
+	
 
 	
 

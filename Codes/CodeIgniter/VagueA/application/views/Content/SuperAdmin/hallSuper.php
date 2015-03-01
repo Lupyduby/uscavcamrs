@@ -1,72 +1,25 @@
 <div id="contentMargin">
-<div class="container equipments-container">
+<div class="container equipments-container content">
 <div class="row">
   <ol class="breadcrumb">
         <li><a href="#">Manage</a></li>
         <li class="active">Hall Management</li>
       </ol>
     
-    <div class="col-lg-12" role="main">
-      <h2 id="equip-manage" class="page-header">AV Hall Management</h2>
-      <div class="row action-header">
-        <div class="col-md-6 col-md-offset-6">
-		<a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal"><center>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD AVHALL</span></center></a>
-      <!-- addModal -->
-                  <div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Add New AV Hall</h4>
-                    </div>
-                    <div class="modal-body">
-                    <!--form sa modal -->
-                    <?php echo validation_errors(); ?>
-                    <?php echo form_open('StaffWS/addHall'); ?>
-									<!--backend nga ang hall ra sa campus maikit -->
-                  
-                       <div class="form-group">
-                      <label class="control-label col-md-4">Campus</label>
-                     <select name="campus" class="form-control2">
-                        <option value="1">Downtown Campus</option>
-                        <option value="2">South Campus</option>
-                        <option value="3">Talamban Campus</option>
-                    </select>
-                      </div>
-
-											<div class="form-group">
-												<label class="control-label col-md-4">Name</label>
-                        <input id="banner-name" class="form-control2" type="text"  required="" name="name">
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-4">Capacity</label>
-                          <input id="banner-email" class="form-control2" type="text" required="" name="capacity">
-                      </div>
-                         
-                      <div class="form-group">
-                          <label class="control-label col-md-4">Description</label>
-                          <textarea name="desc"></textarea>
-                      </div>
-                          <button class="btn btn-default btn-submit" type="submit" id="btnAdd">ADD</button>
-                                            
-                    </form><!-- End of form sa modal -->
-                    </div><!-- End of Modal body -->
-                    </div><!-- End of Modal content -->
-                    </div><!-- End of Modal dialog -->
-                  </div><!-- End of addModal --> 
-
-        </div>
-      </div>
-
-           
-        </div>
-      </div>
-      
-      
-      <div class="tab-pane">
-      <div class="equipments-content">
+    <div class="panel panel-default">
+		<div class="panel-body">
+			<div class="panel panel-success">
+				<div class="col-md-12 panel-heading">
+				<div class="col-md-9 title-content">
+	<h3 class="panel-title"><i class="fa fa-university"></i>  AV Hall Management</h3>
+	</div>
+				<div class="col-md-3">
+	<a href="#addmodal" role="button" id="btnAddManage" data-toggle="modal" class="btn btn-primary btn-xs" data-toggle="modal" style="float:right;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD AV HALL</a>			                    
+	</div>
+				</div>
+				<div class="panel-body">
+					<div class="equipments-content">
         <div class="table-responsive">
           <table id="table_id" class="display">
             <thead class="theader-contents">
@@ -111,21 +64,29 @@
                                       
 											<div class="form-group">
 												<label class="control-label col-md-4">Name</label>
-                                                <input id="banner-name" class="form-control2" type="text" value="<?php echo $result[$i]->Hall_Name; ?>" required="" name="name">
+												<div class="col-md-6">
+                                                <input id="banner-name" class="form-control" type="text" value="<?php echo $result[$i]->Hall_Name; ?>" required="" name="name">
+												</div>
                                            </div>
 
                                             <div class="form-group">
                                             <label class="control-label col-md-4">Capacity</label>
-                                              <input id="banner-email" class="form-control2" type="text" required="" value="<?php echo $result[$i]->Hall_Capacity; ?>" name="capacity">
+											<div class="col-md-6">
+                                              <input id="banner-email" class="form-control" type="text" required="" value="<?php echo $result[$i]->Hall_Capacity; ?>" name="capacity">
+											  </div>
                                             </div>
                                             <div class="form-group">
                                             <label class="control-label col-md-4">Description</label>
-                                              <textarea id="banner-name" class="form-control2" type="text"  required=""  name="description"><?php echo $result[$i]->Hall_Desc; ?></textarea>
+											<div class="col-md-6">
+                                              <textarea id="banner-name" class="form-control" type="text"  required=""  name="description"><?php echo $result[$i]->Hall_Desc; ?></textarea>
+											  </div>
                                            </div>
-                                            <button class="btn btn-default btn-submit" type="submit" id="btnAdd">Update</button>
-                                            
+                    </div><!-- End of Modal body -->                      
+                    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" id="btnAdd">Update</button>
+					</div>
                     </form><!-- End of form sa modal -->
-                    </div><!-- End of Modal body -->
+                    
                     </div><!-- End of Modal content -->
                     </div><!-- End of Modal dialog -->
                   </div><!-- End of addModal --> 
@@ -140,13 +101,19 @@
                   <div class="modal-dialog" id="deleteModalSize">
                     <div class="modal-content">
                       <div class="modal-header">
+					  
                         <form method="post" action="<?php echo base_url(); ?>StaffWS/deleteHall">
-                          Are you sure you want to delete?
-                          <input type="hidden" name="id" value="<?php echo $result[$i]->Hall_ID; ?>" >
-                          <button id="deleteModalYes"class="btn btn-default btn-sm" type="submit" value="YES">YES</button>
-                          <button id="deleteModalNo" type="button" class="close btn btn-default btn-sm" data-dismiss="modal" aria-hidden="true">NO</button>
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                            	 	<h4 class="modal-title">Are you sure you want to delete?</h4>
+												</div>
+                       
+                      <div class="modal-footer">
+					  <input type="hidden" name="id" value="<?php echo $result[$i]->Hall_ID; ?>" >
+                          <button type="button" id="deleteModalNo" class="btn btn-default" data-dismiss="modal" aria-hidden="true">NO</button>
+						  <button type="submit" id="deleteModalYes" class="btn btn-success" value="YES">YES</button>
                       </form>
-                      </div>
+					  </div>
+					  </div>
                   </div>
               </div>
           </div>
@@ -161,8 +128,65 @@
         </div>
 
       </div>
-     </div>
-    </div>
-    </div>
-    </div> <!-- End of Container -->
-  </div>
+				</div>
+			</div>
+		</div>
+</div>
+</div>
+</div>
+	
+	<div id="addmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Add New AV Hall</h4>
+                    </div>
+                    <div class="modal-body">
+                    <!--form sa modal -->
+					<form method="post" action="" class="form-horizontal">
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('StaffWS/addHall'); ?>
+									<!--backend nga ang hall ra sa campus maikit -->
+                  
+                      <div class="form-group">
+                      <label class="control-label col-md-2">Campus</label>
+					  <div class="col-md-8">
+                     <select name="campus" class="form-control">
+                        <option value="1">Downtown Campus</option>
+                        <option value="2">South Campus</option>
+                        <option value="3">Talamban Campus</option>
+                    </select>
+					</div>
+                      </div>
+
+					  <div class="form-group">
+												<label class="control-label col-md-2">Name</label>
+												<div class="col-md-8">
+                        <input id="banner-name" class="form-control" type="text"  required="" name="name">
+                      </div>
+					  </div>
+
+                      <div class="form-group">
+                          <label class="control-label col-md-2">Capacity</label>
+						  <div class="col-md-8">
+                          <input id="banner-email" class="form-control" type="text" required="" name="capacity">
+                      </div>
+					  </div>
+                         
+                      <div class="form-group">
+                          <label class="control-label col-md-2">Description</label>
+						  <div class="col-md-8">
+                          <textarea class="form-control" rows="3" id="textArea" name="desc"></textarea>
+                      </div>
+					  </div>
+					  
+                    </div><!-- End of Modal body -->
+					<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" >Add</button>
+      </div>
+	  </form>
+                    </div><!-- End of Modal content -->
+                    </div><!-- End of Modal dialog -->
+                  </div><!-- End of addModal --> 

@@ -63,6 +63,8 @@ class EndorseApprove extends CI_Controller {
 		$result['result'] = $this->model_db->queryForApprove();
 		$result['num']=count($result['result']);
 
+	//	echo $this->session->userdata('ID');
+
 		if ($this->session->userdata('type')=="VPA" || $this->session->userdata('type')=="VPAA")
 		{
 			$this->load->view('Header/approverHeader');
@@ -76,8 +78,8 @@ class EndorseApprove extends CI_Controller {
 			$this->load->view('content/endorser/FormConfirmation-approver', $result);
 		}
 
-		$this->load->view('Footer/footer');
-	}
+ 			$this->load->view('Footer/footer');
+	}	
 
 	public function endorseStatus(){
 		$r_id = $this->input->post('id');
@@ -85,7 +87,7 @@ class EndorseApprove extends CI_Controller {
 
 	$this->load->model('model_db');
 	$this->model_db->endorseStatus($r_id, $data);
-		$this->EmailEndorseApprove();
+		$this->EmailEndorseApprove($r_id);
 
 		redirect('EndorseApprove/formConfirmationEndorse');
 
@@ -93,14 +95,24 @@ class EndorseApprove extends CI_Controller {
 
 	public function disEndorseStatus(){
 		$r_id = $this->input->post('id');
-		$data['message'] = $this->input->post('message');
-		$data = array( 'Reservation__Endorse_Status' => 'Disapprove',
-						'Reservation_Message' => $data['message']
-						);
+		
+		$msg = $this->input->post('message');
+
+		if($this->session->userdata('type')=="Dean")
+			$data['Reservation__Endorse_Status'] = 'Disapprove';
+
+		else
+			$data['Reservation_Approve_Status'] = 'Disapprove';
+
+		$data['Reservation_Message'] = $msg ;
+
+	//	$data = array( 'Reservation__Endorse_Status' => 'Disapprove',
+	//					'Reservation_Message' => $data['message']
+	//					);
 
 		$this->load->model('model_db');
 		$this->model_db->disapproveEndorse($r_id, $data);
-		$this->emailDisEndorseApprove($data['message']);
+		$this->emailDisEndorseApprove($r_id, $msg);
 
 		redirect('EndorseApprove/formConfirmationEndorse');
 
@@ -113,34 +125,20 @@ class EndorseApprove extends CI_Controller {
 
 		$this->load->model('model_db');
 		$this->model_db->endorseStatus($r_id, $data);
-		$this->EmailEndorseApprove();
+		$this->EmailEndorseApprove($r_id);
 
 		redirect('EndorseApprove/formConfirmationApprove');
 
 	}
 
 
-	public function disApproveStatus(){
-		$r_id = $this->input->post('id');
-		$dis = $this->input->post('dis');
-		$data = array( 'Reservation_Approve_Status' => $this->session->userdata('fname')." ". $this->session->userdata('lname'),
-						'Reservation_Status' => "Disapprove");
-
-		$this->load->model('model_db');
-		$this->model_db->disEndorseStatusatus($r_id, $data);
-		$this->emailDisEndorseApprove($dis);
-
-		redirect('EndorseApprove/formConfirmationApprove');
-
-	}
-
-
+	
 	public function EmailApprove(){
 		$this->load->library('email');
 		$this->load->model("model_db");
 
 		$r_id = $this->input->post('id');
-		$this->email->from('johngalexislyka@gail.com', 'USC-AVC');
+		$this->email->from('uscavcamrs@gmail.com', 'USC-AVC');
 		
 		$data['result'] = $this->model_db->queryforEmail($r_id);
 			
@@ -153,7 +151,7 @@ class EndorseApprove extends CI_Controller {
 
 
 		if($this->email->send()){
-			echo 'it worke';
+	//		echo 'it worke';
 		}
 		else{
 			redirect('main/home');
@@ -161,12 +159,12 @@ class EndorseApprove extends CI_Controller {
 	}
 
 
-	public function emailDisEndorseApprove($dis){
+	public function emailDisEndorseApprove($id, $dis){
 				
 		$this->load->library('email');	
 	
 		$this->load->model('model_db');
-		$this->email->from('aki_chaka@yahoo.com', 'USC-AVC');
+		$this->email->from('uscavcamrs@gmail.com', 'USC-AVC');
 		$r_id = $this->input->post('id');
 		$data['result'] = $this->model_db->queryforEmail($r_id);
 			
@@ -180,10 +178,10 @@ class EndorseApprove extends CI_Controller {
 
 
 			if($this->session->userdata('type')=="Dean")
-				$message .= '<p>Your Reservation form is failed to endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+				$message .= '<p>Your Reservation '.$id.' form is failed to endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
 			
 			else
-				$message .= '<p>Your Reservation form is failed to approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+				$message .= '<p>Your Reservation '.$id.' form is failed to approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
 
 				$message .= '<p>For the reason of:</p>';
 				$message .= '<p>'.$dis.'</p>';
@@ -193,10 +191,10 @@ class EndorseApprove extends CI_Controller {
 		}	
 
 		if($this->email->send()){
-			echo 'it worke';
+	//		echo 'it worke';
 		}
 		else{
-			echo "it didn't worke";
+	//		echo "it didn't worke";
 		
 		//	redirect('main/home');
 		}
@@ -205,12 +203,12 @@ class EndorseApprove extends CI_Controller {
 	}
 
 
-	public function EmailEndorseApprove(){
+	public function EmailEndorseApprove($id){
 				
 		$this->load->library('email');	
 	
 		$this->load->model('model_db');
-		$this->email->from('aki_chaka@yahoo.com', 'USC-AVC');
+		$this->email->from('uscavcamrs@gmail.com', 'USC-AVC');
 		$r_id = $this->input->post('id');
 		$data['result'] = $this->model_db->queryforEmail($r_id);
 			
@@ -221,19 +219,19 @@ class EndorseApprove extends CI_Controller {
 
 			$message = '<p> Hello ' .$data['result'][0]->Person_Fname. ' </p>' ; 
 			if($this->session->userdata('type')=="Dean")
-			$message .= '<p>Your Reservation form is successfully endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+			$message .= '<p>Your Reservation ID '.$id.' form is successfully endorsed by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
 			
 			else
-				$message .= '<p>Your Reservation form is successfully approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
+				$message .= '<p>Your Reservation '.$id.' form is successfully approved by '. $this->session->userdata('fname')." ". $this->session->userdata('lname').'</p>';
 
 			$this->email->message($message);
 		}	
 		 
 		if($this->email->send()){
-			echo 'it worke';
+	//		echo 'it worke';
 		}
 		else{
-			echo "it didn't worke";
+	//		echo "it didn't worke";
 		
 		//	redirect('main/home');
 		}

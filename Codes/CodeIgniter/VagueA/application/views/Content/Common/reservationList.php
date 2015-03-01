@@ -1,20 +1,23 @@
 <div id="contentMargin">
-<div class="container equipments-container">
+<div class="container content equipments-container">
 <div class="row">
 
-    
-    <div class="col-lg-12" role="main">
-      <h2 id="equip-manage" class="page-header">List of Reservations</h2>
-      <div class="row action-header">
-        <div class="col-md-6 col-md-offset-6">
-            <a href="<?php echo base_url(); ?>user/reservation" role="button" id="btnReserve" data-toggle="modal"><center>
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">ADD RESERVATION</span></center></a>
-         </div>
-      </div>
-      
-      <div class="equipments-content">
-        <div class="table-responsive">
-          <table id="table_id" class="display">
+ <div class="panel panel-default">
+  <div class="panel-body">
+    <div class="panel panel-success">
+  <div class="col-md-12 panel-heading">
+  <div class="col-md-9 title-content">
+  <h3 class="panel-title"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  List of Reservations</h3>
+  </div>
+  <div class="col-md-3">
+  <a href="<?php echo base_url(); ?>user/reservation" role="button" class="btn btn-primary btn-xs" id="btnReserve" data-toggle="modal" style="float:right;">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD RESERVATION</a>                         
+  </div>
+  </div> <!-- panel heading-->
+  <div class="panel-body">
+          <div class="equipments-content">
+        <div class="table-responsive">   
+    <table id="table_id" class="display">
             <thead class="theader-contents">
               <tr>
                 <th ><h4>Campus</h4></th>
@@ -56,11 +59,23 @@
   
           </table>
           
-        </div>
+   
 
       </div>
      
     </div>
+  </div>
+  </div> <!-- panelsuccess-->
+  </div> <!-- panelbody-->
+</div> <!-- paneldefault-->
+   
+
     </div>
     </div> <!-- End of Container -->
   </div>
+  
+  <script>
+  $(document).ready(function() {
+    $('#example').dataTable();
+} );
+  </script>

@@ -1,4 +1,4 @@
- <div class="container equipments-container"> <!-- Start of Container -->
+ <div class="container content"> <!-- Start of Container -->
         <div class="row">
       <ol class="breadcrumb">
         <li><a href="#">Account</a></li>
@@ -6,46 +6,46 @@
       </ol> 
 
       <div class="col-lg-12" role="main">
-      <h4 id="changepass" class="page-header">Change Password</h4>
+    <div class="panel panel-default">
+      <div class="panel-body">
+      <div class="col-xs-12">
+            <h4 id="changepass" class="page-header">Change Password</h4>
       </div>
       
       
       <div class="col-md-6 changepass-content">
-        
-            <div style="left:10%; top:15%;">
             
               <form method="POST" action="<?php echo base_url(); ?>user/updatePass">
                 <?php 
                 echo validation_errors(); 
-                	if($this->session->userdata('successPass'))
+                  if($this->session->userdata('successPass'))
                   {
-                    echo $this->session->userdata('successPass');
+                    echo $this->session->userdata('successPass')."<br><br>";
                     $this->session->unset_userdata('successPass');
                   }
                  
                 ?>
 
-              <table>
-                <tr height="50">
-                    <td><label for="oldpass">Old Password:</label></td>
-                    <td><input minlength="8" required="" type="password" class="form-control-general" name="oldpass" size="8"></td>
-                </tr>
+        
+                    <label for="oldpass">Old Password:</label></td>
+                    <input required="" type="password" class="form-control" name="oldpass">
+               
 
 
-                <tr  height="50">
-                   <td><label for="newpass">New Password:</label></td>
-                    <td><input minlength="8" required="" type="password" class="form-control-general" name="newpass" size="8"></td>
-                </tr>
+                
+                   <label for="newpass">New Password:</label></td>
+                    <input required="" type="password" class="form-control" name="newpass">
+                
 
-                <tr  height="50">
-                   <td><label for="confirmpass">Password Confirmation:</label></td>
-                    <td><input required="" type="password" class="form-control-general" name="confirmpass"></td>
-                </tr>
+                
+                   <label for="confirmpass">Password Confirmation:</label>
+                    <input required="" type="password" class="form-control" name="confirmpass">
+          <br>
 
-                <tr  height="50">
-                   <td><button type="submit " class="btn btn-success">Submit</button></td>
-                </tr>
-                </table>
+                
+                   <button type="submit " class="btn btn-success">Submit</button>
+                
+                
               </form>
             </div>
       </div>

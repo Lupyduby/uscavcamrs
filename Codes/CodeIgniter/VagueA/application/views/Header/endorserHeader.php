@@ -13,8 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>University of San Carlos AVC Reservation System</title>
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">
      <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css">
     <!-- jQuery -->
@@ -22,76 +22,97 @@
    <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src=" <?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
     
+
     <link rel='stylesheet' href='<?php echo base_url(); ?>assets/js/calendar/lib/cupertino/jquery-ui.min.css' />
 <link href='<?php echo base_url(); ?>assets/css/fullcalendar.css' rel='stylesheet' />
 <link href='<?php echo base_url(); ?>assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='<?php echo base_url(); ?>assets/js/calendar/lib/moment.min.js'></script>
 <script src='<?php echo base_url(); ?>assets/js/calendar/fullcalendar.min.js'></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#table_id').DataTable( {
+        dom: 'T<"clear">lfrtip',
+        tableTools: {
+            "aButtons": [
+                {
+                    "sExtends": "xls",
+                    "mColumns": [0,1,2,3,4],
+                },
+                {
+                    "sExtends": "pdf",
+                    "sPdfOrientation": "landscape",
+                    "mColumns": [0,1,2,3,4],
+                },
+                
+            ],
+            "sSwfPath": "<?php echo base_url(); ?>assets/js/swf/copy_csv_xls_pdf.swf"
+        }
+    } );
+} );
 
+</script>
+    
     
   </head>
-   <body data-target=".navigation" data-spy="scroll">
+  <body data-target=".navigation" data-spy="scroll">
     <div class="container-fluid">
       <div class="row">
 
-      <header>
-      <div class="header-container"> <!-- Header -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <img src="<?php echo base_url(); ?>assets/img/header-title.png" class="img-responsive" alt="Responsive image">
-          </div>
-          <div class="navigation navbar-collapse collapse">
-            <ul class="nav navbar-nav menu-right">
-                <li class="">
-                  <a href="<?php echo base_url(); ?>main/home">Home</a>
-                </li>
-                <li class="">
-                  <a href="<?php echo base_url(); ?>user/guideline">Guidelines</a>
-                </li>
+       <header><!-- Header -->
+          <div class="header-container"> 
+                <div id="navbar-green" class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="navbar-header  col-sm-4 col-md-5">
+                            <img src="<?php echo base_url(); ?>assets/img/header-title.png" class="img-responsive" alt="Responsive image">
+                            
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                        </div>
+                    </div>
+        <div class="collapse navbar-collapse navbar-menubuilder">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li ><a id="home" href="<?php echo base_url(); ?>main/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Home</a></li>
+                                <li><a href="<?php echo base_url(); ?>user/guideline"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>  Guidelines</a></li>
                 <li class="dropdown">
-                  <a href="#Calendar" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-                  Calendar<b class="caret"></b>
-                  </a>
-                     <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/RigneyCal">Rigney Hall</a></li>
+                  <a href="#Calendar" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  Calendar <b class="caret"></b></a>
+                                  <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/RigneyCal"><i class="fa fa-university"></i>  Rigney Hall</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/PhlpCal">Philip Van Engelen Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/PhlpCal"><i class="fa fa-university"></i>  Philip Van Engelen Hall</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/HoepCal">Hoeppener Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/HoepCal"><i class="fa fa-university"></i>  Hoeppener Hall</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ButtenCal">Buttenbruch Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ButtenCal"><i class="fa fa-university"></i>  Buttenbruch Hall</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/GanseCal">Gansewinkel Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/GanseCal"><i class="fa fa-university"></i>  Gansewinkel Hall</a></li>
                             <li class="divider"></li>
-                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/BuchCal">Buchick Hall</a></li>
+                            <li><a tabindex="-1" href="<?php echo base_url(); ?>user/BuchCal"><i class="fa fa-university"></i>  Buchick Hall</a></li>
                     
                     </ul>
-                </li>
-                <li class="">
-                  <a href="<?php echo base_url(); ?>user/reservationList">Reservation</a>
-                </li>
-                <li class="">
-                  <a href="<?php echo base_url(); ?>endorseapprove/formConfirmationEndorse">Endorse</a>
-                </li>
+
+                                </li>
+                                <li><a href="<?php echo base_url(); ?>user/reservationList"><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>  Reservation</a></li>
+                <li class=""><a href="<?php echo base_url(); ?>endorseapprove/formConfirmationEndorse"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Endorse</a></li>
+                            </ul>
+        
+      <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">
-                  <?php echo "Hi ".$this->session->userdata('fname'); ?> <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ChangePass">Change Password</a></li>
-        <li class="divider"></li>
-        <li><a tabindex="-1" href="<?php echo base_url(); ?>main/logOut">Logout</a></li>
-    </ul>
-</li>  
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  <?php echo "Hi ".$this->session->userdata('fname'); ?> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="<?php echo base_url(); ?>user/ChangePass">Change Password</a></li>
+          <li class="divider"></li>
+          <li><a tabindex="-1" href="<?php echo base_url(); ?>main/logOut"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+        </ul>
+        </li>  
             </ul>
-          </div>
+      </div>
         </div>
-        </nav>
       </div> <!-- Header -->
     </header>
-
+</body>
 
 
             

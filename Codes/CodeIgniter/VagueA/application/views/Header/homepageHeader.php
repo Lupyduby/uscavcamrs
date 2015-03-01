@@ -15,6 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>University of San Carlos AVC Reservation System</title>
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  
+ <script src="http://code.highcharts.com/highcharts.js"></script>
+ 
   </head>
 
   <body data-target=".navigation" data-spy="scroll" id="over">

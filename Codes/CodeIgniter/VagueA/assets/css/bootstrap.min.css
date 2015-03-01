@@ -530,3 +530,128 @@ table.table th{
 		margin-top: 5%;
 		margin-left: 40%;
 	}
+
+
+
+/*---------------------------Cobi's newest css------------------------------------------*/
+
+
+	.scrollY{
+		overflow-x: auto;
+	}
+
+	.stat{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.rowStat{
+		margin-right: 50px;
+		margin-left: 5px;
+	}
+
+	.marginBot{
+		margin-bottom: 100px;
+	}
+
+	.resetMargin{
+		margin-top: 200px;
+	}
+
+
+
+
+.breadcrumb a{
+	color: black;
+}
+
+#activity, #others, #speakers, #topic{
+	padding-right: 15px;
+}
+
+#speakers-textbox{
+	width: 300px;
+}
+
+#activity-form{
+	padding-right: 15px;
+}
+
+.activity-content{
+	margin-top: 30px;
+	border-top: 1px solid #eee;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #eee;
+}
+
+#activity-subcontent tr{
+	padding-bottom: 5px;
+}
+
+.breadcrumb > .active {
+    color: #36be36;
+}
+
+.statistics-container{
+	margin-top: 80px;
+
+}
+
+.tab-pane{
+	height: 450px !important;
+	overflow-y: scroll;
+}
+
+.asset-list{
+	list-style: outside none none;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.asset-area li {
+    background-color: #d6d4d4;
+    border: 1px solid #fff;
+    float: left;
+    font-size: 12px;
+    height: 110px;
+    line-height: 1.4 !important;
+    padding: 10px;
+    text-align: center;
+    width: 115px;
+}
+
+.glyphicon {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+}
+
+
+
+.asset-area .glyphicon {
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.asset-area .glyphicon-class {
+    display: block;
+    text-align: center;
+}
+
+.asset-area li a{
+    color: #36be36;
+}
+
+.button-area{
+	margin-top: 20px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #006600;
+    color: #fff;
+}
+

@@ -3,7 +3,7 @@
  <div id="contentMargin">
 
 
-<div class="container"> <!--Carousel-->
+<div class="container content"> <!--Carousel-->
   <div id="myCarousel" class="carousel slide">
     <ol class="carousel-indicators">
       <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
@@ -105,22 +105,14 @@
 </div>
 
 
-
-
-    <div class="userhome-content">
+      <div class="userhome-content">
           <div class="container">
             <div class="row">
-    <div class="col-md-7 col-sm-7" id="usertabs">
-      <div class="usertab-content">               
-      <ul class="nav nav-tabs nav-justified" id="usertab-content">
-      <li role="presentation">
-      <a href="#hall-info" data-toggle="tab">Hall Information</a>
-      </li>
-      </ul>
-      </div> 
-
-      <div class="#">
-        <div class="tab-pane" id="hall-info">
+    <div class="col-md-8 col-sm-8" id="usertabs">           
+      <div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>  HALL INFORMATION</h3>
+    </div>
           <ul class="list-group">
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Buttenbruch Hall</h4>
@@ -166,14 +158,13 @@
             </li>
        </ul> 
         </div>
-      </div>
   </div>
 
-    <div class="col-lg-4 col-md-4 col-md-offset-1 col-sm-5">
+    <div class="col-lg-4 col-md-4 col-sm-4">
    <div class="sched-area">
   <div class="panel panel-success">
     <div class="panel-heading">
-        <h3 class="panel-title">Today's Schedule</h3>
+        <h3 class="panel-title"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> TODAY'S SCHEDULE</h3>
     </div>
     
         <ul class="list-group">
@@ -329,17 +320,37 @@
   </div>
   </div>
   </div>
-  </div>
-  </div>
-  </div>
 </div>
+  </div>
+  </div>
 
 
 <script type="text/javascript">
 
+<?php if(!$this->session->userdata('homeNa'))
+{
+  ?>
 
-    $(window).load(function(){
-        $('#basicModal').modal('show');
-    });
+     
+
+  
+       $(window).load(function(){
+            $('#basicModal').modal('show');
+        });
+        function Scrolldown() {
+          window.scroll(0,300); 
+        }
+
+         window.onload = Scrolldown;
+  $('#home').closest('li').addClass('active');
+
+  <?php 
+     $info = array('homeNa' => 'Yes');
+      $this->session->set_userdata($info);
+
+  ?>
+<?php 
+}
+?>
 
 </script>

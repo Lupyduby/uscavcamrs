@@ -269,7 +269,7 @@ class SuperAdmin extends CI_Controller {
 			$result['dutySched'] = $this->model_db->queryWSDutySched();
 			$result['num2']=count($result['dutySched']);
 
-			echo "Sched count: ".$result['num2'];
+		//	echo "Sched count: ".$result['num2'];
 
 			 if ($this->session->userdata('type')=="Staff")
 			{
@@ -310,7 +310,7 @@ class SuperAdmin extends CI_Controller {
 				
 				$res = $this->model_db->sumColumnSoft($month);
 				$result["".$month] = $res[0]->month;
-				echo $res[0]->month;
+		//		echo $res[0]->month;
 			}
 
 
@@ -656,6 +656,264 @@ class SuperAdmin extends CI_Controller {
 		redirect('superAdmin/staff');
 	}
 
+	public function addreservation(){
+		$this->load->model('model_db');
+		$ok=0;
+		//setting time zone PHILIPPINES
+		date_default_timezone_set('asia/manila');
+
+		$campusID = $this->input->post('campus');
+		$userID = $this->input->post('userID');
+
+		$exist = $this->model_db->queryUserID($userID);
+		$countID = count($exist);
+		if($countID==0)
+		{
+			$info=array('message' => "Client does not exist!");
+			$this->session->set_userdata($info);
+			redirect('user/reservation');
+		}
+
+		//getting values for validation
+		if($campusID==3)
+		{
+
+			$hallID = $this->input->post('hall1');
+			$timeStart = $this->input->post('timestartTC');
+			$timeEnd = $this->input->post('timeendTC');
+		}
+
+		else if($campusID==1)
+		{
+			$hallID = $this->input->post('hall2');
+			$timeStart = $this->input->post('timestartDC');
+			$timeEnd = $this->input->post('timeendDC');
+		}
+		
+		else
+		{
+			$hallID = 4;
+			$timeStart = $this->input->post('timestartSC');
+			$timeEnd = $this->input->post('timeendSC');
+		}
+
+		$date = $this->input->post('date');
+
+
+		$currentDate = date('Y-m-d H:i:s');
+		$reserveDate = date("Y-m-d", strtotime($date));
+//		echo $reserveDate;
+		$month = date("F", strtotime($date));
+
+		if( date("Y-m-d", strtotime($date)) >= $currentDate )
+		{	
+			if($reserveDate>$currentDate)
+			{			
+					if($timeStart < $timeEnd)
+					{
+						//calling DB function
+								
+				
+								//checking for campus
+								$res = $this->model_db->checkCampusReservation($campusID);
+								if(count($res))
+								{	
+//									echo count($res)." can insert campus <br>";
+				
+									//checking campus and hall
+									$res = $this->model_db->checkCampusHallReservation($campusID, $hallID);
+									if(count($res))
+									{	
+//										echo count($res)." can insert campus&Time <br>";
+										//checking campus and hall and date
+										$res = $this->model_db->checkCampusHallDateReservation($campusID, $hallID, $date);
+										if(count($res))
+										{
+											//values for checking the time
+												
+												$canInsert=0;
+												$flag=0;
+												for($i=0; $i<count($res) && $flag!=1; $i++)
+												{
+//													echo  date("H:i", strtotime($timeStart))." - ".date("H:i", strtotime($timeEnd))."<br>";
+//													echo date("H:i", strtotime($res[$i]->Reservation_timeStart)). " - ".date("H:i", strtotime($res[$i]->Reservation_timeEnd))."<br>";
+													
+													if( date("H:i", strtotime($res[$i]->Reservation_timeStart)) < date("H:i", strtotime($timeEnd))  || date("H:i", strtotime($res[$i]->Reservation_timeStart)) <= date("H:i", strtotime($timeStart)) )
+													{
+														if( date("H:i", strtotime($res[$i]->Reservation_timeEnd)) >= date("H:i", strtotime($timeEnd)) || date("H:i", strtotime($res[$i]->Reservation_timeEnd)) > date("H:i", strtotime($timeStart)) )
+															{
+																$flag=1;
+//																echo "flag=1"."<br>";
+															}
+															else
+															{
+//																echo "ok E.s "."<br>";
+															}
+													}
+													else
+													{
+//														echo "ok s.s "."<br>";
+													}
+				
+				
+				
+												}
+						
+												if($flag==0)
+												{
+//													echo count($res)." can insert timeChecking " . $i; 
+													$ok=1;
+												}
+												else
+												{
+													$info=array('message' => "Schedule already reserved!");
+													$this->session->set_userdata($info);
+												
+														redirect('user/reservation');
+													
+												}
+											
+										}
+										else
+										{
+//											echo "can insert campus&hall&date"; $ok=1;
+										}
+									}
+									else
+									{
+//										echo "can insert campus&hall"; $ok=1;
+									}
+				
+								}
+								else
+								{
+//									echo "can insert campus"; $ok=1;
+								}
+										
+								if($ok==1)
+								{
+									//saving values to the array
+									$data = array (
+											'Campus_ID' => $campusID,
+											'Person_ID' => $exist[0]->Person_ID,
+							 				'Hall_ID' => $hallID,
+											'Reservation_Date' => $date,
+											'Reservation_timeStart' => date("H:i", strtotime($timeStart)),
+											'Reservation_timeEnd' => date("H:i", strtotime($timeEnd))
+											);
+									//inserting values to the DB
+									$result = $this->model_db->addreservation($data);
+									$this->session->set_userdata($data);
+									$res = $this->model_db->getReservationId();
+									$rID= array('R_ID' =>  $res[0]->Reservation_ID,
+												'campus_reservation' => $campusID,
+												'month' => $month);
+
+									$this->session->set_userdata($rID);
+								//	echo "<br><br><br> campus ID:".$campusID;
+									redirect('user/formFull');
+				
+								}
+								
+								
+							}
+							else
+									{
+										$info=array('message' => "Time start/end is invalid!");
+										$this->session->set_userdata($info);
+										redirect('user/reservation');
+									}
+
+
+					}
+					else
+					{
+						$info=array('message' => "Please call the DOL for advance!");
+						$this->session->set_userdata($info);
+						redirect('user/reservation');
+					}
+			}
+			
+		
+			else
+			{
+				$info=array('message' => "Date is invalid!");
+				$this->session->set_userdata($info);
+				redirect('user/reservation');
+			}
+	}
+
+
+
+	public function ResetDB(){
+		$this->load->view('Header/superAdmin');	
+		$this->load->view('content/superAdmin/resetDB');
+		$this->load->view('Footer/footer');
+		
+	}
+
+	public function resetReservation(){
+		$this->load->model("model_db");
+		$results= $this->model_db->resetReservation();
+		if($results){
+			$info=array('message' => "Successfully reset!");
+			$this->session->set_userdata($info);
+		}
+		else
+		{
+			$info=array('message' => "Resetting reservation error!");
+			$this->session->set_userdata($info);
+		}
+
+		redirect('superAdmin/ResetDB');
+
+	}
+
+
+	public function resetClient(){
+		$this->load->model("model_db");
+		$results= $this->model_db->resetClient();
+		
+		$person= $this->model_db->selectPerson();
+		$count = count($person);
+		for($i=0; $i<$count; $i++)
+			$personID[] = $person[$i]->Person_ID;
+		
+		$resUser = $this->model_db->resetUser($personID);
+
+		if($results){
+			$info=array('message' => "Successfully reset!");
+			$this->session->set_userdata($info);
+		}
+		else
+		{
+			$info=array('message' => "Resetting clients error!");
+			$this->session->set_userdata($info);
+		}
+
+		redirect('superAdmin/ResetDB');
+
+	}
+
+
+	public function resetActivity(){
+		$this->load->model("model_db");
+		$results= $this->model_db->resetActivity();
+		if($results){
+			$info=array('message' => "Successfully reset!");
+			$this->session->set_userdata($info);
+		}
+		else
+		{
+			$info=array('message' => "Resetting clients error!");
+			$this->session->set_userdata($info);
+		}
+
+		redirect('superAdmin/ResetDB');
+
+	}
+
+	
 
 	
 }

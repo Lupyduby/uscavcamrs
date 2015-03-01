@@ -3,6 +3,7 @@ $(document).ready( function () {
 $('#table_id').DataTable();
 $('#table_id2').DataTable();
 $('#table_id3').DataTable();
+$('#table_id4').DataTable();
 $("#basicModal").show();
 
 
