@@ -4371,6 +4371,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
+    margin-right: -15px;
+    padding-right: 15px;
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
@@ -5776,6 +5778,7 @@ button.close {
 .modal-title {
   margin: 0;
   line-height: 1.42857143;
+  color: green;
 }
 .modal-body {
   position: relative;
@@ -6808,7 +6811,7 @@ a.list-group-item-danger.active:focus {
   color: #2c3e50;
 }
 .modal .close {
-  color: #2c3e50;
+  color: green;
 }
 .popover {
   color: #2c3e50;
@@ -6869,4 +6872,8 @@ body{background-color: #f1f2f6}
 .userhome-content{
 	padding: 40px;
 	margin: 10px auto;
+}
+
+#myModalLabel{
+	color: green;
 }
